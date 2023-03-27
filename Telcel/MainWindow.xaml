@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Telcel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-    </Grid>
+    <Frame Source="/Pages/Principal.xaml" ></Frame>
+    
 </Window>

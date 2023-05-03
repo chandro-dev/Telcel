@@ -27,8 +27,7 @@ namespace Vistas.Pages
         }
         public void metodo()
         {
-            page pagina = new page();
-            this.NavigationService.Navigate(pagina);
+          //  this.NavigationService.Navigate(new Pages.page());
         }
     }
 }

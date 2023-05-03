@@ -8,7 +8,23 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Principal">
 
-    <Grid Background="Green">
-        
+    <Grid Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="100" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
+        <Image Grid.Column="0" Grid.Row="1" Source="\recursos\logo.png" ></Image>
+
     </Grid>
+
 </Page>

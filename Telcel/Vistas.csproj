@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="recursos\lupa.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="recursos\lupa.png" />
+  </ItemGroup>
+
 </Project>

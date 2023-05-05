@@ -5,26 +5,89 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Vistas.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Principal">
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Search">
 
     <Grid Background="White">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="100" ></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.6*" ></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
         <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
-        <Image Grid.Column="0" Grid.Row="1" Source="\recursos\logo.png" ></Image>
+        <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
+        
+        <!-- Tabla de busqueda -->
+         <Border Grid.Column="1" CornerRadius="5" BorderBrush="DarkRed" BorderThickness="3" Background="DarkRed" Height="25" Width="500" Margin="57,27,58,44" Grid.Row="1"  >
+            <Grid >
+                <ComboBox Width="60" Height="50" HorizontalAlignment="Left"></ComboBox>
+                <TextBox Width="400" Height="50" HorizontalAlignment="Left" Margin="65,0,0,0"></TextBox>
+                <Button Width="40" Height="50" HorizontalAlignment="Right" >
 
+                </Button>
+            </Grid>
+        </Border>
+
+
+
+        <Rectangle Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Fill="#FF98A8FF" ></Rectangle>
+
+        <!--- Lista de productos -->
+        <ListBox x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#FF98A8FF" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"  >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition MinWidth="500"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions >
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Image Width="100" Source="{Binding imagen}" Grid.Column="0" Grid.RowSpan="3" ></Image>
+
+                            <TextBlock Margin="10" Text="{Binding nombre_producto}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
+                            <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio}" Grid.Column="1" Grid.Row="1" ></TextBlock>
+                            <TextBlock Margin="10" FontWeight="Bold" Height="20" VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
+                        </Grid >
+
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        
+        <!--- Lista de categorias   -->
+        <ListBox x:Name="lstCategorias" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Transparent" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="DarkRed" Width="150">
+                        <Label Content="{Binding nombre}"></Label>
+                        <ListBox x:Name="lstMarcas" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Center">
+                            <ListBox.ItemTemplate >
+                                <DataTemplate>
+                                    <CheckBox  Content="{Binding marca }"></CheckBox>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        
     </Grid>
 
 </Page>

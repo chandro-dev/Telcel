@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,7 @@ namespace Vistas.Pages
         public Principal()
         {
             InitializeComponent();
-            metodo();
-        }
-        public void metodo()
-        {
-          //  this.NavigationService.Navigate(new Pages.page());
+            
         }
     }
 }

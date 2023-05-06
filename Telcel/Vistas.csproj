@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj" />
+    <ProjectReference Include="..\Servicios\Servicios.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="recursos\lupa.png" />
   </ItemGroup>
 

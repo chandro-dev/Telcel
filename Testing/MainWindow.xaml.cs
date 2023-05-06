@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,22 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Vistas.Pages
+
+namespace Testing
 {
     /// <summary>
-    /// Lógica de interacción para Principal.xaml
+    /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class Principal : Page
+    public partial class MainWindow : Window
     {
-        public Principal()
+        public MainWindow()
         {
             InitializeComponent();
-            Servicios.Sclientes servicios = new Servicios.Sclientes();
-            servicios.addLCiente(new Entidades.cliente()
-            {
-                cedula = 2,
-                nombre="Luis"
-            }) ;
+            
         }
     }
 }

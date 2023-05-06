@@ -25,12 +25,7 @@ namespace Vistas.Pages
         public Principal()
         {
             InitializeComponent();
-            Servicios.Sclientes servicios = new Servicios.Sclientes();
-            servicios.addLCiente(new Entidades.cliente()
-            {
-                cedula = 2,
-                nombre="Luis"
-            }) ;
+            
         }
     }
 }

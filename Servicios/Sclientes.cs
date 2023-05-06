@@ -10,15 +10,6 @@ namespace Servicios
 {
     public class Sclientes
     {
-        ApplicationDbContext db = new ApplicationDbContext();
 
-        public string addLCiente(cliente cliente)
-        {
-
-            db.clientes.Add(cliente);
-
-            db.SaveChanges();
-            return "ok";
-        }
     }
 }

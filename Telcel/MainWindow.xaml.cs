@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repositorio;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,13 +26,19 @@ namespace Telcel
     {
         public MainWindow()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<ContextDb>();
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
-            var options = optionsBuilder.Options;
-            var dbcontext=new ContextDb(options);
-            dbcontext.Database.EnsureCreated();
+            Sclientes sclientes = new Sclientes();
+            sclientes.Add_Cliente(new Entidades.cliente()
+            {
+                
+                nombre="Luis",
+                telefono="3108167406",contrasena ="masda",
+                dirrecion=" ",
+                email="@",
+                id=2
+            }) ;
                 InitializeComponent();
             
+
         }
     }
 }

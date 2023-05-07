@@ -31,5 +31,9 @@ namespace Vistas.Pages
         {
             NavigationService.Navigate(new registro());
         }
+        public void btnIniciarS(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.page());
+        }
     }
 }

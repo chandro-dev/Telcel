@@ -26,5 +26,9 @@ namespace Vistas.Pages
         {
             InitializeComponent();
         }
+        public void clickImagen(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Principal());
+        }
     }
 }

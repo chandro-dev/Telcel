@@ -17,11 +17,12 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <!-- Layout-->
         <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Fill="#FF3F56A6"/>
         <Image Margin="20,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
         <Label Content="Registro" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" FontFamily="Berlin Sans FB" Foreground="White" />
     
-        
+        <!-- Imagen de return -->
         <Border Grid.Column="0" Grid.Row="1" Margin="40" CornerRadius="24" BorderBrush="White" >
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -30,10 +31,14 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Button Background="Transparent" BorderBrush="White" Click="btnProducto">
-
-                <Label Content="¡Los mejores precios!"  VerticalAlignment="Bottom"></Label>
-        </Button>
+                <StackPanel>
+                <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\mainImage.png"/>
+                    <Label Content="¡Los Mejores precios!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="OCR A Extended" FontWeight="Bold"></Label>
+                </StackPanel>
+            </Button>
         </Border>
+        
+        <!-- Formulario-->
         <Border Grid.Column="1" Grid.Row="1" Margin="40" CornerRadius="25" 
             Background="#FF90A4FF">
             <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center">
@@ -48,7 +53,7 @@
                 <TextBox x:Name="txtEmail" HorizontalAlignment="Center" Width="250" Margin="23,0,0,0"></TextBox>
                 <Label HorizontalAlignment="Left" Margin="23,0,0,0" Content="Telefono"></Label>
                 <TextBox x:Name="txtTelefono" HorizontalAlignment="Center" Width="250" Margin="23,0,0,0"></TextBox>
-                <Label Content="Contraseña"></Label>
+                <Label HorizontalAlignment="Left" Margin="23,0,0,0" Content="Contraseña"></Label>
                 <PasswordBox x:Name="password" HorizontalAlignment="Center" Width="250" Margin="23,0,0,0"></PasswordBox>
                 <Label></Label>
                 <Button Click="addUsuario" Content="Crear cuenta" HorizontalAlignment="Center" Margin="10"></Button>

@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <Frame Source="/Pages/Principal.xaml" ></Frame>
+    <Frame Source="/Pages/Principal.xaml" NavigationUIVisibility="Hidden" ></Frame>
     
 </Window>

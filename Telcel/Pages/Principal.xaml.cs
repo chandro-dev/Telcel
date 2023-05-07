@@ -27,5 +27,9 @@ namespace Vistas.Pages
             InitializeComponent();
             
         }
+        public void btnRegistrar(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new registro());
+        }
     }
 }

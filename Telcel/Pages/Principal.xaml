@@ -15,7 +15,7 @@
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.175*"></RowDefinition>
             <RowDefinition Height="0.6*" ></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -23,6 +23,7 @@
         </Grid.RowDefinitions>
         <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
         <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
+        <Label Content="Registarse" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
         <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
         
         <!-- Tabla de busqueda -->
@@ -30,8 +31,8 @@
             <Grid >
                 <ComboBox Width="60" Height="50" HorizontalAlignment="Left"></ComboBox>
                 <TextBox Width="400" Height="50" HorizontalAlignment="Left" Margin="65,0,0,0"></TextBox>
-                <Button Width="40" Height="50" HorizontalAlignment="Right" >
-
+                <Button Width="40" Height="20" HorizontalAlignment="Right" >
+                    <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\lupa.png"></Image>
                 </Button>
             </Grid>
         </Border>

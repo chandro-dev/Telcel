@@ -23,21 +23,27 @@ namespace Servicios
             _dbContext = new ContextDb(options);
             _dbContext.Database.EnsureCreated();
 
-
-
         }
 
         public bool Add_Cliente(cliente cliente)
         {
             if (_dbContext != null) {
-              _dbContext.Update(cliente);
-               _dbContext.clientes.Add(cliente);
-                _dbContext.SaveChanges();
-                return true;
+                try
+                {
+                    _dbContext.clientes.Add(cliente);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+                catch(Exception e)  {
+                    Console.WriteLine(e.ToString());
+                    return false;
+                }
             }
             else { 
             return false;
             }
-    }
+        
+        
+        }
     }
 }

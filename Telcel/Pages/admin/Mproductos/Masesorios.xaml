@@ -1,0 +1,34 @@
+﻿<Page x:Class="Vistas.Pages.admin.Mproductos.Masesorios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vistas.Pages.admin.Mproductos"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Masesorios">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="20">
+            <Label Content="Nombre"/>
+            <TextBox x:Name="txtNombre"></TextBox>
+            <Label Content="precio"/>
+            <TextBox x:Name="txtPrecio"></TextBox>
+            <Label Content="Marca"/>
+            <TextBox x:Name="txtMarca"></TextBox>
+            <Label Content="cantidad"></Label>
+            <TextBox x:Name="txtCantidad"></TextBox>
+            <Label x:Name="Imagen"/>
+            <Label Content="Imagen"></Label>
+            <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
+            <Button Content="Selecionar archivo" Click="btnSelecionar"  ></Button>
+            <Separator></Separator>
+            <Button Content="Subir asesorio" Click="btnSubir" ></Button>
+        </StackPanel>
+        <DataGrid x:Name="DGasesorios" Grid.Column="1"></DataGrid>
+    </Grid>
+</Page>

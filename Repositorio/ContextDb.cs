@@ -5,9 +5,9 @@ using Microsoft.Extensions.Options;
 
 namespace Repositorio
 {
-    public class ContextDb:DbContext
+    internal class ContextDb:DbContext
     {
-        public ContextDb(DbContextOptions<ContextDb> options) : base(options)
+        public ContextDb()
         {
             
         }
@@ -16,17 +16,14 @@ namespace Repositorio
             optionsBuilder.UseSqlServer("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true");
         }
 
-        public ContextDb(): base()
-        {
-
-        }
-        public DbSet<cliente>clientes { get; set; }
-
+        public DbSet<marca> marcas { get; set; }
+        public DbSet<rol> roles { get; set; }
+        public DbSet<persona>clientes { get; set; }
         public DbSet<computador>computadors { get; set; }   
         public DbSet<celular>celulars { get; set; }
         public DbSet<asesorio> asesorioes { get;}
         public DbSet<factura> facturas { get; set; }
-       
+        public DbSet<producto> productos { get; set; }
 
     }
 }

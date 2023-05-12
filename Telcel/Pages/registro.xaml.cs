@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Vistas.Pages.admin;
 
 namespace Vistas.Pages
 {
@@ -21,32 +23,35 @@ namespace Vistas.Pages
     /// </summary>
     public partial class registro : Page
     {
-        Sclientes registroSclientes= new Sclientes();
+        Sclientes sclientes;
         public registro()
         {
             InitializeComponent();
+            sclientes =new Sclientes();
         }
-        public void btnProducto(object sender, RoutedEventArgs e)
+        public void add_usuario(object sender,RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Principal());
-        }
-        public void addUsuario(object sender, RoutedEventArgs e)
-        {
-            if (registroSclientes.Add_Cliente(
-                new Entidades.cliente()
+            try
+            {
+                persona p = new persona()
                 {
+                    cedula = int.Parse(txtCedula.Text),
                     nombre = txtNombre.Text,
-                    id = int.Parse(txtCedula.Text),
+                    contrasena = password.Password,
                     dirrecion = txtDirecion.Text,
                     email = txtEmail.Text,
-                    contrasena = password.Password,
+                    rol = new rol() { id = 1, Rol = "cliente" },
+                    id = 2,
                     telefono = txtTelefono.Text
-                }
-                ))
-            {
-                MessageBox.Show("Guardado con exito");
-            }; 
-        }
 
+                };
+                sclientes.Add_Cliente(p);
+            }
+            catch { }   
+
+        }
+        public void returnpage(object sender,RoutedEventArgs e) {
+            NavigationService.GoBack();
+        }
     }
 }

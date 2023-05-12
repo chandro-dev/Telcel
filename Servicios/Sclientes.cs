@@ -11,39 +11,53 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
+
+    /*
+     * Se relizan todas las validaciones correspondientes al manejo de los clientes
+     * 
+     * Se cumplen con los requerimientos dados por la vista correspondiente a la entrega de datos y su respectivo manejo.
+     */
     public class Sclientes
     {
-            
-        ContextDb _dbContext;
-            public Sclientes()
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ContextDb>();
-            optionsBuilder.UseSqlServer("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true");
-            var options = optionsBuilder.Options;
-            _dbContext = new ContextDb(options);
-            _dbContext.Database.EnsureCreated();
 
+        Manejo_Datos M_datos;
+     
+        public Sclientes()
+        {
+            M_datos= new Manejo_Datos(); 
         }
 
-        public bool Add_Cliente(cliente cliente)
+        public bool Add_Cliente(persona cliente)
         {
-            if (_dbContext != null) {
-                try
-                {
-                    _dbContext.clientes.Add(cliente);
-                    _dbContext.SaveChanges();
-                    return true;
-                }
-                catch(Exception e)  {
-                    Console.WriteLine(e.ToString());
-                    return false;
-                }
+            if (M_datos.add_cliente(cliente))
+            {
+                return true;
             }
-            else { 
-            return false;
+            else
+            {
+                return false;
             }
-        
-        
         }
+        public bool sesion(persona cliente)
+        {
+            if (true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public List<persona> GetClientes()
+        {
+            return Manejo_Datos.get_personas();
+        }
+      
+        public List<persona> getAdmin()
+        {
+            return null;
+        }
+        
     }
 }

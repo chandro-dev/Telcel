@@ -13,18 +13,19 @@ namespace Entidades
     {
             [Key]
             [NotNull]
-            [Required]
             public int id { get; set; } 
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-            public string nombre { get; set; }
+            [StringLength(50)]    
+        public string nombre { get; set; }
 #pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
             public int  precio { get; set; }
             public int cantidad { get; set; }
             public bool Envio { get; set; }
             public int descuento { get; set; }
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-            public string marca { get; set; }
+            
+            public marca marca { get; set; }
 #pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-            public byte[] imagen { get; set; }
+        public byte[] imagen { get; set; }
     }
 }

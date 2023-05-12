@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Repositorio;
-using Servicios;
+﻿using Servicios;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,16 +14,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Telcel
+namespace Vistas.Pages.admin
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Lógica de interacción para Mpersonas.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Mpersonas : Page
     {
-        public MainWindow()
+        Sclientes Scliente;
+        public Mpersonas()
         {
+            Scliente=new Sclientes();
             InitializeComponent();
-            }
+            
+            get_personas();
+        }
+        private void get_personas()
+        {
+            DGpersonas.ItemsSource = Scliente.GetClientes();
+        }
     }
 }

@@ -15,12 +15,10 @@ using System.Windows.Shapes;
 
 namespace Vistas.Pages
 {
-    /// <summary>
-    /// Lógica de interacción para page.xaml
-    /// </summary>
 #pragma warning disable CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
-    public partial class page : Page
+public partial class page : Page
 #pragma warning restore CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
+
     {
         public page()
         {
@@ -29,6 +27,9 @@ namespace Vistas.Pages
         public void clickImagen(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Principal());
+        }
+        public void initSesion(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new admin.Mproductos.Masesorios()); 
         }
     }
 }

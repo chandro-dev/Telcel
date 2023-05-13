@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Microsoft.Win32;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,23 +16,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Servicios;
+
 namespace Vistas.Pages.admin.Mproductos
 {
     /// <summary>
-    /// Lógica de interacción para Masesorios.xaml
+    /// Lógica de interacción para Mcelulares.xaml
     /// </summary>
-    public partial class Masesorios : Page
+    public partial class Mcelulares : Page
     {
         private string rutaArchivoSeleccionado;
-        Sasesorios Sasesorios;
-        public Masesorios()
+        Scelulares Scelulares;
+        public Mcelulares()
         {
             InitializeComponent();
-            Sasesorios = new Sasesorios();
-            if (Sasesorios.GetAsesorios().Count > 0)
+            Scelulares = new Scelulares();
+            if (Scelulares.GetCelulares() != null && Scelulares.GetCelulares().Count >0)
             {
-                DGasesorios.ItemsSource = Sasesorios.GetAsesorios();
+                refresh();
             }
 
         }
@@ -59,30 +60,34 @@ namespace Vistas.Pages.admin.Mproductos
                     }
 
                 }
-                asesorio a = new asesorio
+                celular c = new celular
                 {
                     nombre = txtNombre.Text,
-                    referencia = "23",
                     cantidad = int.Parse(txtCantidad.Text),
                     descuento = 0,
                     Envio = true,
                     id = 23,
                     marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
                     imagen = imagen,
-                    precio = int.Parse(txtPrecio.Text)
+                    precio = int.Parse(txtPrecio.Text),
+                    almacenamiento = txtAlmacenamiento.Text,
+                    camara= txtCamara.Text,
+                    ram = txtRam.Text
+                    
                 };
-                Sasesorios.add(a);
+                Scelulares.add(c);
                 refresh();
+                MessageBox.Show("Guardado exitosamente");
             }
         }
-        public void btnVolver(object sender,RoutedEventArgs e)
+        private void btnVolver(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
         private void refresh()
         {
-            DGasesorios.ItemsSource = null;
-            DGasesorios.ItemsSource = Sasesorios.GetAsesorios();
+            DGcelulares.ItemsSource = null;
+            DGcelulares.ItemsSource = Scelulares.GetCelulares();
         }
     }
 }

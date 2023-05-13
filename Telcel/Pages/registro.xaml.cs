@@ -45,7 +45,8 @@ namespace Vistas.Pages
                     telefono = txtTelefono.Text
 
                 };
-                sclientes.Add_Cliente(p);
+                sclientes.add(p);
+                MessageBox.Show("Ingreso correctamente");
             }
             catch { }   
 

@@ -1,7 +1,9 @@
 ﻿using Entidades;
 using Microsoft.Win32;
+using Servicios;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,25 +17,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Servicios;
+
 namespace Vistas.Pages.admin.Mproductos
 {
     /// <summary>
-    /// Lógica de interacción para Masesorios.xaml
+    /// Lógica de interacción para Mcomputadores.xaml
     /// </summary>
-    public partial class Masesorios : Page
+    public partial class Mcomputadores : Page
     {
         private string rutaArchivoSeleccionado;
-        Sasesorios Sasesorios;
-        public Masesorios()
+        Scomputadores Scomputadores;
+        public Mcomputadores()
         {
             InitializeComponent();
-            Sasesorios = new Sasesorios();
-            if (Sasesorios.GetAsesorios().Count > 0)
+            Scomputadores = new Scomputadores();
+            if (Scomputadores.GetComputadors().Count > 0)
             {
-                DGasesorios.ItemsSource = Sasesorios.GetAsesorios();
+                DGcomputadores.ItemsSource = Scomputadores.GetComputadors();
             }
-
         }
         public void btnSelecionar(object sender, RoutedEventArgs e)
         {
@@ -59,30 +60,35 @@ namespace Vistas.Pages.admin.Mproductos
                     }
 
                 }
-                asesorio a = new asesorio
+                computador c = new computador
                 {
                     nombre = txtNombre.Text,
-                    referencia = "23",
                     cantidad = int.Parse(txtCantidad.Text),
                     descuento = 0,
                     Envio = true,
                     id = 23,
                     marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
                     imagen = imagen,
-                    precio = int.Parse(txtPrecio.Text)
+                    precio = int.Parse(txtPrecio.Text),
+                    almacenamiento=txtAlmacenamiento.Text,
+                    procesador=txtProcesador.Text,
+                    ram = txtRam.Text,
+                    tarjeta_madre=txtTmadre.Text,
+                    tarjeta_video=txtTvideo.Text
                 };
-                Sasesorios.add(a);
+                Scomputadores.add(c);
                 refresh();
             }
         }
-        public void btnVolver(object sender,RoutedEventArgs e)
+        public void btnVolver(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
         private void refresh()
         {
-            DGasesorios.ItemsSource = null;
-            DGasesorios.ItemsSource = Sasesorios.GetAsesorios();
+            DGcomputadores.ItemsSource = null;
+            DGcomputadores.ItemsSource = Scomputadores.GetComputadors();
         }
     }
 }
+

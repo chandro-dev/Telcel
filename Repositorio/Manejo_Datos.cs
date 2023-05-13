@@ -11,13 +11,7 @@ namespace Repositorio
 {
     public class Manejo_Datos
     {
-        private static List<marca> marcas = new List<marca>();
-        private static List<rol> roles = new List<rol>();
-        private static List<persona> personas = new List<persona>();
-        private static List<computador> computadors = new List<computador>();
-        private static List<celular> celulars = new List<celular>();
-        private static List<asesorio> asesorioes = new List<asesorio>();
-        private static List<factura> facturas = new List<factura>();
+
         ContextDb _dbContext;
         public Manejo_Datos()
         {
@@ -27,7 +21,6 @@ namespace Repositorio
         {
             try
             {
-                personas.Add(p);
                 return true;
             }
             catch
@@ -35,11 +28,10 @@ namespace Repositorio
                 return false;
             }
         }
-        public bool add_poducto(producto p)
+        public bool add_poducto(asesorio p)
         {
             try
             {
-                asesorioes.Add((asesorio)p);
                 return true;
             }
             catch
@@ -47,21 +39,41 @@ namespace Repositorio
                 return false;
             }
         }
-        //Retorno de listas;
-        public static List<persona> get_personas() {
-            if (personas != null)
-            {
-                return personas.ToList();
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public static List<asesorio> get_asesorios()
+        public bool add_poducto(computador p)
         {
-            return asesorioes;
+            try
+            {
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
+        public bool add_poducto(marca p)
+        {
+            try
+            {
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool add_poducto(celular p)
+        {
+            try
+            {
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
 
     }
 }

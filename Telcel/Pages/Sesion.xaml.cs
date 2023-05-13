@@ -29,7 +29,8 @@ public partial class page : Page
             NavigationService.Navigate(new Principal());
         }
         public void initSesion(object sender, RoutedEventArgs e) {
-            NavigationService.Navigate(new admin.Mproductos.Masesorios()); 
+            NavigationService.Navigate(new admin.MenuAdmin()); 
         }
+
     }
 }

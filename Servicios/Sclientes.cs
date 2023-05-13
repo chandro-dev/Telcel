@@ -17,26 +17,33 @@ namespace Servicios
      * 
      * Se cumplen con los requerimientos dados por la vista correspondiente a la entrega de datos y su respectivo manejo.
      */
-    public class Sclientes
+    public class Sclientes:IServicios<persona>
     {
-
-        Manejo_Datos M_datos;
+        private static List<rol> roles = new List<rol>();
+        private static List<persona> personas = new List<persona>();
      
         public Sclientes()
         {
-            M_datos= new Manejo_Datos(); 
         }
 
-        public bool Add_Cliente(persona cliente)
+        public bool add(persona cliente)
         {
-            if (M_datos.add_cliente(cliente))
+            try
             {
+                personas.Add(cliente);
                 return true;
             }
-            else
+            catch
             {
                 return false;
             }
+        }
+        public bool remove(persona cliente)
+        {
+            return true;
+        }
+        public bool update(persona cliente) {
+            return true;
         }
         public bool sesion(persona cliente)
         {
@@ -51,12 +58,12 @@ namespace Servicios
         }
         public List<persona> GetClientes()
         {
-            return Manejo_Datos.get_personas();
+            return personas.FindAll(x=>x.rol.Rol =="cliente");
         }
       
         public List<persona> getAdmin()
         {
-            return null;
+            return personas.FindAll(x=>x.rol.Rol=="admin");
         }
         
     }

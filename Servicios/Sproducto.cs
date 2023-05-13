@@ -8,18 +8,26 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class Sproducto
+    public class Sproducto:IServicios<producto>
     {
-        Manejo_Datos M_datos;
+
+        private static List<producto> list;
         public Sproducto() {
-            M_datos = new Manejo_Datos();
+            list = new List<producto>();
         }
-        public void add(asesorio p)
+        public bool add(producto p)
         {
-            M_datos.add_poducto(p);
+            return true;
         }
-        public List<asesorio> list() {
-            return Manejo_Datos.get_asesorios();
+        public bool remove(producto p) {
+            return true;
+        }
+        public bool update(producto p)
+        {
+            return true;
+        }
+        public List<producto>GetProductos() {
+            return list;
         }
 
     }

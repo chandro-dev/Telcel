@@ -65,7 +65,7 @@
 
                             <Image Width="100" Source="{Binding imagen}" Grid.Column="0" Grid.RowSpan="3" ></Image>
 
-                            <TextBlock Margin="10" Text="{Binding nombre_producto}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
+                            <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
                             <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio}" Grid.Column="1" Grid.Row="1" ></TextBlock>
                             <TextBlock Margin="10" FontWeight="Bold" Height="20" VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
                         </Grid >

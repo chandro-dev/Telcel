@@ -21,7 +21,9 @@ namespace Vistas.Pages
     /// <summary>
     /// Lógica de interacción para registro.xaml
     /// </summary>
+#pragma warning disable CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
     public partial class registro : Page
+#pragma warning restore CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
     {
         Sclientes sclientes;
         public registro()

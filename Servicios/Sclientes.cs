@@ -20,10 +20,14 @@ namespace Servicios
     public class Sclientes:IServicios<persona>
     {
         private static List<rol> roles = new List<rol>();
-        private static List<persona> personas = new List<persona>();
+        private static List<persona> personas;
      
         public Sclientes()
         {
+            if(personas == null)
+            {
+                personas=new List<persona>();
+            }
         }
 
         public bool add(persona cliente)
@@ -55,6 +59,10 @@ namespace Servicios
             {
                 return false;
             }
+        }
+        public List<persona> GetPersonas()
+        {
+            return personas;
         }
         public List<persona> GetClientes()
         {

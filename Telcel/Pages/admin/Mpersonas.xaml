@@ -9,6 +9,29 @@
       Title="Mpersonas">
 
     <Grid Background="Black">
-        <DataGrid x:Name="DGpersonas"></DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DGpersonas" Grid.Column="1"></DataGrid>
+        <StackPanel Margin="15" Background="White" Grid.Column="0">
+            <Label Content="Nombre" />
+            <TextBox x:Name="txtNombre"/>
+            <Label Content="Dirrecion"/>
+            <TextBox x:Name="txtDirrecion" />
+            <Label Content="Email" />
+            <TextBox x:Name="txtEmail" />
+            <Label Content="Telefono"/>
+            <TextBox x:Name="txtTelefono" />
+            <Label Content="Contraseña"/>
+            <PasswordBox  x:Name="Pcontrasena"/>
+            <Label Content="Cedula"/>
+            <TextBox x:Name="txtCedula" />
+            <Label x:Name="Administrador"/>
+            <RadioButton x:Name="rbtnAdmin"></RadioButton>
+            <Separator Margin="10"/>
+            <Button Content="Crear usuario" Click="btnCrear"/>
+            <Button Content="devolver" Click="btnDevolver"/>
+        </StackPanel>
     </Grid>
 </Page>

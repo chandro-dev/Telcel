@@ -17,6 +17,7 @@ namespace Servicios
         }
         public bool add(producto p)
         {
+            list.Add(p);
             return true;
         }
         public bool remove(producto p) {

@@ -26,7 +26,21 @@ namespace Servicios
         {
             if(personas == null)
             {
-                personas=new List<persona>();
+                personas=new List<persona>(){new persona()
+                {
+                    nombre="admin",
+                    cedula=666,
+                    contrasena="admin",
+                    rol= new rol
+                    {
+                        id=0,
+                        Rol="admin"
+                    },
+                    telefono="2222",
+                    email="admin.com",
+                    dirrecion="admin",
+                    id=0
+                } };
             }
         }
 
@@ -49,17 +63,7 @@ namespace Servicios
         public bool update(persona cliente) {
             return true;
         }
-        public bool sesion(persona cliente)
-        {
-            if (true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+      
         public List<persona> GetPersonas()
         {
             return personas;
@@ -69,10 +73,7 @@ namespace Servicios
             return personas.FindAll(x=>x.rol.Rol =="cliente");
         }
       
-        public List<persona> getAdmin()
-        {
-            return personas.FindAll(x=>x.rol.Rol=="admin");
-        }
+
         
     }
 }

@@ -26,14 +26,11 @@ namespace Vistas.Pages.admin.Mproductos {
         private string rutaArchivoSeleccionado;
         public Mcelulares()
         {
-
             InitializeComponent();
-
             if (Scelulares.GetCelulares() != null && Scelulares.GetCelulares().Count > 0)
             {
                 refresh();
             }
-
         }
         public void btnSelecionarClick(object sender, RoutedEventArgs e)
         {

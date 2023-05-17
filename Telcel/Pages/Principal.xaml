@@ -25,9 +25,9 @@
         </Grid.RowDefinitions>
         <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
         <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
-        <Label x:Name="lbUser" Content="User"  Grid.Row="0 " Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" MouseDoubleClick="lbUser_MouseDoubleClick"/>
-        <Label Content="Registarse" Margin="0,0,100,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
-        <Label Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
+        <Label x:Name="lbUser" Content="User"  Grid.Row="0 " Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden" MouseDoubleClick="lbUser_MouseDoubleClick"/>
+        <Label x:Name="lbRegistrarse" Content="Registarse" Margin="0,0,100,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
+        <Label x:Name="lbISesion" Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
         <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
         
         <!-- Tabla de busqueda -->

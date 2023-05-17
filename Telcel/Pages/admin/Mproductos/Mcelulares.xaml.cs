@@ -24,7 +24,9 @@ namespace Vistas.Pages.admin.Mproductos {
     {
         Scelulares Scelulares= new Scelulares();
         private string rutaArchivoSeleccionado;
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Mcelulares()
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
             if (Scelulares.GetCelulares() != null && Scelulares.GetCelulares().Count > 0)
@@ -73,10 +75,11 @@ namespace Vistas.Pages.admin.Mproductos {
                             ram = txtRam.Text
 
                         };
-                        Scelulares.add(c);
+                    
+                        MessageBox.Show(Scelulares.add(c));
+
                         refresh();
-                        MessageBox.Show("Guardado exitosamente");
-                        }
+                    }
                     break;
                 case "Eliminar":
                     try
@@ -112,9 +115,13 @@ namespace Vistas.Pages.admin.Mproductos {
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             byte[] data = value as byte[];
+#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             if (data == null)
+#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
                 return null;
+#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
 
             BitmapImage image = new BitmapImage();
             using (MemoryStream stream = new MemoryStream(data))

@@ -4,6 +4,7 @@ using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -72,11 +73,11 @@ namespace Vistas.Pages.admin.Mproductos
                     marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
                     imagen = imagen,
                     precio = int.Parse(txtPrecio.Text),
-                    almacenamiento=txtAlmacenamiento.Text,
-                    procesador=txtProcesador.Text,
+                    almacenamiento = txtAlmacenamiento.Text,
+                    procesador = txtProcesador.Text,
                     ram = txtRam.Text,
-                    tarjeta_madre=txtTmadre.Text,
-                    tarjeta_video=txtTvideo.Text
+                    tarjeta_madre = txtTmadre.Text,
+                    tarjeta_video = txtTvideo.Text
                 };
                 Scomputadores.add(c);
                 refresh();
@@ -91,6 +92,7 @@ namespace Vistas.Pages.admin.Mproductos
             DGcomputadores.ItemsSource = null;
             DGcomputadores.ItemsSource = Scomputadores.GetComputadors();
         }
-    }
-}
 
+    }
+
+}

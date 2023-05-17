@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,18 @@ using System.Windows.Shapes;
 
 namespace Vistas.Pages
 {
-    /// <summary>
-    /// Lógica de interacción para Validacion.xaml
-    /// </summary>
-    public partial class Validacion : Page
+    public partial class Muser : Page
     {
-        public Validacion()
+        public Muser(persona p)
         {
-            InitializeComponent();
+            if (p == null)
+            {
+                NavigationService.GoBack();
+            }
+            else
+            {
+                InitializeComponent();
+            }
         }
     }
 }

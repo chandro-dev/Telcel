@@ -26,18 +26,26 @@ namespace Vistas.Pages
     /// </summary>
     public partial class Principal : Page
     {
-        Scelulares Scelulares;
+        Sproducto sproducto;
+        Scelulares scelulares;
         persona sesion;
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Principal(persona p)
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
-            if(p != null)
+            if (p != null)
             {
                 sesion = p;
                 _sesion();
+
             }
-            Scelulares= new Scelulares();
-            lbxProductos.ItemsSource = Scelulares.GetCelulares();
+            else
+            {
+                lbUser.Visibility = Visibility.Hidden;
+            }
+            scelulares= new Scelulares();
+            lbxProductos.ItemsSource = scelulares.GetCelulares();
         }
        
         public void btnRegistrar(object sender, RoutedEventArgs e)
@@ -53,12 +61,15 @@ namespace Vistas.Pages
         //Metodo correspondiente a la gestion de los inicios de sesion.
          public void _sesion()
         {
-            lbUser.Content = sesion.nombre; lbUser.Visibility=Visibility.Visible;
+            lbUser.Visibility = Visibility.Visible;
+            lbUser.Content = sesion.nombre;
+            lbRegistrarse.Visibility = Visibility.Hidden;
+            lbISesion.Visibility = Visibility.Hidden;
         }
 
         private void lbUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            NavigationService.Navigate(new Muser(sesion));
         }
     }
 

@@ -86,5 +86,6 @@ namespace Vistas.Pages.admin.Mproductos
             DGasesorios.ItemsSource = null;
             DGasesorios.ItemsSource = Sasesorios.GetAsesorios();
         }
+        
     }
 }

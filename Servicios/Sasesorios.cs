@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace Servicios
     {
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static List<asesorio> list;
+        Sproducto sproducto;
+        DAO dao;
+
 #pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
 
         public Sasesorios()
@@ -19,12 +23,16 @@ namespace Servicios
             {
                 list = new List<asesorio>();
             }
+            sproducto = new Sproducto();
+            dao= new DAO();
         }
         public bool add(asesorio asesorio)
         {
             try
             {
                     list.Add(asesorio);
+                dao.add_producto(asesorio);
+                sproducto.add((producto)asesorio);
                 return true;
 
             }
@@ -39,6 +47,7 @@ namespace Servicios
             try
             {
                 list.Remove(asesorio);
+                sproducto.remove(asesorio);
                 return true;
             }
             catch

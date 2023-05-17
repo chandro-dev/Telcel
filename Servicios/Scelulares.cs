@@ -1,17 +1,19 @@
 ﻿using Entidades;
+using Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class Scelulares:IServicios<celular>
+    public class Scelulares//:IServicios<celular>
     {
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-        private static List<celular> list;
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+      private static List<celular> list;
+        DAO dao;
+        Sproducto sproducto;
 
         public Scelulares()
         {
@@ -19,19 +21,21 @@ namespace Servicios
             {
                 list = new List<celular>();
             }
-
+            sproducto= new Sproducto();
+            dao = new DAO();
         }
-        public bool add(celular celular)
+        public string add(celular celular)
         {
             try
             {
                 list.Add(celular);
-                return true;
-
+                return dao.retorno().ToString();
+              
+   
             }
             catch
             {
-                return false;
+                return "";
             }
         }
         public bool remove(celular celular)
@@ -40,6 +44,7 @@ namespace Servicios
             try
             {
                 list.Remove(celular);
+                sproducto.remove((producto)celular);
                 return true;
             }
             catch
@@ -62,7 +67,15 @@ namespace Servicios
         }
         public List<celular> GetCelulares()
         {
-            return list;
+            try
+            {
+                return list;
+
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Vistas.Pages.Validacion"
+﻿<Page x:Class="Vistas.Pages.Facturacion"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:Vistas.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Validacion">
+      Title="Facturacion">
 
-    <Grid Background="blue">
+    <Grid Background="White">
         
     </Grid>
 </Page>

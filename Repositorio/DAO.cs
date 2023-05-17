@@ -1,5 +1,4 @@
 ﻿using Entidades;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class Manejo_Datos
+    public class DAO
     {
 
         ContextDb _dbContext;
-        public Manejo_Datos()
+        public DAO()
         {
             _dbContext = new ContextDb();
         }
@@ -21,6 +20,7 @@ namespace Repositorio
         {
             try
             {
+             
                 return true;
             }
             catch
@@ -28,7 +28,43 @@ namespace Repositorio
                 return false;
             }
         }
-        public bool add_poducto(asesorio p)
+        public bool add_producto(asesorio p)
+        {
+            try
+            {
+          
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool add_producto(producto p)
+        {
+            try
+            {
+               
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool add_producto(computador p)
+        {
+            try
+            {
+              
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool add_marca(marca p)
         {
             try
             {
@@ -39,39 +75,30 @@ namespace Repositorio
                 return false;
             }
         }
-        public bool add_poducto(computador p)
+        public string add_producto(celular p)
         {
             try
             {
-                return true;
+                return _dbContext.algo();
+               
+ 
             }
             catch
             {
-                return false;
+                return "";
             }
         }
-        public bool add_poducto(marca p)
+        public  List<celular> GetProductos()
         {
-            try
-            {
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return null;
         }
-        public bool add_poducto(celular p)
+        public string retorno()
         {
-            try
-            {
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+                return _dbContext.algo();
+            
+          
+
         }
         
 

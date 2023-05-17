@@ -10,18 +10,39 @@ namespace Servicios
 {
     public class Sproducto:IServicios<producto>
     {
-
+        DAO dao;
         private static List<producto> list;
         public Sproducto() {
-            list = new List<producto>();
+            if (list == null)
+            {
+                list = new List<producto>();
+            }
+            dao= new DAO();
         }
         public bool add(producto p)
         {
-            list.Add(p);
-            return true;
+          
+            try
+            {
+                
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public bool remove(producto p) {
-            return true;
+
+            try
+            {
+                list.Remove(p);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public bool update(producto p)
         {

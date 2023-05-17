@@ -1,6 +1,5 @@
 ﻿using Entidades;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Protocols;
+
 using Repositorio;
 using System;
 using System.Collections.Generic;

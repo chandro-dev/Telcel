@@ -31,8 +31,8 @@ public partial class page : Page
         }
         public void clickImagen(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
-          
+            NavigationService.Navigate(new Principal(null));
+
         }
         public void initSesion(object sender, RoutedEventArgs e) {
             persona usuario = sesiones.validation(Contrasena.Password, txtUsuario.Text);
@@ -45,8 +45,6 @@ public partial class page : Page
                 else
                 {
                     NavigationService.Navigate(new Principal(usuario));
-                
-                
                 
                 }
 

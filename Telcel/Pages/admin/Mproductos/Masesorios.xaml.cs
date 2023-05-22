@@ -46,33 +46,42 @@ namespace Vistas.Pages.admin.Mproductos
         }
         public void btnSubir(object sender, RoutedEventArgs e)
         {
-
-            byte[] imagen;
-            if (rutaArchivoSeleccionado != null)
+            switch (_btnSubir.Content)
             {
-                using (var fileStream = new FileStream(rutaArchivoSeleccionado, FileMode.Open, FileAccess.Read))
-                {
-                    using (var ms = new MemoryStream())
-                    {
-                        fileStream.CopyTo(ms);
-                        imagen = ms.ToArray();
-                    }
+                case "Subir Celular":
 
-                }
-                asesorio a = new asesorio
-                {
-                    nombre = txtNombre.Text,
-                    referencia = "23",
-                    cantidad = int.Parse(txtCantidad.Text),
-                    descuento = 0,
-                    Envio = true,
-                    id = 23,
-                    marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
-                    imagen = imagen,
-                    precio = int.Parse(txtPrecio.Text)
-                };
-                Sasesorios.add(a);
+                    byte[] imagen;
+                    if (rutaArchivoSeleccionado != null)
+                    {
+                        using (var fileStream = new FileStream(rutaArchivoSeleccionado, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                fileStream.CopyTo(ms);
+                                imagen = ms.ToArray();
+                            }
+
+                        }
+                        asesorio a = new asesorio
+                        {
+                            nombre = txtNombre.Text,
+                            referencia = "23",
+                            cantidad = int.Parse(txtCantidad.Text),
+                            descuento = 0,
+                            Envio = true,
+                            id = 23,
+                            marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
+                            imagen = imagen,
+                            precio = int.Parse(txtPrecio.Text)
+                        };
+                    }
+                break;
+                case "Eliminar":
+
+                    MessageBox.Show(Sasesorios.remove((asesorio)DGasesorios.SelectedItem));
+                _btnSubir.Content = "Subir Celular";
                 refresh();
+                break;
             }
         }
         public void btnVolver(object sender,RoutedEventArgs e)
@@ -84,6 +93,11 @@ namespace Vistas.Pages.admin.Mproductos
             DGasesorios.ItemsSource = null;
             DGasesorios.ItemsSource = Sasesorios.GetAsesorios();
         }
-        
+
+        private void DGasesorios_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _btnSubir.Content = "Eliminar";
+
+        }
     }
 }

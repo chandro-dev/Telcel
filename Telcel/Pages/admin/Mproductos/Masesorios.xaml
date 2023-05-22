@@ -30,17 +30,17 @@
             <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
             <Button Content="Selecionar archivo" Click="btnSelecionar"  ></Button>
             <Separator></Separator>
-            <Button Content="Subir asesorio" Click="btnSubir" ></Button>
+            <Button x:Name="_btnSubir" Content="Subir asesorio" Click="btnSubir" ></Button>
             <Separator Margin="20"></Separator>
             <Button Content="Devolver" Click="btnVolver"/>
         </StackPanel>
-        <DataGrid x:Name="DGasesorios" Grid.Column="1">
+        <DataGrid x:Name="DGasesorios" Grid.Column="1" SelectionChanged="DGasesorios_SelectionChanged">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Precio" Binding="{Binding precio}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Marca" Binding="{Binding marca.nombre_marca}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Camara" Binding="{Binding referencia}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Descripcion" Binding="{Binding cantidad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Referencia" Binding="{Binding referencia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding cantidad}"></DataGridTextColumn>
 
 
                 <DataGridTemplateColumn Header="imagen">

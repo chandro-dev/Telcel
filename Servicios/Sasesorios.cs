@@ -10,49 +10,29 @@ namespace Servicios
 {
     public class Sasesorios
     {
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static List<asesorio> list;
-        Sproducto sproducto;
-        Iproductos<celular> dao;
-
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-
+        Iproductos<asesorio> dao;
         public Sasesorios()
         {
             if (list == null)
             {
                 list = new List<asesorio>();
             }
-            sproducto = new Sproducto();
-            dao= new DBcelulares();
+            dao= new DBasesorios();
         }
-        public bool add(asesorio asesorio)
+        public string add(asesorio asesorio)
         {
-            try
-            {
+            
                     list.Add(asesorio);
-              
-                return true;
 
-            }
-            catch
-            {
-                return false;
-            }
+                return dao.add(asesorio);
         }
-        public bool remove(asesorio asesorio)
+        public string remove(asesorio asesorio)
         {
-
-            try
-            {
-                list.Remove(asesorio);
-                sproducto.remove(asesorio);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            int index = list.IndexOf(list.Find(x => asesorio.id == x.id));
+            string result = dao.remove(list[index]);
+            list.Remove(asesorio);
+            return result;
         }
 
         public bool update(asesorio asesorio)
@@ -69,6 +49,7 @@ namespace Servicios
         }
         public List<asesorio> GetAsesorios()
         {
+            list = dao.getAll();
             return list;
         }
     }

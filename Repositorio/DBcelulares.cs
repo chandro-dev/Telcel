@@ -80,13 +80,12 @@ namespace Repositorio
 
             try
             {
+                celular.id = int.Parse(reader["id"].ToString());
                 celular.cantidad = int.Parse(reader["cantidad"].ToString());
                 celular.almacenamiento = reader["almacenamiento"].ToString();
                 celular.camara = reader["camara"].ToString();
                 celular.descripcion = reader["descripcion"].ToString();
-                celular.descuento = int.Parse(reader["descuento"].ToString());
-                celular.precio = int.Parse(reader["precio"].ToString());
-                celular.id = int.Parse(reader["id"].ToString());
+                celular.precio = double.Parse(reader["precio"].ToString());
                 celular.marca = new marca
                 {
                     id = int.Parse(reader["id_marca"].ToString()),
@@ -94,6 +93,7 @@ namespace Repositorio
                     nombre_marca = reader["nombre_marca"].ToString()
                 };
                 celular.ram = reader["ram"].ToString();
+                celular.descuento = int.Parse(reader["descuento"].ToString());
 
             }
             catch
@@ -103,6 +103,19 @@ namespace Repositorio
             return celular;
         }
         public string remove(celular item) {
+            using(SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPdelete_celular", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", item.id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
             return "OK";
         }
         public string modify(celular item) {

@@ -34,21 +34,13 @@ namespace Servicios
 
 
         }
-        public bool remove(celular celular)
+        public string remove(celular _celular)
         {
-
-            try
-            {
-                list.Remove(celular);
-                sproducto.remove((producto)celular);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            int index = list.IndexOf(list.Find(x => _celular.nombre == x.nombre));
+                string result = dao.remove(list[index]);
+                list.Remove(_celular);
+                return result;
         }
-
         public bool update(celular celular)
         {
 

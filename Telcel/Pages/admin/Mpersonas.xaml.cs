@@ -37,8 +37,7 @@ namespace Vistas.Pages.admin
             }
         }
         private void btnCrear(object sender,RoutedEventArgs e) {
-            try
-            {
+
                 persona p = new persona()
                 {
                     cedula = int.Parse(txtCedula.Text),
@@ -61,7 +60,7 @@ namespace Vistas.Pages.admin
                 {
                     p.rol = new rol()
                     {
-                        id = 1,
+                        id = 2,
                         Rol = "cliente"
                     };
                 }
@@ -69,11 +68,7 @@ namespace Vistas.Pages.admin
                 Scliente.add(p);
                 MessageBox.Show("Creado exitosamente");
                 refresh();
-            }
-            catch
-            {
 
-            }
         }
 
         private void btnDevolver(object sender, RoutedEventArgs e)

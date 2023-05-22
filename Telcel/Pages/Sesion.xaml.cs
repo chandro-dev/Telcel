@@ -18,9 +18,7 @@ using Vistas.Pages.admin;
 
 namespace Vistas.Pages
 {
-#pragma warning disable CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
 public partial class page : Page
-#pragma warning restore CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
 
     {
         Ssesiones sesiones;
@@ -31,16 +29,14 @@ public partial class page : Page
         }
         public void clickImagen(object sender, RoutedEventArgs e)
         {
-#pragma warning disable CS8625 // No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.
             NavigationService.Navigate(new Principal(null));
-#pragma warning restore CS8625 // No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.
 
         }
         public void initSesion(object sender, RoutedEventArgs e) {
             persona usuario = sesiones.validation(Contrasena.Password, txtUsuario.Text);
             if (usuario != null)
             {
-                if (usuario.rol.Rol == "admin")
+                if (usuario.rol.id == 1)
                 {
                     NavigationService.Navigate(new MenuAdmin());
                 }

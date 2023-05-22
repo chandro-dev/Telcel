@@ -18,13 +18,8 @@ using Vistas.Pages.admin;
 
 namespace Vistas.Pages
 {
-    /// <summary>
-    /// Lógica de interacción para registro.xaml
-    /// </summary>
-#pragma warning disable CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
-    public partial class registro : Page
-#pragma warning restore CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
-    {
+  public partial class registro : Page
+        {
         Sclientes sclientes;
         public registro()
         {
@@ -44,14 +39,9 @@ namespace Vistas.Pages
                     telefono = txtTelefono.Text
 
                 };
-                if (sclientes.add(p))
-                {
-                    MessageBox.Show("Ingreso correctamente");
-                }
-                else
-                {
-                    MessageBox.Show("pailas");
-                }
+
+                    MessageBox.Show(sclientes.add(p));
+
 
         }
         public void returnpage(object sender,RoutedEventArgs e) {

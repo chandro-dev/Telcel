@@ -14,10 +14,11 @@ namespace Servicios
         
             sesiones = new Sclientes();
         }
-        public persona validation(string password,string nombre )
+        public persona validation(string password,string email )
         {
-           return sesiones.GetPersonas().Find(x => x.contrasena == password && x.nombre == nombre);
+           return sesiones.GetPersonas().Find(x => x.contrasena.Equals(password) && x.email.Equals(email));
         }
+
 
     }
 }

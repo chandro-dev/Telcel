@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Microsoft.Win32;
+using Repositorio;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,7 @@ namespace Vistas.Pages.admin.Mproductos
     {
         private string rutaArchivoSeleccionado;
         Scomputadores Scomputadores;
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Mcomputadores()
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
             Scomputadores = new Scomputadores();
@@ -50,37 +49,46 @@ namespace Vistas.Pages.admin.Mproductos
         }
         public void btnSubir(object sender, RoutedEventArgs e)
         {
-
-            byte[] imagen;
-            if (rutaArchivoSeleccionado != null)
+            switch (_btnSubir.Content)
             {
-                using (var fileStream = new FileStream(rutaArchivoSeleccionado, FileMode.Open, FileAccess.Read))
-                {
-                    using (var ms = new MemoryStream())
+                case "Subir Celular":
+                    byte[] imagen;
+                    if (rutaArchivoSeleccionado != null)
                     {
-                        fileStream.CopyTo(ms);
-                        imagen = ms.ToArray();
+                        using (var fileStream = new FileStream(rutaArchivoSeleccionado, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                fileStream.CopyTo(ms);
+                                imagen = ms.ToArray();
+                            }
+
+                        }
+                        computador c = new computador
+                        {
+                            nombre = txtNombre.Text,
+                            cantidad = int.Parse(txtCantidad.Text),
+                            descuento = 0,
+                            Envio = true,
+                            id = 23,
+                            marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
+                            imagen = imagen,
+                            precio = int.Parse(txtPrecio.Text),
+                            almacenamiento = txtAlmacenamiento.Text,
+                            procesador = txtProcesador.Text,
+                            ram = txtRam.Text,
+                            tarjeta_madre = txtTmadre.Text,
+                            tarjeta_video = txtTvideo.Text
+                        };
                     }
 
-                }
-                computador c = new computador
-                {
-                    nombre = txtNombre.Text,
-                    cantidad = int.Parse(txtCantidad.Text),
-                    descuento = 0,
-                    Envio = true,
-                    id = 23,
-                    marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
-                    imagen = imagen,
-                    precio = int.Parse(txtPrecio.Text),
-                    almacenamiento = txtAlmacenamiento.Text,
-                    procesador = txtProcesador.Text,
-                    ram = txtRam.Text,
-                    tarjeta_madre = txtTmadre.Text,
-                    tarjeta_video = txtTvideo.Text
-                };
-                MessageBox.Show( Scomputadores.add(c));
-                refresh();
+                        break;
+                case "Eliminar":
+
+                    MessageBox.Show(Scomputadores.remove((computador)DGcomputadores.SelectedItem));
+                    _btnSubir.Content = "Subir Celular";
+                    refresh();
+                    break;
             }
         }
         public void btnVolver(object sender, RoutedEventArgs e)
@@ -93,6 +101,11 @@ namespace Vistas.Pages.admin.Mproductos
             DGcomputadores.ItemsSource = Scomputadores.GetComputadors();
         }
 
+        private void DGcomputadores_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _btnSubir.Content = "Eliminar";
+
+        }
     }
 
 }

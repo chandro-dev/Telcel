@@ -18,36 +18,22 @@ namespace Servicios
      */
     public class Sclientes
     {
-        private static List<rol> roles = new List<rol>();
-        private static List<persona> personas;
-        ContextDb _dao = new ContextDb();
+        private  List<persona> personas;
+        DBpersonas _dao = new DBpersonas();
         public Sclientes()
         {
 
             if(personas == null)
             {
-                personas=new List<persona>(){new persona()
-                {
-                    nombre="admin",
-                    cedula=666,
-                    contrasena="admin",
-                    rol= new rol
-                    {
-                        id=0,
-                        Rol="admin"
-                    },
-                    telefono="2222",
-                    email="admin.com",
-                    dirrecion="admin",
-                } };
+                personas=new List<persona>();
             }
         }
 
-        public bool add(persona cliente)
+        public string add(persona cliente)
         {
           personas.Add(cliente);
                 
-                return _dao.add_persona(cliente);
+                return _dao.add(cliente);
   
         }
         public bool remove(persona cliente)
@@ -60,11 +46,14 @@ namespace Servicios
       
         public List<persona> GetPersonas()
         {
+            personas = _dao.getAll();
             return personas;
         }
         public List<persona> GetClientes()
         {
-            return personas.FindAll(x=>x.rol.Rol =="cliente");
+            personas = _dao.getAll();
+            return personas;
+
         }
       
 

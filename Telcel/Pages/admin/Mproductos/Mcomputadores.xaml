@@ -39,11 +39,11 @@
             <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
             <Button Content="Selecionar archivo" Click="btnSelecionar"  ></Button>
             <Separator></Separator>
-            <Button Content="Subir Computador" Click="btnSubir" ></Button>
+            <Button x:Name="_btnSubir" Content="Subir Computador" Click="btnSubir" ></Button>
             <Separator Margin="20"></Separator>
             <Button Content="Devolver" Click="btnVolver"/>
         </StackPanel>
-        <DataGrid x:Name="DGcomputadores" Grid.Column="1" >
+        <DataGrid x:Name="DGcomputadores" Grid.Column="1" SelectionChanged="DGcomputadores_SelectionChanged" >
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Precio" Binding="{Binding precio}"></DataGridTextColumn>

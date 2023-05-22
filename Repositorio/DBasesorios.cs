@@ -1,26 +1,23 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DBcomputador:Iproductos<computador>
-
+    public class DBasesorios:Iproductos<asesorio>
     {
-        public List<computador> getAll()
-        {
-
-            List<computador> computadors = new List<computador>();
+        public List<asesorio> getAll() {
+            List<asesorio> asesorios = new List<asesorio>();
             using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SPget_computadores", connection))
+                using (SqlCommand command = new SqlCommand("SPGet_asesorios", connection))
                 {
 
                     command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -29,72 +26,66 @@ namespace Repositorio
                     {
                         while (reader.Read())
                         {
-                            computadors.Add(mapper(reader));
+                            asesorios.Add(mapper(reader));
                         }
-
                     }
                 }
             }
-            if (computadors.Count < 0)
+            if (asesorios.Count < 0)
             {
                 return null;
             }
-            return computadors;
+            return asesorios;
         }
-        private computador mapper(SqlDataReader reader)
+        public asesorio mapper(SqlDataReader reader)
         {
 
-            var computador = new computador();
+            var _asesorio = new asesorio();
 
-            computador.nombre = reader["nombre"].ToString();
-            computador.imagen = (byte[])reader["imagen"];
+            _asesorio.nombre = reader["nombre"].ToString();
+            _asesorio.imagen = (byte[])reader["imagen"];
 
             try
             {
-                computador.id = int.Parse(reader["id"].ToString());
-                computador.cantidad = int.Parse(reader["cantidad"].ToString());
-                computador.almacenamiento = reader["almacenamiento"].ToString();
-                computador.tarjeta_madre = reader["tarjeta_madre"].ToString();
-                computador.tarjeta_video = reader["tarjeta_video"].ToString();
-                computador.precio = double.Parse(reader["precio"].ToString());
-                computador.marca = new marca
+                _asesorio.id = int.Parse(reader["id"].ToString());
+
+                _asesorio.cantidad= int.Parse(reader["cantidad"].ToString());
+                _asesorio.precio = double.Parse(reader["precio"].ToString());
+                _asesorio.marca = new marca
                 {
                     id = int.Parse(reader["id_marca"].ToString()),
 
                     nombre_marca = reader["nombre_marca"].ToString()
                 };
-                computador.ram = reader["ram"].ToString();
-                computador.procesador = reader["procesador"].ToString();
-                computador.descuento = int.Parse(reader["descuento"].ToString());
+                _asesorio.referencia= reader["referencia"].ToString();
+                _asesorio.descuento = int.Parse(reader["descuento"].ToString());
+
 
             }
             catch
             {
-
             }
-            return computador;
+            return _asesorio;
+
         }
-        public string add(computador item)
+        public string add(asesorio item)
         {
             using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SPadd_computador", connection))
+                using (SqlCommand command = new SqlCommand("SPadd_asesorio", connection))
                 {
 
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@nombre", item.nombre);
                     command.Parameters.AddWithValue("@precio", item.precio);
                     command.Parameters.AddWithValue("@cantidad", item.cantidad);
-                    command.Parameters.AddWithValue("@almacenamiento", item.almacenamiento);
-                    command.Parameters.AddWithValue("@tarjeta_video", item.tarjeta_video);
-                    command.Parameters.AddWithValue("@tarjeta_madre", item.tarjeta_madre);
-                    command.Parameters.AddWithValue("@procesador", item.procesador);
-                    command.Parameters.AddWithValue("@ram", item.ram);
+                    command.Parameters.AddWithValue("@referencia", item.referencia);
                     SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
                     parameter.Value = item.imagen;
 
+                    // Agregar el parámetro al comando
                     command.Parameters.Add(parameter);
 
                     command.ExecuteNonQuery();
@@ -104,13 +95,13 @@ namespace Repositorio
 
             return "OK";
         }
-        public string remove(computador item)
+            public string remove(asesorio item) 
         {
             using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SPdelete_computador", connection))
+                using (SqlCommand command = new SqlCommand("SPdelete_asesorio", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@id", item.id);
@@ -119,11 +110,11 @@ namespace Repositorio
             }
 
 
-            return "OK";
+            return "ok";  
         }
-        public string modify(computador item)
+        public string modify(asesorio item) 
         {
-            return "OK";
+            return "ok";
         }
     }
 }

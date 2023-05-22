@@ -14,7 +14,6 @@ namespace Entidades
         [StringLength(50)]
         public string nombre { get; set; }
 
-        [Key] public int? id { get; set; }
 
        public int cedula { get; set; }
 

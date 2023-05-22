@@ -16,7 +16,7 @@ namespace Entidades
             public int id { get; set; } 
             [StringLength(50)]    
             public string nombre { get; set; }
-            public int  precio { get; set; }
+            public double  precio { get; set; }
             public int cantidad { get; set; }
             public bool Envio { get; set; }
             public int descuento { get; set; }            

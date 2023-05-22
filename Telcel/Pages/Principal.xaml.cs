@@ -27,12 +27,11 @@ namespace Vistas.Pages
     public partial class Principal : Page
     {
         Sproducto sproducto;
-        Scelulares scelulares;
-        persona sesion;
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+       persona sesion;
         public Principal(persona p)
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
+            sproducto = new Sproducto();
+
             InitializeComponent();
             if (p != null)
             {
@@ -44,8 +43,7 @@ namespace Vistas.Pages
             {
                 lbUser.Visibility = Visibility.Hidden;
             }
-            scelulares= new Scelulares();
-            lbxProductos.ItemsSource = scelulares.GetCelulares();
+            lbxProductos.ItemsSource = sproducto.GetProductos();
         }
        
         public void btnRegistrar(object sender, RoutedEventArgs e)
@@ -79,14 +77,9 @@ namespace Vistas.Pages
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             byte[] data = value as byte[];
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             if (data == null)
-#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
                 return null;
-#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
-
             BitmapImage image = new BitmapImage();
             using (MemoryStream stream = new MemoryStream(data))
             {

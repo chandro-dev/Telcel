@@ -33,8 +33,6 @@ namespace Vistas.Pages
         }
         public void add_usuario(object sender,RoutedEventArgs e)
         {
-            try
-            {
                 persona p = new persona()
                 {
                     cedula = int.Parse(txtCedula.Text),
@@ -42,15 +40,18 @@ namespace Vistas.Pages
                     contrasena = password.Password,
                     dirrecion = txtDirecion.Text,
                     email = txtEmail.Text,
-                    rol = new rol() { id = 1, Rol = "cliente" },
-                    id = 2,
+                    rol = new rol() { id = 2, Rol = "cliente" },
                     telefono = txtTelefono.Text
 
                 };
-                sclientes.add(p);
-                MessageBox.Show("Ingreso correctamente");
-            }
-            catch { }   
+                if (sclientes.add(p))
+                {
+                    MessageBox.Show("Ingreso correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("pailas");
+                }
 
         }
         public void returnpage(object sender,RoutedEventArgs e) {

@@ -12,7 +12,7 @@ namespace Servicios
     public class Scelulares//:IServicios<celular>
     {
       private static List<celular> list;
-        DAO dao;
+       Iproductos<celular> dao;
         Sproducto sproducto;
 
         public Scelulares()
@@ -21,22 +21,18 @@ namespace Servicios
             {
                 list = new List<celular>();
             }
+
             sproducto= new Sproducto();
-            dao = new DAO();
+            dao = new DBcelulares();
+            list=dao.getAll();
         }
         public string add(celular celular)
         {
-            try
-            {
+       
                 list.Add(celular);
-                return dao.retorno().ToString();
-              
-   
-            }
-            catch
-            {
-                return "";
-            }
+                return dao.add(celular);
+
+
         }
         public bool remove(celular celular)
         {

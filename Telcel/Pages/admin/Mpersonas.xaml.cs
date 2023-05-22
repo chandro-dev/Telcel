@@ -46,7 +46,6 @@ namespace Vistas.Pages.admin
                     contrasena = Pcontrasena.Password,
                     dirrecion = txtDirrecion.Text,
                     email = txtEmail.Text,
-                    id = 2,
                     telefono = txtTelefono.Text
 
                 };

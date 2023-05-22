@@ -10,10 +10,9 @@ namespace Entidades
     public class computador:producto
     {   
         [StringLength(20)]
-        public string procesador { get; set;  }
-
-       public string ram { get; set; }
-         public string almacenamiento { get; set; }
+        public string procesador{ get; set;}
+        public string ram { get; set; }
+        public string almacenamiento { get; set; }
         [StringLength(50)]
         public string tarjeta_video { get; set; }
         [StringLength(50)]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class Sfacturas :IServicios<factura>
+    public class Sfacturas 
 
 
     {

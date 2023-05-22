@@ -36,9 +36,10 @@ namespace Vistas.Pages.admin.Mproductos {
         }
         public void btnSelecionarClick(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();openFileDialog.Filter= "Archivos PNG (*.png)|*.png";
             if (openFileDialog.ShowDialog() == true)
             {
+
                 rutaArchivoSeleccionado = openFileDialog.FileName;
                 txtNarchivo.Text = System.IO.Path.GetFileName(rutaArchivoSeleccionado);
             }
@@ -57,6 +58,7 @@ namespace Vistas.Pages.admin.Mproductos {
                             {
                                 fileStream.CopyTo(ms);
                                 imagen = ms.ToArray();
+
                             }
 
                         }
@@ -72,7 +74,8 @@ namespace Vistas.Pages.admin.Mproductos {
                             precio = int.Parse(txtPrecio.Text),
                             almacenamiento = txtAlmacenamiento.Text,
                             camara = txtCamara.Text,
-                            ram = txtRam.Text
+                            ram = txtRam.Text,
+                            descripcion=txtDescripcion.Text
 
                         };
                     

@@ -25,9 +25,7 @@ namespace Vistas.Pages.admin.Mproductos
     {
         private string rutaArchivoSeleccionado;
         Sasesorios Sasesorios;
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Masesorios()
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
             Sasesorios = new Sasesorios();
@@ -39,7 +37,7 @@ namespace Vistas.Pages.admin.Mproductos
         }
         public void btnSelecionar(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog(); openFileDialog.Filter = "Archivos PNG (*.png)|*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 rutaArchivoSeleccionado = openFileDialog.FileName;

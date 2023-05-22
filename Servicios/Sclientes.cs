@@ -16,13 +16,14 @@ namespace Servicios
      * 
      * Se cumplen con los requerimientos dados por la vista correspondiente a la entrega de datos y su respectivo manejo.
      */
-    public class Sclientes:IServicios<persona>
+    public class Sclientes
     {
         private static List<rol> roles = new List<rol>();
         private static List<persona> personas;
-     
+        ContextDb _dao = new ContextDb();
         public Sclientes()
         {
+
             if(personas == null)
             {
                 personas=new List<persona>(){new persona()
@@ -38,22 +39,16 @@ namespace Servicios
                     telefono="2222",
                     email="admin.com",
                     dirrecion="admin",
-                    id=0
                 } };
             }
         }
 
         public bool add(persona cliente)
         {
-            try
-            {
-                personas.Add(cliente);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+          personas.Add(cliente);
+                
+                return _dao.add_persona(cliente);
+  
         }
         public bool remove(persona cliente)
         {

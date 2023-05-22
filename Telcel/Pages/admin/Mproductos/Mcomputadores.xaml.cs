@@ -41,7 +41,7 @@ namespace Vistas.Pages.admin.Mproductos
         }
         public void btnSelecionar(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog(); openFileDialog.Filter = "Archivos PNG (*.png)|*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 rutaArchivoSeleccionado = openFileDialog.FileName;
@@ -79,7 +79,7 @@ namespace Vistas.Pages.admin.Mproductos
                     tarjeta_madre = txtTmadre.Text,
                     tarjeta_video = txtTvideo.Text
                 };
-                Scomputadores.add(c);
+                MessageBox.Show( Scomputadores.add(c));
                 refresh();
             }
         }

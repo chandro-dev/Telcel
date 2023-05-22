@@ -13,7 +13,7 @@ namespace Servicios
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static List<asesorio> list;
         Sproducto sproducto;
-        DAO dao;
+        Iproductos<celular> dao;
 
 #pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
 
@@ -24,15 +24,14 @@ namespace Servicios
                 list = new List<asesorio>();
             }
             sproducto = new Sproducto();
-            dao= new DAO();
+            dao= new DBcelulares();
         }
         public bool add(asesorio asesorio)
         {
             try
             {
                     list.Add(asesorio);
-                dao.add_producto(asesorio);
-                sproducto.add((producto)asesorio);
+              
                 return true;
 
             }

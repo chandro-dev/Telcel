@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class Scomputadores:IServicios<computador>
+    public class Scomputadores
     {
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static List<computador> computadors;
         Sproducto sproducto;
-        DAO dao;
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+        Iproductos<computador> dao;
+
 
         public Scomputadores()
         {
@@ -23,22 +23,15 @@ namespace Servicios
                 computadors = new List<computador>();
             }
             sproducto = new Sproducto();
-            dao = new DAO();    
+            dao = new DBcomputador();
+          
         }
-        public bool add(computador computador)
+        public string add(computador computador)
         {
-            try
-            {
-                computadors.Add(computador);
-                dao.add_producto(computador);
-                sproducto.add((producto)computador);
-                return true;
 
-            }
-            catch
-            {
-                return false;   
-            }
+                computadors.Add(computador);
+                return dao.add(computador) ;
+
         }
         public bool remove(computador computador)
         {
@@ -69,7 +62,7 @@ namespace Servicios
         }
         public List<computador> GetComputadors()
         {
-            return computadors;
+            return dao.getAll();
         }
     }
 }

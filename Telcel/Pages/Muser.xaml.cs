@@ -29,5 +29,11 @@ namespace Vistas.Pages
                 InitializeComponent();
             }
         }
+
+        public void btnvolver(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+
+        }
     }
 }

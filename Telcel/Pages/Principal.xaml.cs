@@ -31,7 +31,6 @@ namespace Vistas.Pages
         public Principal(persona p)
         {
             sproducto = new Sproducto();
-
             InitializeComponent();
             if (p != null)
             {
@@ -42,6 +41,7 @@ namespace Vistas.Pages
             else
             {
                 lbUser.Visibility = Visibility.Hidden;
+                lbFsesion.Visibility = Visibility.Hidden;
             }
             lbxProductos.ItemsSource = sproducto.GetProductos();
         }
@@ -60,6 +60,7 @@ namespace Vistas.Pages
          public void _sesion()
         {
             lbUser.Visibility = Visibility.Visible;
+            lbFsesion.Visibility = Visibility.Visible;
             lbUser.Content = sesion.nombre;
             lbRegistrarse.Visibility = Visibility.Hidden;
             lbISesion.Visibility = Visibility.Hidden;
@@ -68,6 +69,19 @@ namespace Vistas.Pages
         private void lbUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new Muser(sesion));
+        }
+        private void lbUser_FinalDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Principal(null));
+        }
+
+        private void lbxProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sesion != null)
+            {
+                NavigationService.Navigate(new Facturacion(sesion, (producto)lbxProductos.SelectedItem));
+            }
+            
         }
     }
 

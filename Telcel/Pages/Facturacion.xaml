@@ -7,8 +7,65 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Facturacion">
-
+    <Page.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+    </Page.Resources>
     <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!-- Layout-->
+        <Grid Background="Blue" Grid.Column="0" Grid.ColumnSpan="3">
+ 
+
+            <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseEnter="Btnreturn"></Image>
+ 
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1"  Background="red">
+            <ListBox x:Name="lbCarrito" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#FF98A8FF" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"  >
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <ColumnDefinition MinWidth="500"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Image Width="100" Source="{Binding imagen,Converter={StaticResource ByteArrayToImageConverter}}" Grid.Column="0" Grid.RowSpan="3" ></Image>
+
+                                <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
+                                <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio}" Grid.Column="1" Grid.Row="1" ></TextBlock>
+                                <TextBlock Margin="10" FontWeight="Bold" Height="20" VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
+                            </Grid >
+
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="3" >
+            <StackPanel>
+            <Button Content="añadir" Click="btnanadir"></Button>
+            <Button Content="pagar" Click="btnpagar"></Button>
+            </StackPanel>
+        </Grid>
+        
         
     </Grid>
 </Page>

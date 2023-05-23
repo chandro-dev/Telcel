@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,56 @@ namespace Vistas.Pages
     /// </summary>
     public partial class Facturacion : Page
     {
-        public Facturacion()
+        private static List<producto> carrito;
+        private static persona _persona;
+        private Sfacturas service;
+        public Facturacion(persona p, producto _prod)
         {
-            InitializeComponent();
+
+            if (p == null)
+            {
+                NavigationService.GoBack();
+            }
+            else
+            {
+                service = new Sfacturas();
+
+                if (_persona != p)
+                {
+                    _persona = p;
+                    carrito = new List<producto>();
+                }
+                if (carrito == null)
+                {
+                    carrito = new List<producto>();
+                }
+                carrito.Add(_prod);
+                InitializeComponent();
+                lbCarrito.ItemsSource = carrito;
+            }
         }
+
+        private void btnanadir(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+        private void btnpagar(object sender, RoutedEventArgs e)
+        {
+            factura _factura = new factura();
+            _factura.fecha = DateTime.Today;
+            _factura.fecha = DateTime.Today.AddDays(5);
+            _factura.tipo_pago = "pasarela de pago";
+            _factura.productos=new List<producto>();
+            _factura.productos = carrito;
+            _factura.cliente = _persona;
+            MessageBox.Show( service.add(_factura));
+            carrito = new List<producto>();
+        }
+        public void Btnreturn(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+
     }
 }

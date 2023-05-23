@@ -1,7 +1,9 @@
 ﻿using Entidades;
+using Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,23 +11,19 @@ namespace Servicios
 {
     public class Sfacturas 
 
-
     {
-        private static List<factura> facturas = new List<factura>();
-
-        public bool add(factura factura)
+        private DBfactura _dao;
+        private static List<factura> facturas ;
+        public Sfacturas()
         {
-            throw new NotImplementedException();
+            _dao = new DBfactura();
+            facturas = new List<factura>();
+        }
+        public string add(factura factura)
+        {
+            return _dao.add(factura);
         }
 
-        public bool remove(factura factura)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool update(factura factura)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

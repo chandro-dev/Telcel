@@ -25,7 +25,8 @@
         </Grid.RowDefinitions>
         <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
         <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
-        <Label x:Name="lbUser" Content="User"  Grid.Row="0 " Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden" MouseDoubleClick="lbUser_MouseDoubleClick"/>
+        <Label x:Name="lbFsesion" Content="finalizar sesion" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" MouseDown="lbUser_FinalDoubleClick"/>
+        <Label x:Name="lbUser" Content="User"  Grid.Row="0 " Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="lbUser_MouseDoubleClick"/>
         <Label x:Name="lbRegistrarse" Content="Registarse" Margin="0,0,100,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
         <Label x:Name="lbISesion" Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
         <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
@@ -54,7 +55,7 @@
         <Rectangle Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Fill="#FF98A8FF" ></Rectangle>
 
         <!--- Lista de productos -->
-        <ListBox x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20" >
+        <ListBox x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20" SelectionChanged="lbxProductos_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Background="#FF98A8FF" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"  >

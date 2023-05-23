@@ -16,7 +16,7 @@ namespace Entidades
         public int total { get; set; }  
         public string tipo_pago { get; set; }
         public persona cliente { get; set; }
-        public List<producto> produto { get; set; }
+        public List<producto> productos { get; set; }
 
     }
 }

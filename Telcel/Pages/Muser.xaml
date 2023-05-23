@@ -8,7 +8,22 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Muser">
 
-    <Grid>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
-    </Grid>
+        <!-- laout -->
+        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseEnter="btnvolver" ></Image>
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="Bisque">
+            
+        </StackPanel>
+        <ListBox Grid.Row="1" Grid.Column="1">
+            
+        </ListBox>    </Grid>
 </Page>

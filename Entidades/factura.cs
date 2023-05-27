@@ -13,7 +13,7 @@ namespace Entidades
         [Key]
         public int id { get; set; } 
         public DateTime fecha_entrega {  get; set; }
-        public int total { get; set; }  
+        public double total { get; set; }  
         public string tipo_pago { get; set; }
         public persona cliente { get; set; }
         public List<producto> productos { get; set; }

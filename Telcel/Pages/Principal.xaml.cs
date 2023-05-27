@@ -28,6 +28,8 @@ namespace Vistas.Pages
     {
         Sproducto sproducto;
        persona sesion;
+        List<producto> productos;
+        List<marca> marcas;
         public Principal(persona p)
         {
             sproducto = new Sproducto();
@@ -43,8 +45,12 @@ namespace Vistas.Pages
                 lbUser.Visibility = Visibility.Hidden;
                 lbFsesion.Visibility = Visibility.Hidden;
             }
-            lbxProductos.ItemsSource = sproducto.GetProductos();
+            productos = sproducto.GetProductos();
+            marcas = sproducto.GetMarcas();
+            lbxProductos.ItemsSource = productos;
+            lstCategorias.ItemsSource= marcas;
         }
+
        
         public void btnRegistrar(object sender, RoutedEventArgs e)
         {

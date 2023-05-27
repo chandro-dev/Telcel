@@ -53,6 +53,10 @@ namespace Servicios
         public List<producto>GetProductos() {
             return dao.getAll();
         }
-
+        public List<marca> GetMarcas()
+        {
+            var _dao = new DBmarca();
+            return _dao.getAll();
+        }
     }
 }

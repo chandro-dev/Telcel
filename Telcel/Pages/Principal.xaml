@@ -55,25 +55,25 @@
         <Rectangle Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Fill="#FF98A8FF" ></Rectangle>
 
         <!--- Lista de productos -->
-        <ListBox x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20" SelectionChanged="lbxProductos_SelectionChanged" >
+        <ListBox HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20" SelectionChanged="lbxProductos_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="#FF98A8FF" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"  >
+                    <Border Background="#FF98A8FF" HorizontalAlignment="Stretch"  CornerRadius="10"  >
                         <Grid >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition ></ColumnDefinition>
-                                <ColumnDefinition MinWidth="500"></ColumnDefinition>
+                                <ColumnDefinition Width=".40*"  ></ColumnDefinition>
+                                <ColumnDefinition  ></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions >
-                                <RowDefinition ></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="*" ></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-
-                            <Image Width="100" Source="{Binding imagen,Converter={StaticResource ByteArrayToImageConverter}}" Grid.Column="0" Grid.RowSpan="3" ></Image>
-
+                            <Border Grid.Column="0" Grid.RowSpan="3" CornerRadius="10" Background="DarkBlue">
+                            <Image Stretch="Uniform" Width="100" Source="{Binding imagen,Converter={StaticResource ByteArrayToImageConverter}}"  ></Image>
+                            </Border>
                             <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
-                            <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio}" Grid.Column="1" Grid.Row="1" ></TextBlock>
+                            <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio , StringFormat='{}{0:C0}'}" Grid.Column="1" Grid.Row="1" ></TextBlock>
                             <TextBlock Margin="10" FontWeight="Bold" Height="20" VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
                         </Grid >
 
@@ -84,19 +84,10 @@
 
         
         <!--- Lista de categorias   -->
-        <ListBox x:Name="lstCategorias" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Transparent" >
+        <ListBox Background="DarkRed" x:Name="lstCategorias" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" >
             <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Background="DarkRed" Width="150">
-                        <Label Content="{Binding nombre}"></Label>
-                        <ListBox x:Name="lstMarcas" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Center">
-                            <ListBox.ItemTemplate >
-                                <DataTemplate>
-                                    <CheckBox  Content="{Binding marca }"></CheckBox>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
+                <DataTemplate >
+                    <CheckBox Margin="10,0,10,10"  Content="{Binding nombre_marca}" ></CheckBox>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

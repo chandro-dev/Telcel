@@ -55,12 +55,7 @@ namespace Servicios
             return personas;
 
         }
-        public List<factura>GetHisto()
-        {
-            DBfactura _factura =new DBfactura();
-            return _factura;
-        }
-
+       
         
     }
 }

@@ -23,7 +23,8 @@
         <StackPanel Grid.Column="0" Grid.Row="1" Background="Bisque">
             
         </StackPanel>
-        <ListBox Grid.Row="1" Grid.Column="1">
+        <ListBox x:Name="lst_compras" Grid.Row="1" Grid.Column="1">
             
-        </ListBox>    </Grid>
+        </ListBox> 
+    </Grid>
 </Page>

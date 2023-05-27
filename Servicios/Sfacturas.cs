@@ -23,7 +23,13 @@ namespace Servicios
         {
             return _dao.add(factura);
         }
+        public List<factura> GetHisto(persona p)
+        {
+            DBfactura _factura = new DBfactura();
+            return _factura.getAll(p.cedula);
+        }
 
-        
+
+
     }
 }

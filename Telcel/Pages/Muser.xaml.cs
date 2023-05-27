@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,18 @@ namespace Vistas.Pages
 {
     public partial class Muser : Page
     {
+        Sfacturas servicio_facturas = new Sfacturas();
         public Muser(persona p)
         {
             if (p == null)
             {
                 NavigationService.GoBack();
-            }
+                }
             else
             {
                 InitializeComponent();
+                    lst_compras.ItemsSource = servicio_facturas.GetHisto(p).ToList();
+                
             }
         }
 

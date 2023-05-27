@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.AccessControl;
 
 namespace Repositorio
 {
@@ -51,6 +52,48 @@ namespace Repositorio
 
 
             return "OK";
+        }
+        public List<factura> getAll(int cedula)
+        {
+
+            List<factura> facturas = new List<factura>();
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPget_factuas", connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@cedula", SqlDbType.VarChar).Value = cedula;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            facturas.Add(mapper(reader));
+                        }
+
+                    }
+                }
+            }
+            if (facturas.Count < 0)
+            {
+                return null;
+            }
+            return facturas;
+        }
+        private factura  mapper(SqlDataReader reader)
+        {
+
+            var _factutra= new factura();
+
+            _factutra.fecha= DateTime.Parse(reader["fecha"].ToString());
+            _factutra.fecha_entrega = DateTime.Parse(reader["fecha_entrega"].ToString());
+            _factutra.total = double.Parse(reader["total"].ToString());
+            _factutra.id = int.Parse(reader["id_factura"].ToString());
+            _factutra.tipo_pago = reader["tipo_pago"].ToString();
+        return _factutra;
         }
     }
 }

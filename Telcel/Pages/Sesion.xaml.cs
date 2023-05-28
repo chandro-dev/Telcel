@@ -29,7 +29,8 @@ public partial class page : Page
         }
         public void clickImagen(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Principal(null));
+            persona p = null;
+            NavigationService.Navigate(new Principal(p));
 
         }
         public void initSesion(object sender, RoutedEventArgs e) {

@@ -59,7 +59,7 @@ namespace Vistas.Pages
         {
             factura _factura = new factura();
             _factura.fecha = DateTime.Today;
-            _factura.fecha = DateTime.Today.AddDays(5);
+            _factura.fecha_entrega = DateTime.Today.AddDays(5);
             _factura.tipo_pago = "pasarela de pago";
             _factura.productos=new List<producto>();
             _factura.productos = carrito;

@@ -14,7 +14,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.3*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         
@@ -23,8 +23,8 @@
         <StackPanel Grid.Column="0" Grid.Row="1" Background="Bisque">
             
         </StackPanel>
-        <ListBox x:Name="lst_compras" Grid.Row="1" Grid.Column="1">
-            
-        </ListBox> 
+        <DataGrid x:Name="lst_compras" Grid.Row="1" Grid.Column="1">
+               
+        </DataGrid> 
     </Grid>
 </Page>

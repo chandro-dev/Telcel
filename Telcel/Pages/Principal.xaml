@@ -29,7 +29,7 @@
         <Label x:Name="lbUser" Content="User"  Grid.Row="0 " Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDoubleClick="lbUser_MouseDoubleClick"/>
         <Label x:Name="lbRegistrarse" Content="Registarse" Margin="0,0,100,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
         <Label x:Name="lbISesion" Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
-        <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
+        <Image Cursor="Hand" MouseDown="Click_Init" Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
         
         <!-- Tabla de busqueda -->
          <Border Grid.Column="1" CornerRadius="5" BorderBrush="DarkRed" BorderThickness="3" Background="DarkRed" Height="40"   VerticalAlignment="Center" Margin="20,20,20,20" Grid.Row="1"  >
@@ -38,14 +38,28 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="0.11*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Grid.Row="0" ></ComboBox>
+                <ComboBox x:Name="cmbCat" Grid.Column="0" Grid.Row="0" SelectionChanged="cmbCat_SelectionChanged" >
+                  
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="LightGray"/>
+
+                                <Setter Property="FontWeight" Value="Bold"/>
+
+                                <Setter Property="FontSize" Value="16"/>
+
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
                 <TextBox Grid.Column="1" Grid.Row="0" ></TextBox>
                 <Button Grid.Column="2" Grid.Row="0">
-                    <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\lupa.png" Stretch="Fill"></Image>
+                    <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\lupa.png" Stretch="Uniform"></Image>
                 </Button>
             </Grid>
         </Border>

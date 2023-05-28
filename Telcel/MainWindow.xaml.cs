@@ -28,9 +28,7 @@ namespace Telcel
         public MainWindow()
         {
             InitializeComponent();
-#pragma warning disable CS8625 // No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.
             FrameMain.Content = new init();
-#pragma warning restore CS8625 // No se puede convertir un literal NULL en un tipo de referencia que no acepta valores NULL.
             }
     }
 }

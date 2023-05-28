@@ -53,6 +53,24 @@ namespace Servicios
         public List<producto>GetProductos() {
             return dao.getAll();
         }
+        public List<producto>GetProductos(string type)
+        {
+            switch (type)
+            {
+                case "Computadores":
+                    var scomputadores = new Scomputadores();
+                    return scomputadores.GetComputadors().ToList<producto>();
+                case "Celulares":
+                    var scelulares = new Scelulares();
+                    return scelulares.GetCelulares().ToList<producto>();
+                case "Asesorios":
+                    var sasesorios = new Sasesorios();
+                    return sasesorios.GetAsesorios().ToList<producto>();
+                default:
+                    return dao.getAll();    
+
+            }
+        }
         public List<marca> GetMarcas()
         {
             var _dao = new DBmarca();

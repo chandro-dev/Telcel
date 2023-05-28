@@ -32,5 +32,17 @@ namespace Vistas.Pages
         {
             NavigationService.Navigate(new page());
         }
+        public void Cat_Computadores(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Principal("Computadores"));
+        }
+        public void Cat_Asesorios(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Principal("Asesorios"));
+        }
+        public void Cat_Celulares(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Principal("Celulares"));
+        }
     }
 }

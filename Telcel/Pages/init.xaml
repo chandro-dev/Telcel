@@ -23,16 +23,23 @@
         <Label Cursor="Hand" x:Name="lbISesion" Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
         <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" HorizontalAlignment="Center" ></Image>
 
-        <!--Menu-->
-        <Border CornerRadius="20" Background="Green" Grid.Row="2" Margin="80,20,80,20">
+        <!--Banner-->
+        <Border CornerRadius="20" Background="#FF807AEE" Grid.Row="2" Margin="80,20,80,20">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="0.25*"></ColumnDefinition>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.25*"/>
                 </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="0,40,60,40" >
+                    <Image Stretch="Uniform" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initLeft.png"/>
+                </Button>
+                <Button Grid.Column="3" Margin="60,40,0,40" >
+                    <Image Stretch="Uniform" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initRight.png"/>
+                </Button>
             </Grid>
+           
         </Border>
 
 
@@ -53,14 +60,34 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Border CornerRadius="20,0,0,0"  Background="#FF807AEE" Margin="0,0,40,10" Grid.Column="0">
-
+                <Border CornerRadius="20,0,0,0"  Background="#FF807AEE" Margin="0,0,40,10" Grid.Column="0" MouseDown="Cat_Computadores">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.3*"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="Computadores" Grid.Row="0"/>
+                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initComputadores.png" Grid.Row="1" Stretch="Uniform" />
+                    </Grid>
                 </Border>
-                <Border   Background="#FF807AEE" Margin="20,0,20,10" Grid.Column="1">
-
+                <Border   Background="#FF807AEE" Margin="20,0,20,10" Grid.Column="1" MouseDown="Cat_Celulares">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.3*"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="Celulares" Grid.Row="0"/>
+                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initCelulares.jpg" Grid.Row="1" Stretch="Uniform" />
+                    </Grid>
                 </Border>
-                <Border CornerRadius="0,20,0,0"  Background="#FF807AEE" Margin="40,0,0,10" Grid.Column="2">
-
+                <Border CornerRadius="0,20,0,0"  Background="#FF807AEE" Margin="40,0,0,10" Grid.Column="2" MouseDown="Cat_Asesorios">
+                    <Grid><Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Asesorios" Grid.Row="0"/>
+                    <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initAsesorios.jpg" Grid.Row="1" Stretch="Uniform" />
+                    </Grid>
                 </Border>
             </Grid>
 

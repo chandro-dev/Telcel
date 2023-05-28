@@ -1,0 +1,70 @@
+﻿<Page x:Class="Vistas.Pages.init"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vistas.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="init">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.175*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
+            <RowDefinition Height="0.85*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Layout -->
+        <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
+        <Label Cursor="Hand" x:Name="lbRegistrarse" Content="Registarse" Margin="0,0,100,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
+        <Label Cursor="Hand" x:Name="lbISesion" Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
+        <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" HorizontalAlignment="Center" ></Image>
+
+        <!--Menu-->
+        <Border CornerRadius="20" Background="Green" Grid.Row="2" Margin="80,20,80,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Border>
+
+
+        <!-- Menu de tienda-->
+        <Border CornerRadius="20,20,0,0" Margin="80,0,80,20" Grid.Row="3">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF807AEE" Offset="0.072"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+
+                </Grid.ColumnDefinitions>
+
+                <Border CornerRadius="20,0,0,0"  Background="#FF807AEE" Margin="0,0,40,10" Grid.Column="0">
+
+                </Border>
+                <Border   Background="#FF807AEE" Margin="20,0,20,10" Grid.Column="1">
+
+                </Border>
+                <Border CornerRadius="0,20,0,0"  Background="#FF807AEE" Margin="40,0,0,10" Grid.Column="2">
+
+                </Border>
+            </Grid>
+
+
+        </Border>
+    </Grid>
+</Page>

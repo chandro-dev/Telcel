@@ -9,6 +9,7 @@ using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 namespace Repositorio.Oracle
 {
@@ -81,7 +82,27 @@ namespace Repositorio.Oracle
     }
     public string add(persona item)
         {
-            return null;
+            using (OracleConnection connection = new OracleConnection(connectionString))
+            {
+                // Abrir la conexión
+                connection.Open();
+                using (OracleCommand command = new OracleCommand("ppersonas.SPADD_persona", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("vnombre", OracleDbType.Varchar2).Value =item.nombre;
+                    command.Parameters.Add("vcedula", OracleDbType.Int32).Value = item.cedula;
+                    command.Parameters.Add("vdirrecion", OracleDbType.Varchar2).Value = item.dirrecion;
+                    command.Parameters.Add("veamil", OracleDbType.Varchar2).Value = item.email;
+                    command.Parameters.Add("vtelefono", OracleDbType.Varchar2).Value = item.telefono;
+                    command.Parameters.Add("vcontrasena", OracleDbType.Varchar2).Value = item.contrasena;
+                    command.Parameters.Add("vid_rol", OracleDbType.Int32).Value = item.rol.id;
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+                    return "ok";
         }
         public string remove(persona item) { return null; 
         }

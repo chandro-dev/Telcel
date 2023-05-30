@@ -1,9 +1,11 @@
 ﻿using Entidades;
 
 using Repositorio;
+using Repositorio.Oracle;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data.OracleClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +21,7 @@ namespace Servicios
     public class Sclientes
     {
         private  List<persona> personas;
-        DBpersonas _dao = new DBpersonas();
+        Iproductos<persona> _dao = new DBOpersona ();
         public Sclientes()
         {
 

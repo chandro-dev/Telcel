@@ -54,16 +54,15 @@ namespace Repositorio
                     command.Parameters.AddWithValue("@cantidad", item.cantidad);
                     command.Parameters.AddWithValue("@descripcion", item.descripcion);
                     command.Parameters.AddWithValue("@almacenamiento", item.almacenamiento);
+                    command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
                     command.Parameters.AddWithValue("@camara", item.camara);
                     command.Parameters.AddWithValue("@ram", item.ram);
                     SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
                     parameter.Value = item.imagen;
-
-                    // Agregar el parámetro al comando
                     command.Parameters.Add(parameter);
 
                     command.ExecuteNonQuery();
-                    Console.WriteLine("**EJECUTANDO PROCEDIMIENTO ALMACENADO*********************");
+         
                 }
             } 
             

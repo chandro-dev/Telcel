@@ -10,19 +10,13 @@ namespace Servicios
 {
     public class Scomputadores
     {
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-        private static List<computador> list;
+        List<computador> list;
         Iproductos<computador> dao;
-
-
         public Scomputadores()
         {
-            if (list == null)
-            {
-                list = new List<computador>();
-            }
+            if (list == null) list = new List<computador>();
             dao = new DBcomputador();
-          
+            list = dao.getAll();
         }
         public string add(computador computador)
         {
@@ -32,9 +26,8 @@ namespace Servicios
 
         }
         public string remove(computador computador)
-        {
-
-            int index = list.IndexOf(list.Find(x => computador.id == x.id));
+        { 
+             int index = list.IndexOf(list.Find(x => computador.id == x.id));
             string result = dao.remove(list[index]);
             list.Remove(computador);
             return result;

@@ -98,7 +98,7 @@
 
         
         <!--- Lista de categorias   -->
-        <ListBox Background="DarkRed" x:Name="lstCategorias" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" >
+        <ListBox Background="DarkRed" x:Name="lstCategorias" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstCategorias_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <CheckBox Margin="10,0,10,10"  Content="{Binding nombre_marca}" ></CheckBox>

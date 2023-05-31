@@ -141,6 +141,10 @@ namespace Vistas.Pages
             lstCategorias.ItemsSource = lsxMarca;
 
         }
+
+        private void lstCategorias_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
     }
 
 

@@ -25,12 +25,15 @@
             <TextBox x:Name="txtMarca"></TextBox>
             <Label Content="cantidad"></Label>
             <TextBox x:Name="txtCantidad"></TextBox>
+            <Label Content="Referencia"/>
+            <TextBox x:Name="txtReferencia"/>
             <Label x:Name="Imagen"/>
             <Label Content="Imagen"></Label>
             <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
             <Button Content="Selecionar archivo" Click="btnSelecionar"  ></Button>
+            
             <Separator></Separator>
-            <Button x:Name="_btnSubir" Content="Subir asesorio" Click="btnSubir" ></Button>
+            <Button x:Name="_btnSubir" Content="Subir Asesorio" Click="btnSubir" ></Button>
             <Separator Margin="20"></Separator>
             <Button Content="Devolver" Click="btnVolver"/>
         </StackPanel>

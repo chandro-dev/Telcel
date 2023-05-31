@@ -10,22 +10,18 @@ namespace Servicios
 {
     public class Sasesorios
     {
-        private static List<asesorio> list;
+        List<asesorio> list;
         Iproductos<asesorio> dao;
         public Sasesorios()
         {
-            if (list == null)
-            {
-                list = new List<asesorio>();
-            }
+            if (list == null)list = new List<asesorio>();
+            
             dao= new DBasesorios();
         }
         public string add(asesorio asesorio)
         {
-            
-                    list.Add(asesorio);
-
-                return dao.add(asesorio);
+            list.Add(asesorio);
+            return dao.add(asesorio);
         }
         public string remove(asesorio asesorio)
         {

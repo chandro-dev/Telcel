@@ -39,10 +39,7 @@ namespace Vistas.Pages
                     telefono = txtTelefono.Text
 
                 };
-
-                    MessageBox.Show(sclientes.add(p));
-
-
+            MessageBox.Show(sclientes.add(p));
         }
         public void returnpage(object sender,RoutedEventArgs e) {
             NavigationService.GoBack();

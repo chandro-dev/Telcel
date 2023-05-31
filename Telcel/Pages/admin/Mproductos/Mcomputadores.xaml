@@ -45,12 +45,13 @@
         </StackPanel>
         <DataGrid x:Name="DGcomputadores" Grid.Column="1" SelectionChanged="DGcomputadores_SelectionChanged" >
             <DataGrid.Columns >
+                <!-- Binding mal hecho-->
                 <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Precio" Binding="{Binding precio}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Marca" Binding="{Binding marca.nombre_marca}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Camara" Binding="{Binding camara}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Camara" Binding="{Binding tarjeta_grafica}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Almacenamiento" Binding="{Binding almacenamiento}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding procesador}"></DataGridTextColumn>
 
                 <DataGridTemplateColumn Header="imagen">
                     <DataGridTemplateColumn.CellTemplate>

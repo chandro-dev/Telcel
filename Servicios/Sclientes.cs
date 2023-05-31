@@ -21,7 +21,7 @@ namespace Servicios
     public class Sclientes
     {
         private  List<persona> personas;
-        Iproductos<persona> _dao = new DBOpersona ();
+        DBpersonas _dao = new DBpersonas ();
         public Sclientes()
         {
 

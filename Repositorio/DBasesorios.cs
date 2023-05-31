@@ -54,13 +54,10 @@ namespace Repositorio
                 _asesorio.marca = new marca
                 {
                     id = int.Parse(reader["id_marca"].ToString()),
-
                     nombre_marca = reader["nombre_marca"].ToString()
                 };
                 _asesorio.referencia= reader["referencia"].ToString();
                 _asesorio.descuento = int.Parse(reader["descuento"].ToString());
-
-
             }
             catch
             {
@@ -82,12 +79,10 @@ namespace Repositorio
                     command.Parameters.AddWithValue("@precio", item.precio);
                     command.Parameters.AddWithValue("@cantidad", item.cantidad);
                     command.Parameters.AddWithValue("@referencia", item.referencia);
+                    command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
                     SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
                     parameter.Value = item.imagen;
-
-                    // Agregar el parámetro al comando
                     command.Parameters.Add(parameter);
-
                     command.ExecuteNonQuery();
                 }
             }

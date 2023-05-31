@@ -51,7 +51,7 @@ namespace Vistas.Pages.admin.Mproductos
         {
             switch (_btnSubir.Content)
             {
-                case "Subir Celular":
+                case "Subir Computador":
                     byte[] imagen;
                     if (rutaArchivoSeleccionado != null)
                     {
@@ -70,23 +70,24 @@ namespace Vistas.Pages.admin.Mproductos
                             cantidad = int.Parse(txtCantidad.Text),
                             descuento = 0,
                             Envio = true,
-                            id = 23,
-                            marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
+                            marca = new marca() { nombre_marca = txtMarca.Text },
                             imagen = imagen,
-                            precio = int.Parse(txtPrecio.Text),
+                            precio = double.Parse(txtPrecio.Text),
                             almacenamiento = txtAlmacenamiento.Text,
                             procesador = txtProcesador.Text,
                             ram = txtRam.Text,
                             tarjeta_madre = txtTmadre.Text,
                             tarjeta_video = txtTvideo.Text
                         };
+                        MessageBox.Show( Scomputadores.add(c));
+                        refresh();
                     }
 
                         break;
                 case "Eliminar":
 
                     MessageBox.Show(Scomputadores.remove((computador)DGcomputadores.SelectedItem));
-                    _btnSubir.Content = "Subir Celular";
+                    _btnSubir.Content = "Subir Computador";
                     refresh();
                     break;
             }

@@ -91,6 +91,8 @@ namespace Repositorio
                     command.Parameters.AddWithValue("@tarjeta_video", item.tarjeta_video);
                     command.Parameters.AddWithValue("@tarjeta_madre", item.tarjeta_madre);
                     command.Parameters.AddWithValue("@procesador", item.procesador);
+                    command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
+
                     command.Parameters.AddWithValue("@ram", item.ram);
                     SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
                     parameter.Value = item.imagen;

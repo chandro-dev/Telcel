@@ -48,7 +48,7 @@ namespace Vistas.Pages.admin.Mproductos
         {
             switch (_btnSubir.Content)
             {
-                case "Subir Celular":
+                case "Subir Asesorio":
 
                     byte[] imagen;
                     if (rutaArchivoSeleccionado != null)
@@ -65,20 +65,20 @@ namespace Vistas.Pages.admin.Mproductos
                         asesorio a = new asesorio
                         {
                             nombre = txtNombre.Text,
-                            referencia = "23",
+                            referencia = txtReferencia.Text,
                             cantidad = int.Parse(txtCantidad.Text),
                             descuento = 0,
                             Envio = true,
-                            id = 23,
-                            marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
+                            marca = new marca() {  nombre_marca = txtMarca.Text },
                             imagen = imagen,
                             precio = int.Parse(txtPrecio.Text)
                         };
+                        MessageBox.Show(Sasesorios.add(a));
                     }
                 break;
                 case "Eliminar":
 
-                    MessageBox.Show(Sasesorios.remove((asesorio)DGasesorios.SelectedItem));
+                 MessageBox.Show(Sasesorios.remove((asesorio)DGasesorios.SelectedItem));
                 _btnSubir.Content = "Subir Celular";
                 refresh();
                 break;

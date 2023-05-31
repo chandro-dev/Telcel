@@ -38,7 +38,6 @@ namespace Vistas.Pages.admin.Mproductos {
             var openFileDialog = new OpenFileDialog();openFileDialog.Filter= "Archivos PNG (*.png)|*.png";
             if (openFileDialog.ShowDialog() == true)
             {
-
                 rutaArchivoSeleccionado = openFileDialog.FileName;
                 txtNarchivo.Text = System.IO.Path.GetFileName(rutaArchivoSeleccionado);
             }
@@ -67,8 +66,7 @@ namespace Vistas.Pages.admin.Mproductos {
                             cantidad = int.Parse(txtCantidad.Text),
                             descuento = 0,
                             Envio = true,
-                            id = 23,
-                            marca = new marca() { id = 1, nombre_marca = txtMarca.Text },
+                            marca = new marca() { nombre_marca = txtMarca.Text },
                             imagen = imagen,
                             precio = int.Parse(txtPrecio.Text),
                             almacenamiento = txtAlmacenamiento.Text,

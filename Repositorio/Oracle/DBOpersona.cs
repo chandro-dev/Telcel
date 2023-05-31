@@ -64,11 +64,11 @@ namespace Repositorio.Oracle
                 persona.contrasena = reader.GetString("contrasena");
 
                 try
-        {
+            {
                     persona.nombre = reader.GetString("nombre");
                     persona.cedula = reader.GetInt32("cedula");
                     persona.telefono = reader.GetString("telefono");
-            persona.dirrecion = reader.GetString("dirrecion");
+                    persona.dirrecion = reader.GetString("dirrecion");
 
             persona.rol = new rol() { id = reader.GetInt32("id_rol") };
 

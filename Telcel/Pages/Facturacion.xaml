@@ -65,7 +65,11 @@
             <Button Content="pagar" Click="btnpagar"></Button>
             </StackPanel>
         </Grid>
-        
-        
-    </Grid>
+        <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
+            <WebBrowser x:Name="_pdfViewer"/>
+
+
+        </Grid>
+
+        </Grid>
 </Page>

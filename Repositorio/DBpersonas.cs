@@ -35,7 +35,7 @@ namespace Repositorio
             }
 
 
-            return "OK";
+            return "Guardado satisfacoriamente";
         }
         public List<persona> getAll()
         {

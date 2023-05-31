@@ -33,8 +33,9 @@ namespace Servicios
 
         public string add(persona cliente)
         {
-          personas.Add(cliente);
-                
+            if (cliente == null)
+                return "No se guardo Satisfactoriamente al cliente";
+            personas.Add(cliente);
                 return _dao.add(cliente);
   
         }

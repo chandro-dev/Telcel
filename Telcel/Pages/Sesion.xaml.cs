@@ -30,7 +30,7 @@ public partial class page : Page
         public void clickImagen(object sender, RoutedEventArgs e)
         {
             persona p = null;
-            NavigationService.Navigate(new Principal(p));
+            NavigationService.Navigate(new init());
 
         }
         public void initSesion(object sender, RoutedEventArgs e) {
@@ -44,14 +44,18 @@ public partial class page : Page
                 else
                 {
                     NavigationService.Navigate(new Principal(usuario));
-                
                 }
-
             }
             else
             {
-                MessageBox.Show("Usuario incorrecto");
+                lbMessage.Visibility= Visibility.Visible;
+               lbMessage.Content="Usuario incorrecto";
             }
+        }
+        public void clickRegistrarse(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new registro());
+
         }
 
     }

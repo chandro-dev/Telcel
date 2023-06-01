@@ -12,31 +12,145 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.175*"></RowDefinition>
             <RowDefinition Height="0.6*"></RowDefinition>
-            <RowDefinition Height="0.85*"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.75*"></RowDefinition>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!-- Layout -->
-        <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
-        <Label Cursor="Hand" x:Name="lbRegistrarse" Content="Registarse" Margin="0,0,100,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnRegistrar" VerticalAlignment="top" FontSize="12"    ></Label>
-        <Label Cursor="Hand" x:Name="lbISesion" Content="Inicio de sesion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" MouseDoubleClick="btnIniciarS" VerticalAlignment="top" FontSize="12"    ></Label>
-        <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" HorizontalAlignment="Center" ></Image>
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Background="DarkBlue" Grid.Row="0">
+
+            <Label Foreground="White" Cursor="Hand"  x:Name="lbRegistrarse" Content="Registarse |" HorizontalAlignment="Right" MouseDown="btnRegistrar" VerticalAlignment="Center" FontSize="18">
+                <Label.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard >
+                                <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="White" To="Gray" Duration="0:0:1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard  >
+                                <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="Gray" To="White" Duration="0:0:05" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Foreground="White" Cursor="Hand"  x:Name="lbISesion" Content="Inicio de sesión" HorizontalAlignment="Right" MouseDown="btnIniciarS" VerticalAlignment="center" FontSize="18">
+                <Label.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard >
+                                <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="White" To="Gray"  />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard  >
+                                <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="Gray" To="White"  />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Label.Triggers>
+            </Label>
+
+        </StackPanel>
+        <Grid Grid.ColumnSpan="2" Background="#FF3F56A6"  Grid.Row="1" >
+            <Image  Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" HorizontalAlignment="Center" ></Image>
+
+        </Grid>
 
         <!--Banner-->
-        <Border CornerRadius="20" Background="#FF807AEE" Grid.Row="2" Margin="80,20,80,20">
-            <Grid>
+        <Border CornerRadius="20" Background="#FF807AEE" Grid.Row="2" Margin="120,20,120,20">
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="myImage"
+                                         Storyboard.TargetProperty="Width"
+                                          To="100" Duration="0:0:3" AutoReverse="True"  />
+                            <DoubleAnimation Storyboard.TargetName="lbBanner" Duration="0:0:3" Storyboard.TargetProperty="FontSize" To="9" AutoReverse="True"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+            </Border.Triggers>
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.25*"></ColumnDefinition>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.75*"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0.25*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Margin="0,40,60,40" >
+                <Grid Grid.Column="1">
+                    <Image x:Name="myImage" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\mainImage.png" Width="300" />
+                </Grid>
+                <Label x:Name="lbBanner" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="24" FontWeight="Black" Content="¡los Mejores Precios!"/>
+
+
+                <Button Grid.Column="0" Margin="0,40,60,40"  Background="Transparent" BorderBrush="Transparent" >
                     <Image Stretch="Uniform" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initLeft.png"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
                 </Button>
-                <Button Grid.Column="3" Margin="60,40,0,40" >
+                <Button Grid.Column="3" Margin="60,40,0,40" Background="Transparent" BorderBrush="Transparent" >
                     <Image Stretch="Uniform" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initRight.png"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
                 </Button>
             </Grid>
            
@@ -44,11 +158,11 @@
 
 
         <!-- Menu de tienda-->
-        <Border CornerRadius="20,20,0,0" Margin="80,0,80,20" Grid.Row="3">
+        <Border CornerRadius="20,20,0,0" Margin="120,0,120,20" Grid.Row="3">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="1"/>
-                    <GradientStop Color="#FF807AEE" Offset="0.072"/>
+                    <GradientStop Color="#FF3F56A6" Offset="0.072"/>
                 </LinearGradientBrush>
             </Border.Background>
             <Grid>
@@ -56,37 +170,42 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-
-
                 </Grid.ColumnDefinitions>
 
-                <Border CornerRadius="20,0,0,0"  Background="#FF807AEE" Margin="0,0,40,10" Grid.Column="0" MouseDown="Cat_Computadores">
+                <Border CornerRadius="20,0,0,0"  Background="#FF3F56A6" Margin="0,0,10,10" Grid.Column="0" MouseDown="Cat_Computadores">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.3*"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Content="Computadores" Grid.Row="0"/>
-                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initComputadores.png" Grid.Row="1" Stretch="Uniform" />
+                        <Label  FontFamily="Consolas" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center" Content="Computadores" Grid.Row="0"/>
+                        <Grid Margin="20,0,20,10" Grid.Row="1" Background="White">
+                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initComputadores.png" Stretch="Uniform" />
+                        </Grid>
                     </Grid>
                 </Border>
-                <Border   Background="#FF807AEE" Margin="20,0,20,10" Grid.Column="1" MouseDown="Cat_Celulares">
+                <Border   Background="#FF3F56A6" Margin="5,0,5,10" Grid.Column="1" MouseDown="Cat_Celulares">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.3*"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Content="Celulares" Grid.Row="0"/>
-                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initCelulares.jpg" Grid.Row="1" Stretch="Uniform" />
+                        <Label HorizontalAlignment="Center" FontFamily="Consolas" FontSize="18" VerticalAlignment="Center" FontWeight="Bold"  Content="Celulares" Grid.Row="0"/>
+                        <Grid  Margin="20,0,20,10" Grid.Row="1" Background="White">
+                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initCelulares.jpg" Stretch="Uniform" />
+                        </Grid>
+
                     </Grid>
                 </Border>
-                <Border CornerRadius="0,20,0,0"  Background="#FF807AEE" Margin="40,0,0,10" Grid.Column="2" MouseDown="Cat_Asesorios">
+                <Border CornerRadius="0,20,0,0"  Background="#FF3F56A6" Margin="10,0,0,10" Grid.Column="2" MouseDown="Cat_Asesorios">
                     <Grid><Grid.RowDefinitions>
                         <RowDefinition Height="0.3*"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Content="Asesorios" Grid.Row="0"/>
-                    <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initAsesorios.jpg" Grid.Row="1" Stretch="Uniform" />
+                        <Label HorizontalAlignment="Center" FontFamily="Consolas" FontSize="18" VerticalAlignment="Center" FontWeight="Bold"  Content="Asesorios" Grid.Row="0"/>
+                        <Grid Margin="20,0,20,10"  Grid.Row="1" Background="White">
+                    <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\initAsesorios.jpg" Stretch="Uniform" />
+                        </Grid>
                     </Grid>
                 </Border>
             </Grid>

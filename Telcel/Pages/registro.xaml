@@ -19,7 +19,7 @@
         <!-- Layout-->
         <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Fill="#FF3F56A6"/>
         <Image MouseDown="click_image_init" Cursor="Hand" Margin="20,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
-        <Label Content="Registro" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" FontFamily="Berlin Sans FB" Foreground="White" />
+        <Label FontFamily="Consolas" Content="Registro" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="34" Foreground="White" />
 
         <!-- Imagen de return -->
         <Border Grid.Column="0" Grid.Row="1" Margin="40" CornerRadius="24" BorderBrush="White" >
@@ -71,7 +71,7 @@
                 <TextBox x:Name="txtNombre"  ></TextBox>
                 <Label FontSize="16" FontFamily="consolas" x:Name="lbCedula"  Content="Cedula"></Label>
                 <TextBox x:Name="txtCedula" HorizontalAlignment="Stretch" ></TextBox>
-                <Label FontSize="16" FontFamily="consolas" x:Name="lbDirrecion" Content="Dirrecion"></Label>
+                <Label FontSize="16" FontFamily="consolas" x:Name="lbDirrecion" Content="Dirreción"></Label>
                 <TextBox x:Name="txtDirecion" HorizontalAlignment="Stretch"></TextBox>
                 <Label FontSize="16" FontFamily="consolas" x:Name="lbEmail" Content="Email"></Label>
                 <TextBox x:Name="txtEmail" HorizontalAlignment="Stretch" ></TextBox>

@@ -20,6 +20,30 @@ namespace Vistas.Pages
     /// </summary>
     public partial class init : Page
     {
+        List<banner> bannerList=new List<banner>() { 
+
+            new banner()
+            {
+                lb_content="¡Los mejores descuentos!",
+                img_source="E:\\C_Sharp\\Proyecto_Programacion_Final\\New folder\\Telcel\\recursos\\bannerDescuentos.png",
+                border_bg= new SolidColorBrush(Colors.Gold)
+
+            },
+
+            new banner(){
+            lb_content="Grandes marcas",
+            img_source="E:\\C_Sharp\\Proyecto_Programacion_Final\\New folder\\Telcel\\recursos\\bannerMarcas.png",
+            border_bg= new SolidColorBrush(Colors.Gray)
+
+            },            new banner(){
+            lb_content="¡Los mejores precios!",
+            img_source="E:\\C_Sharp\\Proyecto_Programacion_Final\\New folder\\Telcel\\recursos\\mainImage.png",
+            border_bg= new SolidColorBrush(Color.FromRgb(128,122,238))
+
+            }
+        };
+        int cont = 0;
+
         public init()
         {
             InitializeComponent();
@@ -40,9 +64,41 @@ namespace Vistas.Pages
         {
             NavigationService.Navigate(new Principal("Asesorios"));
         }
+        public void change_image_btnR(object sender, RoutedEventArgs e)
+        {
+            if (cont > 2 || cont<0)
+            {
+                cont = 0;
+            }
+            lbBanner.Content = bannerList[cont].lb_content;
+            myImage.Source = new BitmapImage(new Uri(bannerList[cont].img_source, UriKind.RelativeOrAbsolute));
+            bBanner.Background = bannerList[cont].border_bg;
+            cont++;
+        }
+        public void change_image_btnL(object sender, RoutedEventArgs e)
+        {
+            if (cont < 0 || cont>2)
+            {
+                cont = 2;
+            }
+            lbBanner.Content = bannerList[cont].lb_content;
+            myImage.Source = new BitmapImage(new Uri(bannerList[cont].img_source, UriKind.RelativeOrAbsolute));
+            bBanner.Background = bannerList[cont].border_bg;
+            cont--;
+        }
         public void Cat_Celulares(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Principal("Celulares"));
+        }
+    }
+    public class banner
+    {
+        public string lb_content { get; set; }
+
+        public string img_source { get; set; }
+        public Brush border_bg
+        {
+            get;set;
         }
     }
 }

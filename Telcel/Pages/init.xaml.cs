@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Vistas.Pages
 {
@@ -47,6 +49,8 @@ namespace Vistas.Pages
         public init()
         {
             InitializeComponent();
+            Timer timer = new Timer(change_banner, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+
         }
         public void btnRegistrar(object sender,RoutedEventArgs e)
         {
@@ -66,14 +70,38 @@ namespace Vistas.Pages
         }
         public void change_image_btnR(object sender, RoutedEventArgs e)
         {
-            if (cont > 2 || cont<0)
+          
+                if (cont > 2 || cont < 0)
+                {
+                    cont = 0;
+                }
+                lbBanner.Content = bannerList[cont].lb_content;
+                myImage.Source = new BitmapImage(new Uri(bannerList[cont].img_source, UriKind.RelativeOrAbsolute));
+                bBanner.Background = bannerList[cont].border_bg;
+                cont++;
+        }
+        private void change_banner(object state)
+           {
+            while (true)
             {
-                cont = 0;
+                // Método que se llamará cada 5 segundos
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+
+                    if (cont > 2 || cont < 0)
+                    {
+                        cont = 0;
+                    }
+                    lbBanner.Content = bannerList[cont].lb_content;
+                    myImage.Source = new BitmapImage(new Uri(bannerList[cont].img_source, UriKind.RelativeOrAbsolute));
+                    bBanner.Background = bannerList[cont].border_bg;
+                    cont++;
+                }), DispatcherPriority.Normal);
+
+                // Pausar el bucle durante 5 segundos
+                Thread.Sleep(TimeSpan.FromSeconds(6));
             }
-            lbBanner.Content = bannerList[cont].lb_content;
-            myImage.Source = new BitmapImage(new Uri(bannerList[cont].img_source, UriKind.RelativeOrAbsolute));
-            bBanner.Background = bannerList[cont].border_bg;
-            cont++;
+
         }
         public void change_image_btnL(object sender, RoutedEventArgs e)
         {

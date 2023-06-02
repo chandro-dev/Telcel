@@ -1,5 +1,4 @@
 ﻿using Entidades;
-using iText.Kernel.Pdf;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -66,8 +65,8 @@ namespace Vistas.Pages
             _factura.productos = carrito;
             _factura.cliente = _persona;
             MessageBox.Show( service.add(_factura));
-            //var spago = new Spagos();
-            //_pdfViewer.Navigate(spago.generar_factura(_persona, carrito));
+            var spago = new Spagos();
+            MessageBox.Show(spago.generar_factura(_persona, carrito));
 
             carrito = new List<producto>();
         }

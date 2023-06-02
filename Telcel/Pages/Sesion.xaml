@@ -13,6 +13,8 @@
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+
+        <!-- Layout-->
         <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Background="#FF3F56A6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.2*"></ColumnDefinition>
@@ -27,12 +29,28 @@
             <Label FontWeight="Bold" FontFamily="consolas" Content="Usuario" Margin="5" HorizontalAlignment="Left" FontSize="18"></Label>
                 <TextBox FontFamily="consolas" FontSize="18" x:Name="txtUsuario"></TextBox>
                 <Label  FontWeight="Bold" FontFamily="consolas" Content="Contraseña" Margin="5" HorizontalAlignment="Left" FontSize="18"></Label>
-                <PasswordBox x:Name="Contrasena" FontSize="18"></PasswordBox>
+                <PasswordBox x:Name="Contrasena" FontSize="18" KeyDown="Key_downPassword"></PasswordBox>
                 <Label Foreground="DarkRed" x:Name="lbMessage" Visibility="Hidden" FontSize="20" FontFamily="Consolas"  FontWeight="Bold"/>
                 <Border Margin="0,20,0,0"  CornerRadius="10" Background="Green" Cursor="Hand"  MouseDown="initSesion">
                     <Label Content="Iniciar Sesion" FontSize="15" HorizontalAlignment="Center"  FontFamily="Consolas"  />
                 </Border>
                 <Border Margin="5"  CornerRadius="10" Background="AliceBlue" Cursor="Hand"  MouseDown="clickRegistrarse">
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
                     <Label Content=" Registrarse" FontSize="15" HorizontalAlignment="Center"  FontFamily="Consolas"  />
                 </Border>
             </StackPanel>

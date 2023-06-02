@@ -35,7 +35,7 @@
                             <Storyboard  >
                                 <ColorAnimation 
                             Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
-                            From="Gray" To="White" Duration="0:0:01" />
+                            From="Gray" To="White"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
@@ -59,7 +59,7 @@
                             <Storyboard  >
                                 <ColorAnimation 
                             Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
-                            From="Gray" To="White" Duration="0:0:01"  />
+                            From="Gray" To="White"   />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
@@ -95,9 +95,9 @@
                     <ColumnDefinition Width="0.25*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
-                    <Image x:Name="myImage" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\mainImage.png" Width="300" />
+                    <Image x:Name="myImage" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\mainImage.png" Width="400" />
                 </Grid>
-                <Label x:Name="lbBanner" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="24" FontWeight="Black" Content="¡los Mejores Precios!"/>
+                <Label x:Name="lbBanner" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="28" FontWeight="Black" Content="¡los Mejores Precios!"/>
 
 
                 <Button Grid.Column="0" Margin="0,40,60,40"  Background="Transparent" BorderBrush="Transparent" Click="change_image_btnL" >

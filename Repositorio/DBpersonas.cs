@@ -79,8 +79,6 @@ namespace Repositorio
                 persona.email = reader["email"].ToString();
                 persona.contrasena = reader["contrasena"].ToString();
                 persona.rol = new rol() { id = int.Parse(reader["id_rol"].ToString()) };
-
-
             }
             catch
             {

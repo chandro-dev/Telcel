@@ -76,5 +76,57 @@ namespace Servicios
             var _dao = new DBmarca();
             return _dao.getAll();
         }
+        public List<producto> FiltProductosM(marca m, List<producto> list)
+        {
+            list = list.FindAll(x => x.marca.id == m.id);
+            return list;
+        }
+        public List<precios> FiltProductosP(List<producto> list)
+        {
+            if(list == null)
+            {
+                return new List<precios>();
+            }
+            var _list = new List<precios>();
+            double min= list.Min(x => x.precio);
+            double max = list.Max(x => x.precio);
+            double rango = max - min;
+            double primerCuartil = min + (rango * 0.25);
+            double segundoCuartil = min + (rango * 0.50);
+            double tercerCuartil = min + (rango * 0.75);
+            _list.Add(new precios()
+            {
+                minPrecio=min,
+                maxPrecio=primerCuartil
+            });
+            _list.Add(new precios()
+            {
+                minPrecio=primerCuartil,
+                maxPrecio=segundoCuartil
+            });
+            _list.Add(new precios
+            {
+                minPrecio = segundoCuartil,
+                maxPrecio = tercerCuartil
+            });
+            _list.Add(new precios
+            {
+                minPrecio = tercerCuartil,
+                maxPrecio = max
+            });
+            foreach( precios p in _list)
+            {
+                p.set_precio();
+            }
+            return _list;
+        }
     }
+    public class precios
+    {
+        public double minPrecio { get; set; }
+        public double maxPrecio { get; set; }
+        public string precio { get; set; }
+        public void set_precio() { precio = minPrecio.ToString("C0") + " - " + maxPrecio.ToString("C0"); }
+  
+    } 
 }

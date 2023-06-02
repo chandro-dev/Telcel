@@ -46,8 +46,7 @@ namespace Vistas.Pages
                 "Asesorios",
             "Todos"
             };
-            lbUser.Visibility = Visibility.Hidden;
-            lbFsesion.Visibility = Visibility.Hidden;
+         
             cmbCat.SelectedItem = cat;
         }
             public Principal(persona p)
@@ -58,13 +57,8 @@ namespace Vistas.Pages
             {
                 sesion = p;
                 _sesion();
+            }
 
-            }
-            else
-            {
-                lbUser.Visibility = Visibility.Hidden;
-                lbFsesion.Visibility = Visibility.Hidden;
-            }
             productos = sproducto.GetProductos();
             marcas = sproducto.GetMarcas();
             lbxProductos.ItemsSource = productos;
@@ -79,15 +73,15 @@ namespace Vistas.Pages
             };
         }
 
-        public void Click_Init(object sender, RoutedEventArgs e)
+        private void Click_Init(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new init());
         }
-        public void btnRegistrar(object sender, RoutedEventArgs e)
+        private void btnRegistrar(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new registro());
         }
-        public void btnIniciarS(object sender, RoutedEventArgs e)
+        private void btnIniciarS(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pages.page());
         }
@@ -115,18 +109,16 @@ namespace Vistas.Pages
 
         private void lbxProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sesion != null)
-            {
-                NavigationService.Navigate(new Facturacion(sesion, (producto)lbxProductos.SelectedItem));
-            }
-            
+            if(lbxProductos.SelectedItem !=null)
+                NavigationService.Navigate(new vista_producto((producto)lbxProductos.SelectedItem, sesion));            
         }
 
         private void cmbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var lsxMarca = new List<marca>();
             lbxProductos.ItemsSource = sproducto.GetProductos(cmbCat.SelectedItem.ToString());
-            lstCategorias.ItemsSource=null;
+            change_precios();
+                lstCategorias.ItemsSource=null;
             foreach (producto p in lbxProductos.ItemsSource.Cast<producto>().ToList<producto>())
             {
                 if( lsxMarca.Exists(x => x.id == p.marca.id))
@@ -144,9 +136,44 @@ namespace Vistas.Pages
 
         private void lstCategorias_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (lstCategorias.SelectedItem != null)
+            {
+                lbxProductos.ItemsSource = sproducto.FiltProductosM((marca)lstCategorias.SelectedItem, sproducto.GetProductos(cmbCat.SelectedItem.ToString()));
+                change_precios();
+            }
         }
-    }
+        private void change_precios()
+        {
+            try
+            {
+                lbxPrecios.ItemsSource = sproducto.FiltProductosP(lbxProductos.ItemsSource.Cast<producto>().ToList<producto>());
+            }
+            catch
+            {
 
+            }
+        }
+
+        private void lbxPrecios_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(lbxPrecios.SelectedItem != null)
+
+                    lbxProductos.ItemsSource = lbxProductos.ItemsSource.Cast<producto>().ToList().FindAll(x =>
+                    {
+                        if (x.precio <= ((precios)lbxPrecios.SelectedItem).maxPrecio &&
+                        x.precio >= ((precios)lbxPrecios.SelectedItem).minPrecio)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    });
+
+            }
+        }
+    
 
     /*
      * Pasar un Objeto byte array a una imagen

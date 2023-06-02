@@ -4,36 +4,62 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using iTextSharp.text;
 using Entidades;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
-
+using System.Drawing;
+using iTextSharp.text.html;
 
 namespace Servicios
 {
     public class Spagos
     {
 
-        public string generar_factura(persona _persona,List<producto> productos)
+        public string generar_factura(persona _persona, List<producto> productos)
         {
-            
+
             string path = "E:\\C_Sharp\\Proyecto_Programacion_Final\\New folder\\Telcel\\recursos\\factura.pdf";
-            //File.Create(path);
-           
-            PdfDocument pdf = new PdfDocument(new PdfWriter(path));
-          
-            iText.Layout.Document document = new iText.Layout.Document(pdf);
+            string htmlFilePath = "E:\\C_Sharp\\Proyecto_Programacion_Final\\New folder\\Telcel\\recursos\\index.html";
+            // Creamos un documento PDF
+            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(path, FileMode.Create));
 
-            // Crear un párrafo
-            Paragraph paragraph = new Paragraph("¡Hola, mundo!");
+            // Abrimos el documento
+            document.Open();
 
-            // Agregar el párrafo al documento
-            document.Add(paragraph);
-            // Cerrar el documento
+            // Leemos el contenido HTML desde el archivo
+            string htmlContent = File.ReadAllText(htmlFilePath);
+
+            // Creamos un objeto HTMLWorker para procesar el HTML
+            HTMLWorker htmlWorker = new HTMLWorker(document);
+            htmlWorker.Parse(new StringReader(htmlContent));
+
+            // Cerramos el documento
             document.Close();
+            /*iTextSharp.text.Document document = new iTextSharp.text.Document();
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(path, FileMode.Create));
+
+            // Abrimos el documento
+            document.Open();
+
+            // Leemos el contenido HTML desde el archivo
+            string htmlContent = File.ReadAllText(htmlFilePath);
+
+            // Creamos un objeto HTMLWorker para procesar el HTML
+            HTMLWorker htmlWorker = new HTMLWorker(document);
+            htmlWorker.Parse(new StringReader(htmlContent));
+
+            // Cerramos el documento
+            document.Close();
+            */
             return path;
+
         }
+
+
     }
+
 }

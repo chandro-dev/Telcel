@@ -9,7 +9,7 @@
       Title="MenuAdmin">
 
     <Grid Background="White">
-        <StackPanel Margin="20" HorizontalAlignment="Center">
+        <StackPanel Margin="20" HorizontalAlignment="Left" Background="DarkRed">
             <Label Content="Administracion de productos"></Label>
             <Separator Margin="20"/>
             <Button Content="Administar asesorios" Click="btnAsesorios"/>

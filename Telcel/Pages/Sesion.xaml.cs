@@ -57,6 +57,27 @@ public partial class page : Page
             NavigationService.Navigate(new registro());
 
         }
-
+            public void Key_downPassword(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter) {
+                persona usuario = sesiones.validation(Contrasena.Password, txtUsuario.Text);
+                if (usuario != null)
+                {
+                    if (usuario.rol.id == 1)
+                    {
+                        NavigationService.Navigate(new MenuAdmin());
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new Principal(usuario));
+                    }
+                }
+                else
+                {
+                    lbMessage.Visibility = Visibility.Visible;
+                    lbMessage.Content = "Usuario incorrecto";
+                }
+            }
+        }
     }
 }

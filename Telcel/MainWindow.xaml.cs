@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Repositorio;
+﻿using Repositorio;
 using Servicios;
 using System;
 using System.Collections.Generic;

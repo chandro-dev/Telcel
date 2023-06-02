@@ -53,7 +53,7 @@ namespace Vistas.Pages
                 lbCedula.Foreground= new SolidColorBrush(Colors.Red);
                 val = false;
             }
-            if (txtNombre.Text.Length <= 0 || txtNombre.Text.Length > 50 || !txtEmail.Text.All(char.IsLetter))
+            if (txtNombre.Text.Length <= 0 || txtNombre.Text.Length > 50 )
             {
                 lbNombre.Content = lbNombre.Content + "*";
                 lbNombre.Foreground = new SolidColorBrush(Colors.Red);

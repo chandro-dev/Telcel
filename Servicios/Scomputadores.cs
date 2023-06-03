@@ -27,7 +27,9 @@ namespace Servicios
         }
         public string remove(computador computador)
         { 
+#pragma warning disable CS8604 // Posible argumento de referencia nulo
              int index = list.IndexOf(list.Find(x => computador.id == x.id));
+#pragma warning restore CS8604 // Posible argumento de referencia nulo
             string result = dao.remove(list[index]);
             list.Remove(computador);
             return result;

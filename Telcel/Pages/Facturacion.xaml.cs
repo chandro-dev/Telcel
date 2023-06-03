@@ -1,7 +1,9 @@
 ﻿using Entidades;
+using iTextSharp.text.pdf;
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,12 +50,23 @@ namespace Vistas.Pages
                 carrito.Add(_prod);
                 InitializeComponent();
                 lbCarrito.ItemsSource = carrito;
+                _listaCompras.ItemsSource = carrito;
+                lbUser.Content = _persona.nombre;
+                lb_total.Content = carrito.Sum<producto>(x => x.precio).ToString("C0");
             }
         }
-
         private void btnanadir(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate( new Principal(_persona));
+        }
+        private void lbUser_FinalDoubleClick(object sender, RoutedEventArgs e)
+        {
+            persona p = null;
+            NavigationService.Navigate(new Principal(p));
+        }
+        private void lbUser_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Muser(_persona));
         }
         private void btnpagar(object sender, RoutedEventArgs e)
         {
@@ -67,14 +80,30 @@ namespace Vistas.Pages
             MessageBox.Show( service.add(_factura));
             var spago = new Spagos();
             MessageBox.Show(spago.generar_factura(_persona, carrito));
-
             carrito = new List<producto>();
         }
-        public void Btnreturn(object sender, RoutedEventArgs e)
+        private void Btnreturn(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new Principal(_persona));
         }
 
+        private void lbCarrito_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnEliminar.Visibility = Visibility.Visible;
 
+        }
+        private void CLickbtnEliminar(object sender, RoutedEventArgs e)
+        {
+            if (carrito.Remove((producto)lbCarrito.SelectedItem))
+            {
+                lbCarrito.ItemsSource = null;
+                _listaCompras.ItemsSource = null;
+                lbCarrito.ItemsSource = carrito;
+                _listaCompras.ItemsSource = carrito;
+                btnEliminar.Visibility = Visibility.Collapsed;
+                lb_total.Content = carrito.Sum<producto>(x => x.precio).ToString("C0");
+
+            }
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using iTextSharp.tool.xml.html.head;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +45,10 @@ namespace Vistas.Pages.admin
         public void btnPersonas(Object sender ,RoutedEventArgs e)
         {
             NavigationService.Navigate( new Mpersonas());
+        }
+        public void add(object sender  , RoutedEventArgs e)
+        {
+             Ejemplo.Values.Add(5.4*4);
         }
     }
 }

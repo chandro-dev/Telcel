@@ -3,6 +3,7 @@ using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
 using System.Globalization;
 using System.IO;
@@ -46,10 +47,10 @@ namespace Vistas.Pages
                 "Asesorios",
             "Todos"
             };
-         
+
             cmbCat.SelectedItem = cat;
         }
-            public Principal(persona p)
+        public Principal(persona p)
         {
             sproducto = new Sproducto();
             InitializeComponent();
@@ -62,7 +63,7 @@ namespace Vistas.Pages
             productos = sproducto.GetProductos();
             marcas = sproducto.GetMarcas();
             lbxProductos.ItemsSource = productos;
-            lstCategorias.ItemsSource= marcas;
+            lstCategorias.ItemsSource = marcas;
             cmbCat.ItemsSource = new List<string>()
             {
 
@@ -71,6 +72,7 @@ namespace Vistas.Pages
                 "Asesorios",
                 "Todos"
             };
+            cmbCat.SelectedItem = "Todos";
         }
 
         private void Click_Init(object sender, RoutedEventArgs e)
@@ -85,16 +87,16 @@ namespace Vistas.Pages
         {
             NavigationService.Navigate(new Pages.page());
         }
-    
+
 
         //Metodo correspondiente a la gestion de los inicios de sesion.
-         public void _sesion()
+        public void _sesion()
         {
             lbUser.Visibility = Visibility.Visible;
             lbFsesion.Visibility = Visibility.Visible;
             lbUser.Content = sesion.nombre;
-            lbRegistrarse.Visibility = Visibility.Hidden;
-            lbISesion.Visibility = Visibility.Hidden;
+            lbRegistrarse.Visibility = Visibility.Collapsed;
+            lbISesion.Visibility = Visibility.Collapsed;
         }
 
         private void lbUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -109,8 +111,8 @@ namespace Vistas.Pages
 
         private void lbxProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lbxProductos.SelectedItem !=null)
-                NavigationService.Navigate(new vista_producto((producto)lbxProductos.SelectedItem, sesion));            
+            if (lbxProductos.SelectedItem != null)
+                NavigationService.Navigate(new vista_producto((producto)lbxProductos.SelectedItem, sesion));
         }
 
         private void cmbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -118,10 +120,10 @@ namespace Vistas.Pages
             var lsxMarca = new List<marca>();
             lbxProductos.ItemsSource = sproducto.GetProductos(cmbCat.SelectedItem.ToString());
             change_precios();
-                lstCategorias.ItemsSource=null;
+            lstCategorias.ItemsSource = null;
             foreach (producto p in lbxProductos.ItemsSource.Cast<producto>().ToList<producto>())
             {
-                if( lsxMarca.Exists(x => x.id == p.marca.id))
+                if (lsxMarca.Exists(x => x.id == p.marca.id))
                 {
                 }
                 else
@@ -156,9 +158,11 @@ namespace Vistas.Pages
 
         private void lbxPrecios_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lbxPrecios.SelectedItem != null)
-
-                    lbxProductos.ItemsSource = lbxProductos.ItemsSource.Cast<producto>().ToList().FindAll(x =>
+            if (lbxPrecios.SelectedItem != null)
+            {
+                if (lstCategorias.SelectedItem != null)
+                {
+                    lbxProductos.ItemsSource = sproducto.FiltProductosM((marca)lstCategorias.SelectedItem, sproducto.GetProductos(cmbCat.SelectedItem.ToString())).ToList().FindAll(x =>
                     {
                         if (x.precio <= ((precios)lbxPrecios.SelectedItem).maxPrecio &&
                         x.precio >= ((precios)lbxPrecios.SelectedItem).minPrecio)
@@ -169,37 +173,53 @@ namespace Vistas.Pages
                         {
                             return false;
                         }
-                    });
+                    }); ;
+                }
+                else
+                {
 
+                    lbxProductos.ItemsSource = sproducto.GetProductos(cmbCat.SelectedItem.ToString()).ToList().FindAll(x =>
+                        {
+                            if (x.precio <= ((precios)lbxPrecios.SelectedItem).maxPrecio &&
+                            x.precio >= ((precios)lbxPrecios.SelectedItem).minPrecio)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        });
+                }
             }
-        }
-    
-
-    /*
-     * Pasar un Objeto byte array a una imagen
-     * 
-     */
-    public class ByteArrayToImageConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            byte[] data = value as byte[];
-            if (data == null)
-                return null;
-            BitmapImage image = new BitmapImage();
-            using (MemoryStream stream = new MemoryStream(data))
-            {
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.StreamSource = stream;
-                image.EndInit();
-            }
-            return image;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
     }
-}
+        /*
+         * Pasar un Objeto byte array a una imagen
+         * 
+         */
+        public class ByteArrayToImageConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                byte[] data = value as byte[];
+                if (data == null)
+                    return null;
+                BitmapImage image = new BitmapImage();
+                using (MemoryStream stream = new MemoryStream(data))
+                {
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = stream;
+                    image.EndInit();
+                }
+                return image;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
+

@@ -5,71 +5,146 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Vistas.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="720" d:DesignWidth="1080"
       Title="Facturacion">
     <Page.Resources>
         <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <Style TargetType="Label" x:Key="GeneralLabelStyle">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="consolas" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard >
+                            <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="White" To="Gray"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard  >
+                            <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="Gray" To="White"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
     <Grid Background="White">
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.65*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1.3*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DarkBlue" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal">
+                <Label  x:Name="lbFsesion" Style="{StaticResource GeneralLabelStyle}" Content="finalizar sesion |" MouseDown="lbUser_FinalDoubleClick"/>
+                <Label  x:Name="lbUser"  Style="{StaticResource GeneralLabelStyle}" Content="User |"  MouseDown="lbUser_MouseDoubleClick"/>
+
+            </StackPanel>
+        </Grid>
         
         <!-- Layout-->
-        <Grid Background="Blue" Grid.Column="0" Grid.ColumnSpan="3">
- 
+        <Grid Background="#354882" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
 
-            <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseEnter="Btnreturn"></Image>
- 
+
+            <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" Cursor="Hand" MouseDown="Btnreturn"></Image>
+
         </Grid>
 
-        <Grid Grid.Column="0" Grid.Row="1"  Background="red">
-            <ListBox x:Name="lbCarrito" Background="Transparent">
+            
+        <!--Recibo de pago -->    
+            
+        <Border CornerRadius="20" Background="#7183c6" Margin="10,10,10,10" Grid.Column="0" Grid.Row="2">
+            <Border Margin=" 10" CornerRadius="20" Background="AliceBlue">
+            <StackPanel Margin="5">
+            <Label Content="Carrito de compras" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="17" FontWeight="Bold" Background="AliceBlue"/>
+            
+                <ListBox IsEnabled="False" x:Name="_listaCompras" d:ItemsSource="{d:SampleData ItemCount=5}"  HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding nombre}"></TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding precio, StringFormat='{}{0:C0}'}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Grid Background="AliceBlue" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontFamily="Consolas" FontSize="18" FontWeight="Black" Content="Total:" Grid.Column="0"></Label>
+                    <Label FontFamily="Consolas" FontSize="18"  x:Name="lb_total" Grid.Column="1" />
+                </Grid>
+            </StackPanel>
+            </Border>
+        </Border>
+        <!-- Lista de productos con imagenes -->
+        <Grid  Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="AliceBlue"  >
+            <ListBox x:Name="lbCarrito" Background="Transparent" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lbCarrito_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="#FF98A8FF" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"  >
+                        <Border Background="#445da9" HorizontalAlignment="Stretch"  CornerRadius="10"  >
                             <Grid >
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition ></ColumnDefinition>
-                                    <ColumnDefinition MinWidth="500"></ColumnDefinition>
+                                    <ColumnDefinition Width=".40*"  ></ColumnDefinition>
+                                    <ColumnDefinition  ></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions >
-                                    <RowDefinition ></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="*" ></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
-
-                                <Image Width="100" Source="{Binding imagen,Converter={StaticResource ByteArrayToImageConverter}}" Grid.Column="0" Grid.RowSpan="3" ></Image>
-
-                                <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
-                                <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio}" Grid.Column="1" Grid.Row="1" ></TextBlock>
-                                <TextBlock Margin="10" FontWeight="Bold" Height="20" VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
+                                <Border Grid.Column="0" Grid.RowSpan="3" CornerRadius="10" Background="#90a4ff">
+                                    <Image Stretch="Uniform" Width="100" Height="130" Source="{Binding imagen,Converter={StaticResource ByteArrayToImageConverter}}"  ></Image>
+                                </Border>
+                                <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="22"></TextBlock>
+                                <TextBlock Margin="10" FontFamily="Consolas" FontSize="18"  VerticalAlignment="Center" Text= "{Binding precio , StringFormat='{}{0:C0}'}" Grid.Column="1" Grid.Row="1" ></TextBlock>
+                                <TextBlock Margin="10" FontWeight="Bold"  VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
                             </Grid >
-
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-
-        <Grid Grid.Column="0" Grid.Row="3" >
+    <!--Botones del Recibo-->
+        <Grid Grid.Column="0" Grid.Row="3"  >
             <StackPanel>
-            <Button Content="añadir" Click="btnanadir"></Button>
-            <Button Content="pagar" Click="btnpagar"></Button>
+                <Border CornerRadius="5" BorderBrush="#445da9" Opacity="0.8" Background="#445da9" Margin="10">
+                <Button FontFamily="consolas" FontSize="18" Content="Añadir" Click="btnanadir" Background="Transparent" BorderBrush="Transparent"></Button>
+                </Border>
+                <Border Opacity="0.9" CornerRadius="5" BorderBrush="Green" Background="Green" Margin="10">
+                <Button Content="Pagar" Click="btnpagar" BorderBrush="Transparent" Background="Transparent" FontFamily="Consolas" FontSize="18"></Button>
+                </Border>
+                <Border >
+                    <Border x:Name="btnEliminar"  CornerRadius="5" BorderBrush="Green" Background="Red" Margin="10" Visibility="Hidden">
+                        <Button Click="CLickbtnEliminar" FontFamily="consolas" FontSize="18" BorderBrush="Transparent" Content="Eliminar del carrito de compra" Background="Transparent" ></Button>
+                    </Border>
+                </Border>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
-            <WebBrowser x:Name="_pdfViewer"/>
 
-
-        </Grid>
-
-        </Grid>
+    </Grid>
 </Page>

@@ -4,20 +4,65 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Vistas.Pages.admin"
+xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MenuAdmin">
 
     <Grid Background="White">
-        <StackPanel Margin="20" HorizontalAlignment="Left" Background="DarkRed">
-            <Label Content="Administracion de productos"></Label>
-            <Separator Margin="20"/>
-            <Button Content="Administar asesorios" Click="btnAsesorios"/>
-            <Button Content="Administrar computadores" Click="btnComputadores"/>
-            <Button Content="Administrar Celulares" Click="btnCelulares"/>
-            <Button Content="Administrar personas y clientes"  Click="btnPersonas"/>
-            <Button Content="Cerrar sesion" Click="btnSesion"/>
-        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"  HorizontalAlignment="Left" Background="DarkRed">
+                <Label Content="Administracion de productos"></Label>
+                <Separator Margin="20"/>
+                <Button Content="Administar asesorios" Click="btnAsesorios"/>
+                <Button Content="Administrar computadores" Click="btnComputadores"/>
+                <Button Content="Administrar Celulares" Click="btnCelulares"/>
+                <Button Content="Administrar personas y clientes"  Click="btnPersonas"/>
+                <Button Content="Cerrar sesion" Click="btnSesion"/>
+
+
+                <Button Content=" Añadir datos" Click="add"/>
+            </StackPanel>
+            
+            
+            <!-- Diagrama de barras-->
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                 
+                </Grid.RowDefinitions>
+                    <lvc:PieChart Grid.Row="0" LegendLocation="Bottom"   >
+                        <lvc:PieChart.Series>
+                            <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"/>
+                            <lvc:PieSeries Title="Charles" Values="4" DataLabels="True" />
+                            <lvc:PieSeries Title="Frida" Values="6" DataLabels="True" />
+                            <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True" />
+                        </lvc:PieChart.Series>
+                    </lvc:PieChart>
+
+                    <lvc:CartesianChart Grid.Row="1">
+                    <lvc:CartesianChart.Series>
+                        <lvc:ColumnSeries x:Name="Ejemplo" Title="Ventas" Values="10, 20, 30, 15" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Días" Labels="Lunes, Martes, Miércoles, Jueves" />
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Cantidad" />
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
+        </Grid>
+
         
     </Grid>
 </Page>

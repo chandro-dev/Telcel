@@ -7,6 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1080"
       Title="vista_producto">
+    <Page.Resources>
+        <Style x:Key="CustomLabelStyle" TargetType="Label">
+            
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -39,13 +47,19 @@
                     </Grid.RowDefinitions>
                     <!--- Informacion explicita-->
                     <Grid Grid.Row="0" Margin="20">
-                        <StackPanel>
-                            <Label x:Name="lbNombre" Content="Nombre : " />
-                            <Label x:Name="lbPrecio" Content="Precio :  "/>
-                            <Label x:Name="lbMarca"  Content="Marca : "/>
-                            <Label/>
-                            <Label/>
-                            
+                        <StackPanel >
+                            <Label x:Name="lbNombre" Content="Nombre : " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbMarca"  Content="Marca : " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbAlmacenamiento" Visibility="Collapsed" Content="Almacenamiento: " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbDescripcion" Visibility="Collapsed" Content="Descripcion : " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbProcesador" Visibility="Collapsed" Content="Procesador : " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbRam" Visibility="Collapsed" Content="Memoria ram : " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbCamara" Visibility="Collapsed" Content="Camara : " Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbReferencia" Visibility="Collapsed" Content="Referencia :" Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbTarjetaVideo" Visibility="Collapsed" Content="Tarjeta de video :" Style="{StaticResource CustomLabelStyle}" />
+                            <Label x:Name="lbTarjetaMadre" Visibility="Collapsed" Content="Tarjeta Madre :" Style="{StaticResource CustomLabelStyle}" />
+                            <Label Foreground="Green" x:Name="lbPrecio" Content="Precio :  " Style="{StaticResource CustomLabelStyle}" />
+
                         </StackPanel>
                     </Grid>
                     <StackPanel Grid.Row="1" Cursor="Hand">

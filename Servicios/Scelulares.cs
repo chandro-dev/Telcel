@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class Scelulares//:IServicios<celular>
+    public class Scelulares
     {
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
       private static List<celular> list;
@@ -46,17 +46,10 @@ namespace Servicios
                 list.Remove(_celular);
                 return result;
         }
-        public bool update(celular celular)
+        public string update(celular celular)
         {
 
-            try
-            {
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return dao.modify(celular);
         }
         public List<celular> GetCelulares()
         {

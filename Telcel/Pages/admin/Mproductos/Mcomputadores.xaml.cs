@@ -69,7 +69,7 @@ namespace Vistas.Pages.admin.Mproductos
                             nombre = txtNombre.Text,
                             cantidad = int.Parse(txtCantidad.Text),
                             descuento = 0,
-                            Envio = true,
+                            envio = true,
                             marca = new marca() { nombre_marca = txtMarca.Text },
                             imagen = imagen,
                             precio = double.Parse(txtPrecio.Text),

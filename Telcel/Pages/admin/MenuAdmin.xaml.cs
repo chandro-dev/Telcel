@@ -24,31 +24,28 @@ namespace Vistas.Pages.admin
         {
             InitializeComponent();
         }
-        public void btnAsesorios(object sender, RoutedEventArgs e)
+        private void btnAsesorios(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Mproductos.Masesorios());
         }
-        public void btnCelulares(object sender, RoutedEventArgs e)
+        private void btnCelulares(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Mproductos.Mcelulares());
 
         }
-        public void btnComputadores(object sender, RoutedEventArgs e)
+        private void btnComputadores(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Mproductos.Mcomputadores());
 
         }
-        public void btnSesion(Object sender, RoutedEventArgs e)
+        private void btnSesion(Object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
-        public void btnPersonas(Object sender ,RoutedEventArgs e)
+        private void btnPersonas(Object sender ,RoutedEventArgs e)
         {
             NavigationService.Navigate( new Mpersonas());
         }
-        public void add(object sender  , RoutedEventArgs e)
-        {
-             Ejemplo.Values.Add(5.4*4);
-        }
+   
     }
 }

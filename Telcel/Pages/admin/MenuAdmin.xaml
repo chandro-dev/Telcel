@@ -26,9 +26,6 @@ xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
                 <Button Content="Administrar Celulares" Click="btnCelulares"/>
                 <Button Content="Administrar personas y clientes"  Click="btnPersonas"/>
                 <Button Content="Cerrar sesion" Click="btnSesion"/>
-
-
-                <Button Content=" Añadir datos" Click="add"/>
             </StackPanel>
             
             

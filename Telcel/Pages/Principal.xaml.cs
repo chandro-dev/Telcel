@@ -38,6 +38,7 @@ namespace Vistas.Pages
             productos = sproducto.GetProductos();
             marcas = sproducto.GetMarcas();
             lbxProductos.ItemsSource = productos;
+
             lstCategorias.ItemsSource = marcas;
             cmbCat.ItemsSource = new List<string>()
             {
@@ -87,6 +88,7 @@ namespace Vistas.Pages
         {
             NavigationService.Navigate(new Pages.page());
         }
+      
 
 
         //Metodo correspondiente a la gestion de los inicios de sesion.
@@ -194,11 +196,28 @@ namespace Vistas.Pages
             }
         }
     }
-        /*
-         * Pasar un Objeto byte array a una imagen
-         * 
-         */
-        public class ByteArrayToImageConverter : IValueConverter
+    //Clase de validacion de envios gratis
+    public class BooleanToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+            {
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            }
+            return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /*
+     * Pasar un Objeto byte array a una imagen
+     * 
+     */
+    public class ByteArrayToImageConverter : IValueConverter
         {
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {

@@ -57,7 +57,9 @@ namespace Repositorio
                     nombre_marca = reader["nombre_marca"].ToString()
                 };
                 _asesorio.referencia= reader["referencia"].ToString();
-                _asesorio.descuento = int.Parse(reader["descuento"].ToString());
+                _asesorio.descuento = float.Parse(reader["descuento"].ToString());
+                _asesorio.envio = (bool)reader["envio"];
+          
             }
             catch
             {
@@ -80,6 +82,8 @@ namespace Repositorio
                     command.Parameters.AddWithValue("@cantidad", item.cantidad);
                     command.Parameters.AddWithValue("@referencia", item.referencia);
                     command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
+                    command.Parameters.AddWithValue("@descuento", item.descuento);
+                    command.Parameters.AddWithValue("@envio",item.envio? 1: 0);
                     SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
                     parameter.Value = item.imagen;
                     command.Parameters.Add(parameter);
@@ -88,7 +92,7 @@ namespace Repositorio
             }
 
 
-            return "OK";
+            return "Asesorio añadido corectamente";
         }
             public string remove(asesorio item) 
         {
@@ -109,7 +113,29 @@ namespace Repositorio
         }
         public string modify(asesorio item) 
         {
-            return "ok";
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPupdate_asesorio", connection))
+                { 
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre", item.nombre);
+                    command.Parameters.AddWithValue("@precio", item.precio);
+                    command.Parameters.AddWithValue("@cantidad", item.cantidad);
+                    command.Parameters.AddWithValue("@referencia", item.referencia);
+                    command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
+                    command.Parameters.AddWithValue("@descuento", item.descuento);
+                    command.Parameters.AddWithValue("@envio", item.envio ? 1 : 0);
+                    command.Parameters.AddWithValue("@id_producto", item.id);
+                    SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
+                    parameter.Value = item.imagen;
+                    command.Parameters.Add(parameter);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            return "Actualizado Correctamente";
         }
     }
 }

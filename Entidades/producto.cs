@@ -18,8 +18,8 @@ namespace Entidades
             public string nombre { get; set; }
             public double  precio { get; set; }
             public int cantidad { get; set; }
-            public bool Envio { get; set; }
-            public int descuento { get; set; }            
+            public bool envio { get; set; }
+            public float descuento { get; set; }            
             public marca marca { get; set; }
             public byte[] imagen { get; set; }
     }

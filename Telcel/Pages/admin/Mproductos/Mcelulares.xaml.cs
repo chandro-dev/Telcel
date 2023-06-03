@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Microsoft.Win32;
+using Repositorio;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -44,9 +45,6 @@ namespace Vistas.Pages.admin.Mproductos {
         }
         public void btnSubirClick(object sender, RoutedEventArgs e)
         {
-            switch (btnSubir.Content)
-            {
-                case "Subir Celular":
                     byte[] imagen;
                     if (rutaArchivoSeleccionado != null)
                     {
@@ -64,8 +62,8 @@ namespace Vistas.Pages.admin.Mproductos {
                         {
                             nombre = txtNombre.Text,
                             cantidad = int.Parse(txtCantidad.Text),
-                            descuento = 0,
-                            Envio = true,
+                            descuento = float.Parse(txtDescuento.Text)/100,
+                            envio = rdEnvio.IsChecked.Value,
                             marca = new marca() { nombre_marca = txtMarca.Text },
                             imagen = imagen,
                             precio = int.Parse(txtPrecio.Text),
@@ -80,14 +78,10 @@ namespace Vistas.Pages.admin.Mproductos {
 
                         refresh();
                     }
-                    break;
-                case "Eliminar":
 
-                      MessageBox.Show( Scelulares.remove((celular)DGcelulares.SelectedItem));
-                    btnSubir.Content = "Subir Celular";
-                    refresh();
-                    break;
-            }
+
+                    
+            
         }
         private void btnVolverClick(object sender, RoutedEventArgs e)
         {
@@ -98,12 +92,170 @@ namespace Vistas.Pages.admin.Mproductos {
             DGcelulares.ItemsSource = null;
             DGcelulares.ItemsSource = Scelulares.GetCelulares();
         }
+    private void ClickBtnEliminar(object sender, RoutedEventArgs e)
+    {
+
+            lbmessage.Content= Scelulares.remove((celular)DGcelulares.SelectedItem);
+            
+            refresh();
+
+            btnEliminar.Visibility = Visibility.Visible;
+            _btnSubir.IsEnabled = true;
+        }
 
         private void DGcelulares_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           btnSubir.Content = "Eliminar";
+            if (DGcelulares.SelectedItem != null)
+            {
+                try
+                {
+                    txtNombre.Text = ((celular)DGcelulares.SelectedItem).nombre;
+                    txtCantidad.Text = ((celular)DGcelulares.SelectedItem).cantidad.ToString();
+                    txtDescuento.Text = (((celular)DGcelulares.SelectedItem).descuento * 100).ToString();
+                    rdEnvio.IsChecked = ((celular)DGcelulares.SelectedItem).envio;
+                    txtMarca.Text = ((celular)DGcelulares.SelectedItem).marca.nombre_marca;
+                    txtPrecio.Text = ((celular)DGcelulares.SelectedItem).precio.ToString();
+                    txtDescripcion.Text = ((celular)DGcelulares.SelectedItem).descripcion;
+                    txtAlmacenamiento.Text = ((celular)DGcelulares.SelectedItem).almacenamiento;
+                    txtCamara.Text = ((celular)DGcelulares.SelectedItem).camara;
+                    txtRam.Text = ((celular)DGcelulares.SelectedItem).ram;
+
+                }
+                catch { }
+                btnEliminar.Visibility = Visibility.Visible;
+                btnActualizar.Visibility = Visibility.Visible;
+                _btnSubir.IsEnabled = false;
+            } }
+        private bool validation()
+        {
+            bool stado = true;
+
+
+            if (txtDescuento.Text.ToString() == string.Empty || !txtDescuento.Text.All(char.IsDigit))
+            {
+                lbDescuento.Content = lbDescuento.Content + "*";
+                stado = false;
+            }
+            if (txtCantidad.Text.ToString() == string.Empty || !txtCantidad.Text.All(char.IsDigit))
+            {
+                lbCantidad.Content = lbCantidad.Content + "*";
+                stado = false;
+            }
+            if (txtPrecio.Text.ToString() == string.Empty || !txtPrecio.Text.All(char.IsDigit))
+            {
+                lbPrecio.Content = lbPrecio.Content + "*";
+                stado = false;
+            }
+            if (txtNombre.Text.Length <= 0)
+            {
+                lbNombre.Content = lbNombre.Content + "*";
+                stado = false;
+            }
+            if (txtAlmacenamiento.Text.Length <= 0)
+            {
+                lbAlmacenamiento.Content = lbAlmacenamiento.Content + "*";
+                stado = false;
+            }
+            if (txtDescripcion.Text.Length <= 0)
+            {
+                lbDescripcion.Content = lbDescripcion.Content + "*";
+                stado = false;
+            }
+            if (txtRam.Text.Length <= 0)
+            {
+                lbRam.Content = lbRam.Content + "*";
+                stado = false;
+            }
+            if (txtMarca.Text.Length <= 0)
+            {
+                lbMarca.Content = lbMarca.Content + "*";
+                stado = false;
+            }
+            return stado;
         }
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+            {
+                if (DGcelulares.SelectedItem != null)
+                {
+                    byte[] imagen;
+                    if (rutaArchivoSeleccionado != null)
+                    {
+                        using (var fileStream = new FileStream(rutaArchivoSeleccionado, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                fileStream.CopyTo(ms);
+                                imagen = ms.ToArray();
+                            }
+                            if (validation())
+                            {
+                                var _id = (celular)DGcelulares.SelectedItem;
+                                celular c = new celular
+                                {
+
+                                    id = _id.id,
+                                    nombre = txtNombre.Text,
+                                    descripcion = txtDescripcion.Text,
+                                    cantidad = int.Parse(txtCantidad.Text),
+                                    descuento = float.Parse(txtDescuento.Text) / 100,
+                                    ram=txtRam.Text,
+                                    almacenamiento=txtAlmacenamiento.Text,
+                                    camara=txtCamara.Text,
+                                    envio = rdEnvio.IsChecked.Value,
+                                    marca = new marca() { nombre_marca = txtMarca.Text },
+                                    imagen = imagen,
+                                    precio = int.Parse(txtPrecio.Text)
+                                };
+                                lbmessage.Content = Scelulares.update(c);
+                                refresh();
+                                btnActualizar.Visibility = Visibility.Collapsed;
+                                btnEliminar.Visibility = Visibility.Collapsed;
+                                _btnSubir.IsEnabled = true;
+                            }
+                            else
+                            {
+                                lbmessage.Content = "No se puedo actualizar correctamnte";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (validation())
+                        {
+                            var _id = (celular)DGcelulares.SelectedItem;
+
+                            celular c = new celular
+                            {
+                                id = _id.id,
+                                nombre = txtNombre.Text,
+                                cantidad = int.Parse(txtCantidad.Text),
+                                descuento = float.Parse(txtDescuento.Text) / 100,
+                                envio = rdEnvio.IsChecked.Value,
+                                marca = new marca() { nombre_marca = txtMarca.Text },
+                                imagen = ((celular)DGcelulares.SelectedItem).imagen,
+                                precio = int.Parse(txtPrecio.Text),
+                                ram = txtRam.Text,
+                                descripcion=txtDescripcion.Text,
+                                almacenamiento = txtAlmacenamiento.Text,
+                                camara = txtCamara.Text
+                            };
+                            lbmessage.Content = Scelulares.update(c);
+                            refresh();
+                            btnActualizar.Visibility = Visibility.Collapsed;
+                            btnEliminar.Visibility = Visibility.Collapsed;
+                            _btnSubir.IsEnabled = true;
+
+                        }
+                        else
+                        {
+                            lbmessage.Content = "No se puedo actualizar correctamnte";
+                        }
+                    }
+                }
+        }
+        
     }
+
 
     public class ByteArrayToImageConverter : IValueConverter
     {
@@ -129,5 +281,20 @@ namespace Vistas.Pages.admin.Mproductos {
             throw new NotImplementedException();
         }
     }
+    public class BooleanToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+            {
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            }
+            return Visibility.Collapsed;
+        }
 
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -10,6 +10,7 @@
     
     <Page.Resources>
         <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style TargetType="Label" x:Key="GeneralLabelStyle">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="consolas" />
@@ -143,7 +144,9 @@
                             </Border>
                             <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="22"></TextBlock>
                             <TextBlock Margin="10" FontFamily="Consolas" FontSize="18"  VerticalAlignment="Center" Text= "{Binding precio , StringFormat='{}{0:C0}'}" Grid.Column="1" Grid.Row="1" ></TextBlock>
-                            <TextBlock Margin="10" FontWeight="Bold"  VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
+                            <TextBlock Margin="10" FontWeight="Bold"  VerticalAlignment="Center"
+                                       Visibility="{Binding envio, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                       Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
                         </Grid >
 
                     </Border>
@@ -163,7 +166,7 @@
             <Label Content="Marcas" Grid.Row="0" Background="DarkRed" Style="{StaticResource GeneralLabelStyle}"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <ListBox Background="DarkRed" Grid.Row="1" x:Name="lstCategorias" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstCategorias_SelectionChanged" >
+            <ListBox  Background="DarkRed" Grid.Row="1" x:Name="lstCategorias" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstCategorias_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <Label Margin="10,0,10,10" Foreground="White" Content="{Binding nombre_marca}" ></Label>

@@ -25,25 +25,16 @@ namespace Servicios
         }
         public string remove(asesorio asesorio)
         {
-#pragma warning disable CS8604 // Posible argumento de referencia nulo
             int index = list.IndexOf(list.Find(x => asesorio.id == x.id));
-#pragma warning restore CS8604 // Posible argumento de referencia nulo
             string result = dao.remove(list[index]);
             list.Remove(asesorio);
             return result;
         }
 
-        public bool update(asesorio asesorio)
+        public string update(asesorio asesorio)
         {
 
-            try
-            {
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return dao.modify(asesorio);
         }
         public List<asesorio> GetAsesorios()
         {

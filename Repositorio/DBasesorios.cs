@@ -14,7 +14,7 @@ namespace Repositorio
     {
         public List<asesorio> getAll() {
             List<asesorio> asesorios = new List<asesorio>();
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NombreCadenaConexion"].ConnectionString))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -70,7 +70,7 @@ namespace Repositorio
         }
         public string add(asesorio item)
         {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -97,7 +97,7 @@ namespace Repositorio
         }
             public string remove(asesorio item) 
         {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -114,7 +114,7 @@ namespace Repositorio
         }
         public string modify(asesorio item) 
         {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 

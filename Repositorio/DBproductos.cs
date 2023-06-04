@@ -15,7 +15,7 @@ namespace Repositorio
         {
 
             List<producto> productos = new List<producto>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -42,7 +42,7 @@ namespace Repositorio
         }
         public List<double> getEsta() {
             List<double> resultados = new List<double>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -80,7 +80,7 @@ namespace Repositorio
         public List<double> getTo()
         {
             List<double> resultados = new List<double>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -148,7 +148,7 @@ namespace Repositorio
         }
         public string add(producto item)
         {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 

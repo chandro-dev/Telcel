@@ -28,6 +28,7 @@
             <StackPanel Orientation="Horizontal">
             <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseDown="btnvolver" HorizontalAlignment="Left" ></Image>
             <Label Content="Facturazión"  FontFamily="Consolas" Foreground="White" FontWeight="Black" FontSize="40" VerticalAlignment="Center"/>
+                <Label x:Name="lbFecha" Margin="500,0,0,0"  Content="Fecha:" Style="{StaticResource GeneralLabelStyle}" Foreground="white" VerticalAlignment="Bottom" Visibility="Visible" HorizontalAlignment="Right"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -59,9 +60,9 @@
                         <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
                     <Label FontFamily="Consolas" FontSize="18" FontWeight="Black" Margin="20,0,0,0" Content="Total:" Grid.Column="0"></Label>
-                    <Label FontFamily="Consolas" FontSize="18"  x:Name="lb_total" Grid.Column="1" />
+                    <Label FontFamily="Consolas" FontSize="18" Foreground="green"  x:Name="lb_total" Grid.Column="1" />
                 </Grid>
-                <Button Content="Generar pdf" Click="SaveAsPdfButton_Click" 
+                <Button Content="Generar pdf" Margin="20"  FontSize="20" FontFamily="Consolas" Click="SaveAsPdfButton_Click" 
                         x:Name="btnPdf"/>
             </StackPanel>
             <StackPanel Grid.Column="1">

@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Diagnostics;
+using System;
 
 namespace Vistas.Pages.admin
 {
@@ -23,6 +24,9 @@ namespace Vistas.Pages.admin
         {
             _factura = sfacturas.GetProducts(factura);
             InitializeComponent();
+
+            var fecha = DateTime.Today;
+            lbFecha.Content = "Fecha de Factura: " + fecha.ToString("d");
             _listaCompras.ItemsSource = _factura.productos;
             lbCedula.Content = _factura.cliente.cedula;
             lbDirrecion.Content=_factura.cliente.dirrecion;
@@ -38,6 +42,8 @@ namespace Vistas.Pages.admin
         private void SaveAsPdfButton_Click(object sender, RoutedEventArgs e)
         {
             btnPdf.Visibility=Visibility.Collapsed;
+
+
             Document document = new Document(new iTextSharp.text.Rectangle(2860,1720));
             string path = @"E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\Factura.pdf";
             // Crear un escritor PDF
@@ -67,7 +73,7 @@ namespace Vistas.Pages.admin
             document.Add(image);
             document.Close();
             btnPdf.Visibility=Visibility.Visible;
-            
+
         }
 
 

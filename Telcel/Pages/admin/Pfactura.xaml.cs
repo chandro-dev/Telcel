@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using System.Diagnostics;
 
 namespace Vistas.Pages.admin
 {
@@ -40,14 +41,15 @@ namespace Vistas.Pages.admin
         }
         private void SaveAsPdfButton_Click(object sender, RoutedEventArgs e)
         {
-            Document document = new Document();
-
+            btnPdf.Visibility=Visibility.Collapsed;
+            Document document = new Document(new iTextSharp.text.Rectangle(2860,1720));
+            string path = @"E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\Factura.pdf";
             // Crear un escritor PDF
-            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("ruta_del_archivo.pdf", FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(path, FileMode.Create));
 
             // Definir la resolución deseada (por ejemplo, 300 DPI)
-            float dpiX = 300;
-            float dpiY = 300;
+            float dpiX = 200;
+            float dpiY = 200;
 
             // Calcular el ancho y alto en píxeles según la resolución
             int widthInPixels = (int)(ActualWidth * dpiX / 96);
@@ -68,6 +70,8 @@ namespace Vistas.Pages.admin
             document.Open();
             document.Add(image);
             document.Close();
+            btnPdf.Visibility=Visibility.Visible;
+            
         }
 
 

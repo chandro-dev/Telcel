@@ -24,16 +24,10 @@ namespace Vistas.Pages
     /// </summary>
     public partial class Facturacion : Page
     {
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static List<producto> carrito;
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static persona _persona;
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private Sfacturas service;
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Facturacion(persona p, producto _prod)
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
 
             if (p == null)
@@ -67,12 +61,8 @@ namespace Vistas.Pages
         }
         private void lbUser_FinalDoubleClick(object sender, RoutedEventArgs e)
         {
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             persona p = null;
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
-#pragma warning disable CS8604 // Posible argumento de referencia nulo
             NavigationService.Navigate(new Principal(p));
-#pragma warning restore CS8604 // Posible argumento de referencia nulo
         }
         private void lbUser_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
@@ -87,10 +77,9 @@ namespace Vistas.Pages
             _factura.productos=new List<producto>();
             _factura.productos = carrito;
             _factura.cliente = _persona;
-            MessageBox.Show( service.add(_factura));
-            var spago = new Spagos();
-            MessageBox.Show(spago.generar_factura(_persona, carrito));
+             service.add(_factura);
             carrito = new List<producto>();
+            NavigationService.Navigate(new Vistas.Pages.admin.factura(_factura));
         }
         private void Btnreturn(object sender, RoutedEventArgs e)
         {

@@ -9,7 +9,7 @@
       Title="factura">
     <Page.Resources>
         <Style TargetType="Label" x:Key="GeneralLabelStyle">
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="19" />
             <Setter Property="FontFamily" Value="consolas" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="Black"/>
@@ -38,7 +38,7 @@
             <StackPanel Grid.Column="0" Margin="40,0,40,0" Background="#90a4ff">
                 <Label Content="Carrito de compras" HorizontalAlignment="Center" FontFamily="Consolas" FontSize="17" FontWeight="Bold" Background="Transparent"/>
                 
-                <ListBox IsEnabled="True" x:Name="_listaCompras" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="20,0,20,0" Background="Transparent"  HorizontalContentAlignment="Stretch">
+                <ListBox BorderBrush="Transparent" IsEnabled="True" x:Name="_listaCompras" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="20,0,20,0" Background="Transparent"  HorizontalContentAlignment="Stretch">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
@@ -61,35 +61,36 @@
                     <Label FontFamily="Consolas" FontSize="18" FontWeight="Black" Margin="20,0,0,0" Content="Total:" Grid.Column="0"></Label>
                     <Label FontFamily="Consolas" FontSize="18"  x:Name="lb_total" Grid.Column="1" />
                 </Grid>
-                <Button Content="Generar pdf" Click="SaveAsPdfButton_Click"/>
+                <Button Content="Generar pdf" Click="SaveAsPdfButton_Click" 
+                        x:Name="btnPdf"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Label Content="Datos del Cliente" Foreground="Black" Style="{StaticResource GeneralLabelStyle}"/>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="5">
                     <StackPanel>
                     <Label Content="Cedula" Style="{StaticResource GeneralLabelStyle}"/>
                     <Label x:Name="lbCedula" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
                     </StackPanel>
                 </Border>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="5">
                     <StackPanel>
                         <Label Content="Nombre" Style="{StaticResource GeneralLabelStyle}"/>
                         <Label x:Name="lbNombre" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
                     </StackPanel>
                 </Border>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="5">
                     <StackPanel><Label Content="Dirrecion" Style="{StaticResource GeneralLabelStyle}"></Label>
                     <Label x:Name="lbDirrecion" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
                     </StackPanel>
                 </Border>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="5">
                     <StackPanel>
                     <Label Content="Telefono" Style="{StaticResource GeneralLabelStyle}"/>
                     <Label x:Name="lbTelefono" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
                     </StackPanel>
                 </Border>
 
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="5">
                     <StackPanel>
                     <Label Content="Forma de pago" Style="{StaticResource GeneralLabelStyle}"></Label>
                     <Label x:Name="lbFpago" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>

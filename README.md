@@ -1,4 +1,4 @@
 # Telcel
 
-![Texto alternativo](Telcel/recursos/factura.pdf)
+![Texto alternativo](Telcel/recursos/logo.png)
 

@@ -42,11 +42,13 @@ xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
             <Grid Grid.Column="1" Grid.Row="1">
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
                     <RowDefinition/>
+                    <RowDefinition Height="0.2*"/>
                     <RowDefinition/>
-                 
                 </Grid.RowDefinitions>
-                    <lvc:PieChart Grid.Row="0" LegendLocation="Bottom"   >
+                <Label Content="Diagrama Circular del numero de productos vendidos de cada categoria" FontFamily="Consolas" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBlack" />
+                <lvc:PieChart Grid.Row="1" LegendLocation="Bottom"   >
                         <lvc:PieChart.Series>
                             <lvc:PieSeries  x:Name="pedazoComputador" Title="Computadores" Values="3" DataLabels="True"/>
                             <lvc:PieSeries x:Name="pedazoCelular" Title="Celulares" Values="4" DataLabels="True" />
@@ -54,8 +56,9 @@ xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
 
                         </lvc:PieChart.Series>
                     </lvc:PieChart>
+                <Label Grid.Row="2" Content="Diagrama de barras del total vendido de productos  por categoria" FontFamily="Consolas" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBlack" />
 
-                    <lvc:CartesianChart Grid.Row="1">
+                <lvc:CartesianChart Grid.Row="3">
                     <lvc:CartesianChart.Series>
                         <lvc:ColumnSeries x:Name="Ventas_Totales" Title="Ventas" Values="10, 20, 30" />
                     </lvc:CartesianChart.Series>

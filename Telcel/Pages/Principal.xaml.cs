@@ -22,18 +22,14 @@ using System.Windows.Shapes;
 
 namespace Vistas.Pages
 {
-    /// <summary>
-    /// Lógica de interacción para Principal.xaml
-    /// </summary>
+
     public partial class Principal : Page
     {
         Sproducto sproducto;
         persona sesion;
         List<producto> productos;
         List<marca> marcas;
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Principal(string cat)
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             sproducto = new Sproducto();
             InitializeComponent();
@@ -53,12 +49,15 @@ namespace Vistas.Pages
 
             cmbCat.SelectedItem = cat;
         }
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Principal(persona p)
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
-            sproducto = new Sproducto();
             InitializeComponent();
+            if (Facturacion.carrito !=null )
+            {
+                ImgCarrito.Visibility = Visibility.Visible;
+            }
+            sproducto = new Sproducto();
+
             if (p != null)
             {
                 sesion = p;
@@ -92,8 +91,10 @@ namespace Vistas.Pages
         {
             NavigationService.Navigate(new Pages.page());
         }
-      
-
+        private void ClickCarrito(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Facturacion(sesion));
+        }
 
         //Metodo correspondiente a la gestion de los inicios de sesion.
         public void _sesion()
@@ -111,11 +112,7 @@ namespace Vistas.Pages
         }
         private void lbUser_FinalDoubleClick(object sender, MouseButtonEventArgs e)
         {
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
-#pragma warning disable CS0219 // La variable está asignada pero nunca se usa su valor
             persona p = null;
-#pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             NavigationService.Navigate(new init());
         }
 
@@ -128,9 +125,7 @@ namespace Vistas.Pages
         private void cmbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var lsxMarca = new List<marca>();
-#pragma warning disable CS8604 // Posible argumento de referencia nulo
             lbxProductos.ItemsSource = sproducto.GetProductos(cmbCat.SelectedItem.ToString());
-#pragma warning restore CS8604 // Posible argumento de referencia nulo
             change_precios();
             lstCategorias.ItemsSource = null;
             foreach (producto p in lbxProductos.ItemsSource.Cast<producto>().ToList<producto>())
@@ -210,6 +205,15 @@ namespace Vistas.Pages
 #pragma warning restore CS8604 // Posible argumento de referencia nulo
                 }
             }
+        }
+
+        private void txt_Chng(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void btnSearch(object sender, RoutedEventArgs e) {
+
+            lbxProductos.ItemsSource = sproducto.GetProductos().FindAll(x => x.nombre.Contains(search.Text));
         }
     }
     //Clase de validacion de envios gratis

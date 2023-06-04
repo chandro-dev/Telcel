@@ -24,7 +24,7 @@ namespace Vistas.Pages
     /// </summary>
     public partial class Facturacion : Page
     {
-        private static List<producto> carrito;
+        public static List<producto> carrito;
         private static persona _persona;
         private Sfacturas service;
         public Facturacion(persona p, producto _prod)
@@ -48,6 +48,30 @@ namespace Vistas.Pages
                     carrito = new List<producto>();
                 }
                 carrito.Add(_prod);
+                InitializeComponent();
+                lbCarrito.ItemsSource = carrito;
+                _listaCompras.ItemsSource = carrito;
+                lbUser.Content = _persona.nombre;
+                lb_total.Content = carrito.Sum<producto>(x => x.precio).ToString("C0");
+            }
+        }
+        public Facturacion(persona p)
+        {
+
+            if (p == null)
+            {
+                NavigationService.GoBack();
+            }
+            else
+            {
+                service = new Sfacturas();
+
+                if (_persona != p)
+                {
+                    _persona = p;
+ 
+                }
+
                 InitializeComponent();
                 lbCarrito.ItemsSource = carrito;
                 _listaCompras.ItemsSource = carrito;
@@ -79,6 +103,8 @@ namespace Vistas.Pages
             _factura.cliente = _persona;
              service.add(_factura);
             carrito = new List<producto>();
+  
+            lbCarrito.ItemsSource = carrito;
             NavigationService.Navigate(new Vistas.Pages.admin.factura(_factura));
         }
         private void Btnreturn(object sender, RoutedEventArgs e)

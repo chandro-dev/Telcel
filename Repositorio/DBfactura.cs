@@ -14,7 +14,7 @@ namespace Repositorio
     {
         public string add(factura factura)
         {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -57,7 +57,7 @@ namespace Repositorio
         {
 
             List<factura> facturas = new List<factura>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -87,7 +87,7 @@ namespace Repositorio
         public factura GetDF(factura f)
         {
             List<producto> detail_F = new List<producto>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 

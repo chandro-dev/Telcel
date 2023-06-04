@@ -15,7 +15,7 @@ namespace Repositorio
         public List<celular> getAll() {
 
             List<celular> celulars = new List<celular>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -41,7 +41,7 @@ namespace Repositorio
             return celulars;
         }
         public string add(celular item) {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -105,7 +105,7 @@ namespace Repositorio
             return celular;
         }
         public string remove(celular item) {
-            using(SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using(SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 
@@ -121,7 +121,7 @@ namespace Repositorio
             return "OK";
         }
         public string modify(celular item) {
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
                 connection.Open();
 

@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Repositorio
     {
         public List<asesorio> getAll() {
             List<asesorio> asesorios = new List<asesorio>();
-            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NombreCadenaConexion"].ConnectionString))
             {
                 connection.Open();
 

@@ -23,4 +23,5 @@ namespace Entidades
             public marca marca { get; set; }
             public byte[] imagen { get; set; }
     }
+    
 }

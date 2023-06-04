@@ -40,6 +40,82 @@ namespace Repositorio
             }
             return productos;
         }
+        public List<double> getEsta() {
+            List<double> resultados = new List<double>();
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPget_esta", connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlParameter suma1Param = new SqlParameter("@Tc", SqlDbType.BigInt);
+                    suma1Param.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(suma1Param);
+
+                    SqlParameter suma2Param = new SqlParameter("@Tcel", SqlDbType.BigInt);
+                    suma2Param.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(suma2Param);
+                    SqlParameter suma3Param = new SqlParameter("@Ta", SqlDbType.BigInt);
+                    suma3Param.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(suma3Param);
+
+                    command.ExecuteNonQuery();
+                    try
+                    {
+                        resultados.Add(Convert.ToDouble(command.Parameters["@Tc"].Value));
+                        resultados.Add( Convert.ToDouble(command.Parameters["@Tcel"].Value));
+                        resultados.Add( Convert.ToDouble(command.Parameters["@Ta"].Value));
+                    }catch { }
+
+                }
+            }
+            if (resultados.Count < 0)
+            {
+                return null;
+            }
+            return resultados;
+        }
+        public List<double> getTo()
+        {
+            List<double> resultados = new List<double>();
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPget_tot", connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlParameter suma1Param = new SqlParameter("@Tc", SqlDbType.BigInt);
+                    suma1Param.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(suma1Param);
+
+                    SqlParameter suma2Param = new SqlParameter("@Tcel", SqlDbType.BigInt);
+                    suma2Param.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(suma2Param);
+                    SqlParameter suma3Param = new SqlParameter("@Ta", SqlDbType.BigInt);
+                    suma3Param.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(suma3Param);
+
+                    command.ExecuteNonQuery();
+                    try
+                    {
+                        resultados.Add(Convert.ToDouble(command.Parameters["@Tc"].Value));
+                        resultados.Add(Convert.ToDouble(command.Parameters["@Tcel"].Value));
+                        resultados.Add(Convert.ToDouble(command.Parameters["@Ta"].Value));
+                    }
+                    catch { }
+
+                }
+            }
+            if (resultados.Count < 0)
+            {
+                return null;
+            }
+            return resultados;
+        }
         private producto mapper(SqlDataReader reader)
         {
 
@@ -104,4 +180,5 @@ namespace Repositorio
             return "OK";
         }
     }
+    
 }

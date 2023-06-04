@@ -14,12 +14,8 @@ using System.Diagnostics;
 
 namespace Vistas.Pages.admin
 {
-    /// <summary>
-    /// Lógica de interacción para factura.xaml
-    /// </summary>
-#pragma warning disable CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
+  
     public partial class factura : Page
-#pragma warning restore CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
     {
         Entidades.factura _factura;
         Sfacturas sfacturas=new Sfacturas();    

@@ -2,6 +2,7 @@
 using iTextSharp.tool.xml.html.head;
 using LiveCharts;
 using LiveCharts.Wpf;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,20 @@ namespace Vistas.Pages.admin
     public partial class MenuAdmin : Page
     {
         persona _admin;
+        Sproducto s= new Sproducto();
         public MenuAdmin(persona admin)
         {
             _admin = admin;
             InitializeComponent();
+            List<double> list = new List<double>();
+            list = s.get_Esta();
+            pedazoComputador.Values = new ChartValues<double> { list[0] };
+            pedazoCelular.Values= new ChartValues<double> { list[1] };
+            pedazoAseorio.Values = new ChartValues<double> { list[2] };
+            Ventas_Totales.Values = new ChartValues<double> (s.get_Tot() );
             lbAdmin.Content = lbAdmin.Content + _admin.nombre;
-
         }
+    
         private void btnAsesorios(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Mproductos.Masesorios());

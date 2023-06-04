@@ -48,19 +48,19 @@ xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
                 </Grid.RowDefinitions>
                     <lvc:PieChart Grid.Row="0" LegendLocation="Bottom"   >
                         <lvc:PieChart.Series>
-                            <lvc:PieSeries Title="Maria" Values="3" DataLabels="True"/>
-                            <lvc:PieSeries Title="Charles" Values="4" DataLabels="True" />
-                            <lvc:PieSeries Title="Frida" Values="6" DataLabels="True" />
-                            <lvc:PieSeries Title="Frederic" Values="2" DataLabels="True" />
+                            <lvc:PieSeries  x:Name="pedazoComputador" Title="Computadores" Values="3" DataLabels="True"/>
+                            <lvc:PieSeries x:Name="pedazoCelular" Title="Celulares" Values="4" DataLabels="True" />
+                            <lvc:PieSeries x:Name="pedazoAseorio" Title="Asesorios" Values="6" DataLabels="True" />
+
                         </lvc:PieChart.Series>
                     </lvc:PieChart>
 
                     <lvc:CartesianChart Grid.Row="1">
                     <lvc:CartesianChart.Series>
-                        <lvc:ColumnSeries x:Name="Ejemplo" Title="Ventas" Values="10, 20, 30, 15" />
+                        <lvc:ColumnSeries x:Name="Ventas_Totales" Title="Ventas" Values="10, 20, 30" />
                     </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="Días" Labels="Lunes, Martes, Miércoles, Jueves" />
+                        <lvc:Axis Title="Días" Labels="Computadores, Celulares, Asesorios" />
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Title="Cantidad" />

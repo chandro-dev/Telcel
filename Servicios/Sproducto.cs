@@ -14,7 +14,7 @@ namespace Servicios
 #pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         private static List<producto> list;
 #pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-        Iproductos<producto> dao;
+        DBproductos dao;
         public Sproducto() {
             if (list == null)
             {
@@ -82,6 +82,13 @@ namespace Servicios
         {
             list = list.FindAll(x => x.marca.id == m.id);
             return list;
+        }
+        public List<double> get_Esta() {
+            return dao.getEsta();
+        }
+        public List<double> get_Tot()
+        {
+            return dao.getTo(); 
         }
         public List<precios> FiltProductosP(List<producto> list)
         {

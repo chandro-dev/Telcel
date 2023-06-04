@@ -6,5 +6,5 @@
 
 ![Texto alternativo](Telcel/recursos/preview2.png)
 
-**Uso de a libreria livechart para generar diagramaas de barras y diagramas pastel
+__Uso de a libreria livechart para generar diagramaas de barras y diagramas pastel__
 ![Texto alternativo](Telcel/recursos/preview3.png)

@@ -1,4 +1,4 @@
 # Telcel
 
-![Texto alternativo](Telcel/recursos/logo.png)
+![Texto alternativo](Telcel/recursos/preview.png)
 

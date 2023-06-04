@@ -31,7 +31,9 @@ namespace Vistas.Pages.admin.Mproductos
     {
         private string rutaArchivoSeleccionado;
         Scomputadores Scomputadores;
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Mcomputadores()
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
             Scomputadores = new Scomputadores();
@@ -64,6 +66,7 @@ namespace Vistas.Pages.admin.Mproductos
                     }
 
                 }
+#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                 computador c = new computador
                 {
                     nombre = txtNombre.Text,
@@ -79,6 +82,7 @@ namespace Vistas.Pages.admin.Mproductos
                     tarjeta_madre = txtTmadre.Text,
                     tarjeta_video = txtTvideo.Text
                 };
+#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                 MessageBox.Show(Scomputadores.add(c));
                 refresh();
             }
@@ -196,6 +200,7 @@ namespace Vistas.Pages.admin.Mproductos
                         if (validation())
                         {
                             var _id = (computador)DGcomputadores.SelectedItem;
+#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             computador c = new computador
                             {
 
@@ -213,6 +218,7 @@ namespace Vistas.Pages.admin.Mproductos
                                 imagen = imagen,
                                 precio = int.Parse(txtPrecio.Text)
                             };
+#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             lbmessage.Content = Scomputadores.update(c);
                             refresh();
                             btnActualizar.Visibility = Visibility.Collapsed;
@@ -231,6 +237,7 @@ namespace Vistas.Pages.admin.Mproductos
                     {
                         var _id = (computador)DGcomputadores.SelectedItem;
 
+#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         computador c = new computador
                         {
                             id = _id.id,
@@ -248,6 +255,7 @@ namespace Vistas.Pages.admin.Mproductos
                             precio = int.Parse(txtPrecio.Text),
 
                         };
+#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         lbmessage.Content = Scomputadores.update(c);
                         refresh();
                         btnActualizar.Visibility = Visibility.Collapsed;

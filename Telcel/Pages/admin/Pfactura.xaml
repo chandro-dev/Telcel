@@ -9,7 +9,7 @@
       Title="factura">
     <Page.Resources>
         <Style TargetType="Label" x:Key="GeneralLabelStyle">
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="FontFamily" Value="consolas" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="Black"/>
@@ -20,14 +20,14 @@
 
     <Grid Background="#8393c6">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!-- laout -->
         <Grid Background="#FF3F56A6"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"   >
             <StackPanel Orientation="Horizontal">
             <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseDown="btnvolver" HorizontalAlignment="Left" ></Image>
-            <Label Content="Factuzación"  FontFamily="Consolas" Foreground="White" FontWeight="Black" FontSize="40" VerticalAlignment="Center"/>
+            <Label Content="Facturazión"  FontFamily="Consolas" Foreground="White" FontWeight="Black" FontSize="40" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -61,21 +61,39 @@
                     <Label FontFamily="Consolas" FontSize="18" FontWeight="Black" Margin="20,0,0,0" Content="Total:" Grid.Column="0"></Label>
                     <Label FontFamily="Consolas" FontSize="18"  x:Name="lb_total" Grid.Column="1" />
                 </Grid>
+                <Button Content="Generar pdf" Click="SaveAsPdfButton_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Label Content="Datos del Cliente" Foreground="Black" Style="{StaticResource GeneralLabelStyle}"/>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="20">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                    <StackPanel>
                     <Label Content="Cedula" Style="{StaticResource GeneralLabelStyle}"/>
+                    <Label x:Name="lbCedula" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    </StackPanel>
                 </Border>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="20">
-                    <Label Content="Dirrecion" Style="{StaticResource GeneralLabelStyle}"></Label>
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                    <StackPanel>
+                        <Label Content="Nombre" Style="{StaticResource GeneralLabelStyle}"/>
+                        <Label x:Name="lbNombre" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    </StackPanel>
                 </Border>
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="20">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                    <StackPanel><Label Content="Dirrecion" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    <Label x:Name="lbDirrecion" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    </StackPanel>
+                </Border>
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                    <StackPanel>
                     <Label Content="Telefono" Style="{StaticResource GeneralLabelStyle}"/>
+                    <Label x:Name="lbTelefono" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    </StackPanel>
                 </Border>
 
-                <Border Background="#9fb1eb" CornerRadius="5" Margin="20">
+                <Border Background="#9fb1eb" CornerRadius="5" Margin="15">
+                    <StackPanel>
                     <Label Content="Forma de pago" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    <Label x:Name="lbFpago" FontWeight="Black" HorizontalAlignment="Center" Style="{StaticResource GeneralLabelStyle}"></Label>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Grid>

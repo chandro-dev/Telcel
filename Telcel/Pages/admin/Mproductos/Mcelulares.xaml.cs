@@ -26,7 +26,9 @@ namespace Vistas.Pages.admin.Mproductos {
         private Scelulares Scelulares= new Scelulares();
         private string rutaArchivoSeleccionado;
         
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Mcelulares()
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
             if (Scelulares.GetCelulares() != null && Scelulares.GetCelulares().Count > 0)
@@ -58,6 +60,7 @@ namespace Vistas.Pages.admin.Mproductos {
                             }
 
                         }
+#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         celular c = new celular
                         {
                             nombre = txtNombre.Text,
@@ -73,6 +76,7 @@ namespace Vistas.Pages.admin.Mproductos {
                             descripcion=txtDescripcion.Text
 
                         };
+#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                     
                         MessageBox.Show(Scelulares.add(c));
 
@@ -190,6 +194,7 @@ namespace Vistas.Pages.admin.Mproductos {
                             if (validation())
                             {
                                 var _id = (celular)DGcelulares.SelectedItem;
+#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                                 celular c = new celular
                                 {
 
@@ -206,6 +211,7 @@ namespace Vistas.Pages.admin.Mproductos {
                                     imagen = imagen,
                                     precio = int.Parse(txtPrecio.Text)
                                 };
+#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                                 lbmessage.Content = Scelulares.update(c);
                                 refresh();
                                 btnActualizar.Visibility = Visibility.Collapsed;
@@ -224,6 +230,7 @@ namespace Vistas.Pages.admin.Mproductos {
                         {
                             var _id = (celular)DGcelulares.SelectedItem;
 
+#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             celular c = new celular
                             {
                                 id = _id.id,
@@ -239,6 +246,7 @@ namespace Vistas.Pages.admin.Mproductos {
                                 almacenamiento = txtAlmacenamiento.Text,
                                 camara = txtCamara.Text
                             };
+#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             lbmessage.Content = Scelulares.update(c);
                             refresh();
                             btnActualizar.Visibility = Visibility.Collapsed;
@@ -261,9 +269,13 @@ namespace Vistas.Pages.admin.Mproductos {
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             byte[] data = value as byte[];
+#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             if (data == null)
+#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
                 return null;
+#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
 
             BitmapImage image = new BitmapImage();
             using (MemoryStream stream = new MemoryStream(data))

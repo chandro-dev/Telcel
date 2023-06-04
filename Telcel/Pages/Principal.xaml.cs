@@ -31,7 +31,9 @@ namespace Vistas.Pages
         persona sesion;
         List<producto> productos;
         List<marca> marcas;
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Principal(string cat)
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             sproducto = new Sproducto();
             InitializeComponent();
@@ -51,7 +53,9 @@ namespace Vistas.Pages
 
             cmbCat.SelectedItem = cat;
         }
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Principal(persona p)
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             sproducto = new Sproducto();
             InitializeComponent();
@@ -107,7 +111,11 @@ namespace Vistas.Pages
         }
         private void lbUser_FinalDoubleClick(object sender, MouseButtonEventArgs e)
         {
+#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
+#pragma warning disable CS0219 // La variable está asignada pero nunca se usa su valor
             persona p = null;
+#pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
+#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             NavigationService.Navigate(new init());
         }
 
@@ -120,7 +128,9 @@ namespace Vistas.Pages
         private void cmbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var lsxMarca = new List<marca>();
+#pragma warning disable CS8604 // Posible argumento de referencia nulo
             lbxProductos.ItemsSource = sproducto.GetProductos(cmbCat.SelectedItem.ToString());
+#pragma warning restore CS8604 // Posible argumento de referencia nulo
             change_precios();
             lstCategorias.ItemsSource = null;
             foreach (producto p in lbxProductos.ItemsSource.Cast<producto>().ToList<producto>())
@@ -142,7 +152,9 @@ namespace Vistas.Pages
         {
             if (lstCategorias.SelectedItem != null)
             {
+#pragma warning disable CS8604 // Posible argumento de referencia nulo
                 lbxProductos.ItemsSource = sproducto.FiltProductosM((marca)lstCategorias.SelectedItem, sproducto.GetProductos(cmbCat.SelectedItem.ToString()));
+#pragma warning restore CS8604 // Posible argumento de referencia nulo
                 change_precios();
             }
         }
@@ -164,6 +176,7 @@ namespace Vistas.Pages
             {
                 if (lstCategorias.SelectedItem != null)
                 {
+#pragma warning disable CS8604 // Posible argumento de referencia nulo
                     lbxProductos.ItemsSource = sproducto.FiltProductosM((marca)lstCategorias.SelectedItem, sproducto.GetProductos(cmbCat.SelectedItem.ToString())).ToList().FindAll(x =>
                     {
                         if (x.precio <= ((precios)lbxPrecios.SelectedItem).maxPrecio &&
@@ -176,10 +189,12 @@ namespace Vistas.Pages
                             return false;
                         }
                     }); ;
+#pragma warning restore CS8604 // Posible argumento de referencia nulo
                 }
                 else
                 {
 
+#pragma warning disable CS8604 // Posible argumento de referencia nulo
                     lbxProductos.ItemsSource = sproducto.GetProductos(cmbCat.SelectedItem.ToString()).ToList().FindAll(x =>
                         {
                             if (x.precio <= ((precios)lbxPrecios.SelectedItem).maxPrecio &&
@@ -192,6 +207,7 @@ namespace Vistas.Pages
                                 return false;
                             }
                         });
+#pragma warning restore CS8604 // Posible argumento de referencia nulo
                 }
             }
         }
@@ -221,9 +237,13 @@ namespace Vistas.Pages
         {
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {
+#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
                 byte[] data = value as byte[];
+#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
                 if (data == null)
+#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
                     return null;
+#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
                 BitmapImage image = new BitmapImage();
                 using (MemoryStream stream = new MemoryStream(data))
                 {

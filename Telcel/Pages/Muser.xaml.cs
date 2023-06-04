@@ -22,6 +22,7 @@ namespace Vistas.Pages
     {
         Sfacturas servicio_facturas = new Sfacturas();
         Sclientes Scliente = new Sclientes();
+        persona usuario=new persona();
         public Muser(persona p)
         {
             if (p == null)
@@ -30,6 +31,7 @@ namespace Vistas.Pages
                 }
             else
             {
+                usuario = p;
                 InitializeComponent();
                  lst_compras.ItemsSource = servicio_facturas.GetHisto(p).ToList();
                 txtCedula.Text = p.cedula.ToString();
@@ -143,7 +145,9 @@ namespace Vistas.Pages
 
             if (lst_compras.SelectedItem != null)
             {
-                NavigationService.Navigate(new Vistas.Pages.admin.factura ((factura)lst_compras.SelectedItem));
+                factura f= (factura)lst_compras.SelectedItem;
+                f.cliente = usuario;
+                NavigationService.Navigate(new Vistas.Pages.admin.factura (f));
             }
         }
     }

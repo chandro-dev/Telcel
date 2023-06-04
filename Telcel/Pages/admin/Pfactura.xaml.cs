@@ -1,38 +1,76 @@
 ﻿using Entidades;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Servicios;
-using System;
-using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Vistas.Pages.admin
 {
     /// <summary>
     /// Lógica de interacción para factura.xaml
     /// </summary>
+#pragma warning disable CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
     public partial class factura : Page
+#pragma warning restore CS8981 // El nombre de tipo solo contiene caracteres ASCII en minúsculas. Estos nombres pueden reservarse para el idioma.
     {
         Entidades.factura _factura;
         Sfacturas sfacturas=new Sfacturas();    
         public factura(Entidades.factura factura)
         {
             _factura = sfacturas.GetProducts(factura);
-
             InitializeComponent();
             _listaCompras.ItemsSource = _factura.productos;
+            lbCedula.Content = _factura.cliente.cedula;
+            lbDirrecion.Content=_factura.cliente.dirrecion;
+            lbFpago.Content = _factura.tipo_pago;
+            lbTelefono.Content = _factura.cliente.telefono;
+            lbNombre.Content = _factura.cliente.nombre;
+            lb_total.Content = _factura.productos.Sum<producto>(x => x.precio).ToString("C0");
+
         }
         private void btnvolver(object sender, RoutedEventArgs e) {
             NavigationService.GoBack();
         }
+        private void SaveAsPdfButton_Click(object sender, RoutedEventArgs e)
+        {
+            Document document = new Document();
+
+            // Crear un escritor PDF
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("ruta_del_archivo.pdf", FileMode.Create));
+
+            // Definir la resolución deseada (por ejemplo, 300 DPI)
+            float dpiX = 300;
+            float dpiY = 300;
+
+            // Calcular el ancho y alto en píxeles según la resolución
+            int widthInPixels = (int)(ActualWidth * dpiX / 96);
+            int heightInPixels = (int)(ActualHeight * dpiY / 96);
+
+            // Tomar una captura de pantalla con la resolución especificada
+            RenderTargetBitmap screenshot = new RenderTargetBitmap(widthInPixels, heightInPixels, dpiX, dpiY, PixelFormats.Pbgra32);
+            screenshot.Render(this);
+
+            // Convertir la captura de pantalla en una imagen de iTextSharp
+            PngBitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(screenshot));
+            MemoryStream ms = new MemoryStream();
+            encoder.Save(ms);
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(ms.GetBuffer());
+
+            // Añadir la imagen al documento PDF
+            document.Open();
+            document.Add(image);
+            document.Close();
+        }
+
+
+
     }
 }

@@ -1,0 +1,91 @@
+﻿<Page x:Class="Vistas.Pages.admin.Mproductos.Mcelulares"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vistas.Pages.admin.Mproductos"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1080"
+      Title="Mcelulares">
+    <Page.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <Style x:Key="CustomLabelStyle" TargetType="Label">
+
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--Formulario de celulares-->
+            <StackPanel Grid.Column="0" Margin="20">
+                <Label x:Name="lbNombre" Content="Nombre" Style="{StaticResource CustomLabelStyle}"/>
+                <TextBox x:Name="txtNombre"  ></TextBox >
+                <Label x:Name="lbPrecio" Content="Precio" Style="{StaticResource CustomLabelStyle}"/>
+                <TextBox x:Name="txtPrecio" ></TextBox>
+                <Label x:Name="lbMarca" Content="Marca" Style="{StaticResource CustomLabelStyle}"/>
+                <TextBox x:Name="txtMarca"  ></TextBox>
+                <Label x:Name="lbCantidad" Content="Cantidad" Style="{StaticResource CustomLabelStyle}"></Label>
+                <TextBox x:Name="txtCantidad"  ></TextBox>
+                <Label x:Name="lbCamara" Content="Camara"></Label>
+                <TextBox x:Name="txtCamara"/>
+                <Label x:Name="lbAlmacenamiento" Content="Almaceamiento" />
+                <TextBox x:Name="txtAlmacenamiento" />
+                <Label x:Name="lbDescripcion" Content="Descripción"/>
+                <TextBox x:Name="txtDescripcion" />
+                <Label x:Name="lbRam" Content="Memoria Ram"></Label>
+                <TextBox x:Name="txtRam"/>
+                <Label x:Name="lbDescuento" Content="Descuento en Porcentaje" />
+                <TextBox x:Name="txtDescuento"/>
+                <Label  Content ="Tiene Envio Gratis" />
+                <RadioButton x:Name="rdEnvio"></RadioButton>
+                <Label x:Name="lbImagen" Content="Imagen"></Label>
+                <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
+                <Button x:Name="btnSelecionar" Content="Selecionar archivo" Click="btnSelecionarClick"  ></Button>
+                <Separator></Separator>
+                <Button x:Name="_btnSubir" Content="Subir Celular" Click="btnSubirClick" ></Button>
+                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnEliminar" Content="Eliminar asesorio" Click="ClickBtnEliminar" Visibility="Collapsed"/>
+                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnActualizar" Margin="5" Content="Actualizar" Visibility="Collapsed" Click="btnActualizar_Click" />
+                <Label FontFamily="Consolas" FontSize="18" x:Name="lbmessage"/>
+
+                <Separator Margin="20"></Separator>
+                <Button Content="Devolver" Click="btnVolverClick"/>
+            </StackPanel>
+            
+            <!--Lista de celulares-->
+            <DataGrid AutoGenerateColumns="False" x:Name="DGcelulares" Grid.Column="1" SelectionChanged="DGcelulares_SelectionChanged">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Precio" Binding="{Binding precio}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding cantidad}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Descuento" Binding="{Binding descuento}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Envio" Binding="{Binding envio}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Marca" Binding="{Binding marca.nombre_marca}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Camara" Binding="{Binding camara}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Almacenamiento" Binding="{Binding almacenamiento}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Descripcion" Binding="{Binding descripcion}"></DataGridTextColumn>
+
+                    <DataGridTemplateColumn Header="imagen">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="50" Height="50" Source="{Binding imagen, Converter={StaticResource ByteArrayToImageConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+               
+                
+            </DataGrid>
+            
+        </Grid>
+
+    </Grid>
+</Page>

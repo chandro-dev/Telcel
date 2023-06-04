@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telcel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TelCel"  MinHeight="720"  MinWidth="1080">
+    <Window.Icon>
+        <ImageSource>E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.ico</ImageSource>
+    </Window.Icon>
 
-    <Frame Source="/Pages/Principal.xaml" ></Frame>
+    <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" ></Frame>
     
 </Window>

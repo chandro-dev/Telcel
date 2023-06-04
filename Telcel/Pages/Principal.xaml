@@ -5,62 +5,148 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Vistas.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="900"
+      d:DesignHeight="750" d:DesignWidth="1080"
       Title="Search">
-
-    <Grid Background="White">
+    
+    <Page.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Style TargetType="Label" x:Key="GeneralLabelStyle">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="consolas" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard >
+                        <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="White" To="Gray"  />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard  >
+                        <ColorAnimation 
+                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                            From="Gray" To="White"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid Background="White" >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"></ColumnDefinition>
             <ColumnDefinition ></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="0.6*" ></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.7*" ></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Fill="DarkBlue" Grid.Row="0"></Rectangle>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FF3F56A6"  Grid.Row="1"></Rectangle>
-        <Image Grid.Column="0" Grid.Row="1" Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
+        <Rectangle Grid.ColumnSpan="2" ></Rectangle>
+
+        <!--Opciones-->
+        <StackPanel  Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="0" Background="DarkBlue" Grid.Column="0">
+            <Label x:Name="lbRegistrarse"  Style="{StaticResource GeneralLabelStyle}" Content="Registarse |" MouseDown="btnRegistrar"></Label>
+            <Label x:Name="lbISesion"  Style="{StaticResource GeneralLabelStyle}" Content="Inicio de sesion" MouseDown="btnIniciarS"></Label>
+            <Label Visibility="Hidden" x:Name="lbFsesion" Style="{StaticResource GeneralLabelStyle}" Content="finalizar sesion |" MouseDown="lbUser_FinalDoubleClick"/>
+            <Label Visibility="Hidden" x:Name="lbUser"  Style="{StaticResource GeneralLabelStyle}" Content="User |"  MouseDown="lbUser_MouseDoubleClick"/>
+
+      
         
-        <!-- Tabla de busqueda -->
-         <Border Grid.Column="1" CornerRadius="5" BorderBrush="DarkRed" BorderThickness="3" Background="DarkRed" Height="25" Width="500" Margin="57,27,58,44" Grid.Row="1"  >
-            <Grid >
-                <ComboBox Width="60" Height="50" HorizontalAlignment="Left"></ComboBox>
-                <TextBox Width="400" Height="50" HorizontalAlignment="Left" Margin="65,0,0,0"></TextBox>
-                <Button Width="40" Height="50" HorizontalAlignment="Right" >
+        </StackPanel>
+        <Grid Background="#FF3F56A6"  Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.20*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Cursor="Hand" MouseDown="Click_Init" Grid.Column="0"  Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" ></Image>
 
-                </Button>
-            </Grid>
-        </Border>
+            <!-- Tabla de busqueda -->
+            <Border Grid.Column="1"  BorderBrush="DarkRed" BorderThickness="4" Background="DarkRed" Height="50"   VerticalAlignment="Center" Margin="20,20,20,20">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.11*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="cmbCat" Grid.Column="0" Grid.Row="0" SelectionChanged="cmbCat_SelectionChanged" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Consolas" FontWeight="Bold" FontSize="18" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
 
+                    </ComboBox>
+                    <TextBox Grid.Column="1" Grid.Row="0" FontFamily="Consolas" FontSize="20" VerticalContentAlignment="Center"  ></TextBox>
+                    <Button Cursor="Hand" Grid.Column="2" Grid.Row="0" Background="White">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\lupa.png" Stretch="Uniform"></Image>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid> 
+        
 
-
-        <Rectangle Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Fill="#FF98A8FF" ></Rectangle>
 
         <!--- Lista de productos -->
-        <ListBox x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20" >
+        <ListBox HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="lbxProductos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Padding="20"  SelectionChanged="lbxProductos_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="#FF98A8FF" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"  >
+                    <Border Background="#445da9" HorizontalAlignment="Stretch"  CornerRadius="10"  >
                         <Grid >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition ></ColumnDefinition>
-                                <ColumnDefinition MinWidth="500"></ColumnDefinition>
+                                <ColumnDefinition Width=".40*"  ></ColumnDefinition>
+                                <ColumnDefinition  ></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions >
-                                <RowDefinition ></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="*" ></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-
-                            <Image Width="100" Source="{Binding imagen}" Grid.Column="0" Grid.RowSpan="3" ></Image>
-
-                            <TextBlock Margin="10" Text="{Binding nombre_producto}" Grid.Column="1" Grid.Row="0"  Height="20" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="20"></TextBlock>
-                            <TextBlock Margin="10" Height="20" VerticalAlignment="Center" Text= "{Binding precio}" Grid.Column="1" Grid.Row="1" ></TextBlock>
-                            <TextBlock Margin="10" FontWeight="Bold" Height="20" VerticalAlignment="Center" Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
+                            <Border Grid.Column="0" Grid.RowSpan="3" CornerRadius="10" Background="#90a4ff">
+                            <Image Stretch="Uniform" Width="100" Height="130" Source="{Binding imagen,Converter={StaticResource ByteArrayToImageConverter}}"  ></Image>
+                            </Border>
+                            <TextBlock Margin="10" Text="{Binding nombre}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Consolas" FontSize="22"></TextBlock>
+                            <TextBlock Margin="10" FontFamily="Consolas" FontSize="18"  VerticalAlignment="Center" Text= "{Binding precio , StringFormat='{}{0:C0}'}" Grid.Column="1" Grid.Row="1" ></TextBlock>
+                            <TextBlock Margin="10" FontWeight="Bold"  VerticalAlignment="Center"
+                                       Visibility="{Binding envio, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                       Text="Envio gratis" Grid.Column="1" Grid.Row="2" Foreground="#FFFF3232" FontSize="16"></TextBlock>
                         </Grid >
 
                     </Border>
@@ -68,25 +154,41 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        
+        <Grid Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
         <!--- Lista de categorias   -->
-        <ListBox x:Name="lstCategorias" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" d:ItemsSource="{d:SampleData ItemCount=5}" Background="Transparent" >
+            <Label Content="Marcas" Grid.Row="0" Background="DarkRed" Style="{StaticResource GeneralLabelStyle}"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ListBox  Background="DarkRed" Grid.Row="1" x:Name="lstCategorias" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="lstCategorias_SelectionChanged" >
             <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Background="DarkRed" Width="150">
-                        <Label Content="{Binding nombre}"></Label>
-                        <ListBox x:Name="lstMarcas" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent" Background="Transparent" HorizontalAlignment="Center">
-                            <ListBox.ItemTemplate >
-                                <DataTemplate>
-                                    <CheckBox  Content="{Binding marca }"></CheckBox>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
+                <DataTemplate >
+                    <Label Margin="10,0,10,10" Foreground="White" Content="{Binding nombre_marca}" ></Label>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
-        
+                
+            </ListBox>
+            <Label Background="DarkRed" Content="Precios" Grid.Row="2" Style="{StaticResource GeneralLabelStyle}"
+                   HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                   VerticalContentAlignment="Center"/>
+            
+            
+            <ListBox x:Name="lbxPrecios" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="3" Background="DarkRed" SelectionChanged="lbxPrecios_SelectionChanged" >
+                <ListBox.ItemTemplate>
+                <DataTemplate >
+                        <StackPanel Orientation="Vertical">
+                    <Label Margin="10,0,10,10" Foreground="White" Content="{Binding precio }" ></Label>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
         
     </Grid>
 

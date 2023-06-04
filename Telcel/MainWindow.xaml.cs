@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Repositorio;
+using Servicios;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Vistas.Pages;
 
 namespace Telcel
 {
@@ -23,6 +27,7 @@ namespace Telcel
         public MainWindow()
         {
             InitializeComponent();
-        }
+            FrameMain.Content = new init();
+            }
     }
 }

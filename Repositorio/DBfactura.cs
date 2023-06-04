@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.AccessControl;
+using System.Configuration;
 
 namespace Repositorio
 {

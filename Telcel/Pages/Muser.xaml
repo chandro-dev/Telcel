@@ -5,26 +5,67 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Vistas.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="720" d:DesignWidth="1080"
       Title="Muser">
+    <Page.Resources>
+        <Style TargetType="Label" x:Key="GeneralLabelStyle">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="consolas" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="Gray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         
         <!-- laout -->
-        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseEnter="btnvolver" ></Image>
-        <StackPanel Grid.Column="0" Grid.Row="1" Background="Bisque">
-            
+        <Grid Background="#FF3F56A6"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"   >
+        <Image Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" MouseDown="btnvolver" ></Image>
+        </Grid>
+        <StackPanel Margin="10" Grid.Column="0" Grid.Row="1" Background="#445da9">
+            <Label x:Name="lbBienvenido" FontSize="20" FontWeight="Black" Content="Bienvenido" Style="{StaticResource GeneralLabelStyle}" />
+
+            <Label x:Name="lbNombre" Content="Nombre" Style="{StaticResource GeneralLabelStyle}" />
+            <TextBox x:Name="txtNombre" Margin="4" TextChanged="change_text"/>
+            <Label x:Name="lbDirrecion" Content="Dirrecion" Style="{StaticResource GeneralLabelStyle}"/>
+            <TextBox x:Name="txtDirrecion" Margin="4" TextChanged="change_text"/>
+            <Label x:Name="lbEmail" Content="Email" Style="{StaticResource GeneralLabelStyle}" />
+            <TextBox x:Name="txtEmail" Margin="4" TextChanged="change_text"/>
+            <Label x:Name="lbTelefono" Content="Telefono" Style="{StaticResource GeneralLabelStyle}"/>
+            <TextBox x:Name="txtTelefono" Margin="4" TextChanged="change_text" />
+            <Label x:Name="lbContrasena" Content="Contraseña" Style="{StaticResource GeneralLabelStyle}"/>
+            <PasswordBox  x:Name="Pcontrasena" Margin="4"/>
+            <Label x:Name="lbCedula" Content="Cedula" Style="{StaticResource GeneralLabelStyle}"/>
+            <TextBox x:Name="txtCedula" Margin="4" TextChanged="change_text" />
+            <Label x:Name="lbmessage" FontFamily="Consolas" FontSize="20" Foreground="red"/>
+            <Button x:Name="btnActualizar" Visibility="Collapsed" Click="ClickBtnActualizar" Content="Actualizar informacion"></Button>
+
         </StackPanel>
-        <DataGrid x:Name="lst_compras" Grid.Row="1" Grid.Column="1">
-               
-        </DataGrid> 
+        <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Facturas" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" FontSize="18"  Grid.Row="0"/>
+            <DataGrid  AutoGenerateColumns="False" Grid.Row="1"  x:Name="lst_compras" SelectionChanged="lst_compras_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding fecha}" />
+                    <DataGridTextColumn Header="Tipo de pago" Binding="{Binding tipo_pago}" />
+                    <DataGridTextColumn Header="Fecha entrega" Binding="{Binding fecha_entrega}"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding total,StringFormat='{}{0:C0}'}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        </Grid>
+   
     </Grid>
 </Page>

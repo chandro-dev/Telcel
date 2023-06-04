@@ -1,4 +1,5 @@
-﻿using iTextSharp.tool.xml.html.head;
+﻿using Entidades;
+using iTextSharp.tool.xml.html.head;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -20,9 +21,13 @@ namespace Vistas.Pages.admin
 {
     public partial class MenuAdmin : Page
     {
-        public MenuAdmin()
+        persona _admin;
+        public MenuAdmin(persona admin)
         {
+            _admin = admin;
             InitializeComponent();
+            lbAdmin.Content = lbAdmin.Content + _admin.nombre;
+
         }
         private void btnAsesorios(object sender, RoutedEventArgs e)
         {

@@ -61,8 +61,8 @@ namespace Repositorio
 
                     nombre_marca = reader["nombre_marca"].ToString()
                 };
-                producto.descuento = int.Parse(reader["descuento"].ToString());
-
+                producto.descuento = float.Parse(reader["descuento"].ToString());
+                producto.envio = (bool)reader["envio"];
             }
             catch
             {

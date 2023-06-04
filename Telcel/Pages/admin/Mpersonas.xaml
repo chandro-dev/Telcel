@@ -13,25 +13,28 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="DGpersonas" Grid.Column="1"></DataGrid>
+        <DataGrid x:Name="DGpersonas" Grid.Column="1" SelectionChanged="DGpersonas_SelectionChanged"></DataGrid>
         <StackPanel Margin="15" Background="White" Grid.Column="0">
-            <Label Content="Nombre" />
+            <Label x:Name="lbNombre" Content="Nombre" />
             <TextBox x:Name="txtNombre"/>
-            <Label Content="Dirrecion"/>
+            <Label x:Name="lbDirrecion" Content="Dirrecion"/>
             <TextBox x:Name="txtDirrecion" />
-            <Label Content="Email" />
+            <Label x:Name="lbEmail" Content="Email" />
             <TextBox x:Name="txtEmail" />
-            <Label Content="Telefono"/>
+            <Label x:Name="lbTelefono" Content="Telefono"/>
             <TextBox x:Name="txtTelefono" />
-            <Label Content="Contraseña"/>
+            <Label x:Name="lbContrasena" Content="Contraseña"/>
             <PasswordBox  x:Name="Pcontrasena"/>
-            <Label Content="Cedula"/>
+            <Label x:Name="lbCedula" Content="Cedula"/>
             <TextBox x:Name="txtCedula" />
-            <Label x:Name="Administrador"/>
+            <Label x:Name="Administrador" Content="Administrador"/>
             <RadioButton x:Name="rbtnAdmin"></RadioButton>
             <Separator Margin="10"/>
-            <Button Content="Crear usuario" Click="btnCrear"/>
+            <Label Foreground="red" x:Name="lbmessage"></Label>
+            <Button x:Name="btnCrear" Content="Crear usuario" Click="ClickbtnCrear"/>
             <Button Content="devolver" Click="btnDevolver"/>
+            <Button x:Name="btnEliminar" Content="Eliminar persona" Click="btnEliminar_Click" Visibility="Collapsed"></Button>
+            <Button x:Name="btnActualizar" Content="Actualizar" Visibility="Collapsed" Click="clickBtnActualizar"/>
         </StackPanel>
     </Grid>
 </Page>

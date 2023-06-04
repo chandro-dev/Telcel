@@ -34,18 +34,12 @@ namespace Servicios
             list.Remove(computador);
             return result;
         }
-            public bool update(computador computador)
+            public string update(computador computador)
         {
 
-            try
-            {
-                return true;
+            return dao.modify(computador);
             }
-            catch
-            {
-                return false;
-            }
-        }
+        
         public List<computador> GetComputadors()
         {
             list = dao.getAll();

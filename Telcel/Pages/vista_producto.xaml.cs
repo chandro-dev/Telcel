@@ -28,6 +28,7 @@ namespace Vistas.Pages
         persona cliente;
         public vista_producto(producto producto,persona p)
         {
+            _producto= producto;
             cliente = p;
             InitializeComponent();
             identificar_producto(producto);
@@ -43,7 +44,6 @@ namespace Vistas.Pages
         }
         private void identificar_producto(producto p)
         {
-            MessageBox.Show(p.GetType().ToString());
             switch (p.GetType().ToString())
             {
                 case "Entidades.celular":
@@ -63,7 +63,6 @@ namespace Vistas.Pages
                     computador c = (computador)p;
                     add_prodcuto(c);
                     lbAlmacenamiento.Visibility = Visibility.Visible;
-                    lbDescripcion.Visibility = Visibility.Visible;
                     lbTarjetaMadre.Visibility = Visibility.Visible;
                     lbTarjetaVideo.Visibility = Visibility.Visible;
                     lbProcesador.Visibility = Visibility.Visible;

@@ -5,54 +5,80 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Vistas.Pages.admin.Mproductos"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="780" d:DesignWidth="1080"
       Title="Mcomputadores">
     <Page.Resources>
         <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <Style x:Key="CustomLabelStyle" TargetType="Label">
+
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
     </Page.Resources>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="20">
-            <Label Content="Nombre"/>
-            <TextBox x:Name="txtNombre"></TextBox>
-            <Label Content="precio"/>
-            <TextBox x:Name="txtPrecio"></TextBox>
-            <Label Content="Marca"/>
-            <TextBox x:Name="txtMarca"></TextBox>
-            <Label Content="cantidad"></Label>
-            <TextBox x:Name="txtCantidad"></TextBox>
-            <Label Content="Procesador"></Label>
-            <TextBox x:Name="txtProcesador"/>
-            <Label Content="Almaceamiento" />
-            <TextBox x:Name="txtAlmacenamiento" />
-            <Label Content="Tarjeta de video"/>
-            <TextBox x:Name="txtTvideo" />
-            <Label Content="Memoria Ram"/>
-            <TextBox x:Name="txtRam" />
-            <Label Content="Tarjeta madre"/>
-            <TextBox x:Name="txtTmadre" />
+            <Label x:Name="lbNombre" Content="Nombre" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="txtNombre"  ></TextBox >
+            <Label x:Name="lbPrecio" Content="Precio" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="txtPrecio" ></TextBox>
+            <Label x:Name="lbMarca" Content="Marca" Style="{StaticResource CustomLabelStyle}"/>
+            <TextBox x:Name="txtMarca"  ></TextBox>
+            <Label x:Name="lbCantidad" Content="Cantidad" Style="{StaticResource CustomLabelStyle}"></Label>
+            <TextBox x:Name="txtCantidad"  ></TextBox>
+                <Label Content="Imagen"></Label>
+                <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
+                <Button Content="Selecionar archivo" Click="btnSelecionar"  ></Button>
+                <Separator></Separator>
+                <Button x:Name="_btnSubir" Content="Subir Computador" Click="btnSubir" ></Button>
+                <Separator Margin="20"></Separator>
+                <Button Content="Devolver" Click="btnVolver"/>
 
-            <Label Content="Imagen"></Label>
-            <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
-            <Button Content="Selecionar archivo" Click="btnSelecionar"  ></Button>
-            <Separator></Separator>
-            <Button x:Name="_btnSubir" Content="Subir Computador" Click="btnSubir" ></Button>
-            <Separator Margin="20"></Separator>
-            <Button Content="Devolver" Click="btnVolver"/>
-        </StackPanel>
-        <DataGrid x:Name="DGcomputadores" Grid.Column="1" SelectionChanged="DGcomputadores_SelectionChanged" >
+            </StackPanel>
+            <StackPanel Margin="20" Grid.Column="1">
+                <Label x:Name="lbProcesador" Content="Procesador"></Label>
+                <TextBox x:Name="txtProcesador"/>
+                <Label x:Name="lbAlmacenamiento" Content="Almaceamiento" />
+                <TextBox x:Name="txtAlmacenamiento" />
+                <Label x:Name="lbTvideo" Content="Tarjeta de video"/>
+                <TextBox x:Name="txtTvideo" />
+                <Label x:Name="lbRam" Content="Memoria Ram"/>
+                <TextBox x:Name="txtRam" />
+                <Label x:Name="lbTmadre" Content="Tarjeta madre"/>
+                <TextBox x:Name="txtTmadre" />
+                <Label x:Name="lbDescuento" Content="Descuento en Porcentaje" />
+                <TextBox x:Name="txtDescuento"/>
+                <Label   Content ="Tiene Envio Gratis" />
+                <RadioButton x:Name="rdEnvio"></RadioButton>
+
+
+                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnEliminar" Content="Eliminar asesorio" Click="ClickBtnEliminar" Visibility="Collapsed"/>
+                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnActualizar" Margin="5" Content="Actualizar" Visibility="Collapsed" Click="btnActualizar_Click" />
+                <Label FontFamily="Consolas" FontSize="18" x:Name="lbmessage"/>
+            </StackPanel>
+        </Grid>
+        <DataGrid x:Name="DGcomputadores" AutoGenerateColumns="False"  Grid.Column="1" SelectionChanged="DGcomputadores_SelectionChanged" >
             <DataGrid.Columns >
                 <!-- Binding mal hecho-->
                 <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Precio" Binding="{Binding precio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" Binding="{Binding precio,StringFormat='{}{0:C0}'}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Marca" Binding="{Binding marca.nombre_marca}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Camara" Binding="{Binding tarjeta_grafica}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tarjeta de video" Binding="{Binding tarjeta_video}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Almacenamiento" Binding="{Binding almacenamiento}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Descripcion" Binding="{Binding procesador}"></DataGridTextColumn>
-
+                <DataGridTextColumn Header="Procesador" Binding="{Binding procesador}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tarjeta Madre" Binding="{Binding tarjeta_madre}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding cantidad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="descuento" Binding="{Binding descuento}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Envio" Binding="{Binding envio}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="imagen">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

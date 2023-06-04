@@ -7,30 +7,39 @@
 xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="720" d:DesignWidth="1080"
       Title="MenuAdmin">
 
     <Grid Background="White">
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.ColumnSpan="2" Background="#FF3F56A6"  Grid.Row="0" >
+                <Image  Source="E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\logo.png" HorizontalAlignment="Center" ></Image>
 
-            <StackPanel Grid.Column="0"  HorizontalAlignment="Left" Background="DarkRed">
-                <Label Content="Administracion de productos"></Label>
-                <Separator Margin="20"/>
-                <Button Content="Administar asesorios" Click="btnAsesorios"/>
-                <Button Content="Administrar computadores" Click="btnComputadores"/>
-                <Button Content="Administrar Celulares" Click="btnCelulares"/>
-                <Button Content="Administrar personas y clientes"  Click="btnPersonas"/>
-                <Button Content="Cerrar sesion" Click="btnSesion"/>
+            </Grid>
+            <StackPanel Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Stretch" Background="#8393c6">
+                <Label x:Name="lbAdmin" FontWeight="Bold" FontFamily="Consolas" VerticalAlignment="Center" Margin="0,5,0,0" FontSize="18" HorizontalAlignment="Center" ></Label>
+                <Label Content="Menu de administrador" FontWeight="Black" FontFamily="Consolas" VerticalAlignment="Center" Margin="0,5,0,0" FontSize="18" HorizontalAlignment="Center" />
+                <Separator  Margin ="10" Background="White"  >
+                </Separator>
+                <Button Content="Administar asesorios" Click="btnAsesorios" FontFamily="Consolas" FontSize="18" Margin="10"/>
+                <Button Content="Administrar computadores" Click="btnComputadores" FontFamily="Consolas" FontSize="18" Margin="10"/>
+                <Button Content="Administrar Celulares" Click="btnCelulares" FontFamily="Consolas" FontSize="18" Margin="10"/>
+                <Button Content="Administrar personas y clientes"  Click="btnPersonas" FontFamily="Consolas" FontSize="18" Margin="10"/>
+                <Button Content="Cerrar sesion" Click="btnSesion" FontFamily="Consolas" FontSize="18" Margin="10"/>
             </StackPanel>
             
             
             <!-- Diagrama de barras-->
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Grid.Row="1">
 
                 <Grid.RowDefinitions>
                     <RowDefinition/>

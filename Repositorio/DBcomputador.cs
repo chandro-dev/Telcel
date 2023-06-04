@@ -65,8 +65,8 @@ namespace Repositorio
                 };
                 computador.ram = reader["ram"].ToString();
                 computador.procesador = reader["procesador"].ToString();
-                computador.descuento = int.Parse(reader["descuento"].ToString());
-
+                computador.descuento = float.Parse(reader["descuento"].ToString());
+                computador.envio = (bool)reader["envio"];
             }
             catch
             {
@@ -92,7 +92,8 @@ namespace Repositorio
                     command.Parameters.AddWithValue("@tarjeta_madre", item.tarjeta_madre);
                     command.Parameters.AddWithValue("@procesador", item.procesador);
                     command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
-
+                    command.Parameters.AddWithValue("@descuento", item.descuento);
+                    command.Parameters.AddWithValue("@envio", item.envio?1:0);
                     command.Parameters.AddWithValue("@ram", item.ram);
                     SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
                     parameter.Value = item.imagen;
@@ -125,7 +126,38 @@ namespace Repositorio
         }
         public string modify(computador item)
         {
-            return "OK";
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPupdate_computador", connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre", item.nombre);
+                    command.Parameters.AddWithValue("@precio", item.precio);
+                    command.Parameters.AddWithValue("@cantidad", item.cantidad);
+                    command.Parameters.AddWithValue("@almacenamiento", item.almacenamiento);
+                    command.Parameters.AddWithValue("@tarjeta_video", item.tarjeta_video);
+                    command.Parameters.AddWithValue("@tarjeta_madre", item.tarjeta_madre);
+                    command.Parameters.AddWithValue("@procesador", item.procesador);
+                    command.Parameters.AddWithValue("@marca_nombre", item.marca.nombre_marca);
+                    command.Parameters.AddWithValue("@descuento", item.descuento);
+                    command.Parameters.AddWithValue("@envio", item.envio ? 1 : 0);
+                    command.Parameters.AddWithValue("@ram", item.ram);
+                    command.Parameters.AddWithValue("@id_producto", item.id);
+
+                    SqlParameter parameter = new SqlParameter("@imagen", SqlDbType.VarBinary, -1);
+                    parameter.Value = item.imagen;
+
+                    command.Parameters.Add(parameter);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
+            return "Actualizado computador correctamente";
         }
     }
 }

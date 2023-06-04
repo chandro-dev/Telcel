@@ -39,7 +39,7 @@ public partial class page : Page
             {
                 if (usuario.rol.id == 1)
                 {
-                    NavigationService.Navigate(new MenuAdmin());
+                    NavigationService.Navigate(new MenuAdmin(usuario));
                 }
                 else
                 {
@@ -65,7 +65,7 @@ public partial class page : Page
                 {
                     if (usuario.rol.id == 1)
                     {
-                        NavigationService.Navigate(new MenuAdmin());
+                        NavigationService.Navigate(new MenuAdmin(usuario));
                     }
                     else
                     {

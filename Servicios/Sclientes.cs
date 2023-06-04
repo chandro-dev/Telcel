@@ -39,12 +39,12 @@ namespace Servicios
                 return _dao.add(cliente);
   
         }
-        public bool remove(persona cliente)
+        public string remove(persona cliente)
         {
-            return true;
+            return _dao.remove(cliente);
         }
-        public bool update(persona cliente) {
-            return true;
+        public string update(persona cliente) {
+            return _dao.modify(cliente);
         }
       
         public List<persona> GetPersonas()

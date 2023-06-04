@@ -64,6 +64,30 @@ namespace Repositorio
             }
             return personas;
         }
+        public string modify(persona item)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPupdate_persona", connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre", item.nombre);
+                    command.Parameters.AddWithValue("@contrasena", item.contrasena);
+                    command.Parameters.AddWithValue("@dirrecion", item.dirrecion);
+                    command.Parameters.AddWithValue("@email", item.email);
+                    command.Parameters.AddWithValue("@id_rol", item.rol.id);
+                    command.Parameters.AddWithValue("@telefono", item.telefono);
+                    command.Parameters.AddWithValue("@cedula", item.cedula);
+
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            return "Actualizado Correctamente";
+        }
         public persona mapper(SqlDataReader reader)
         {
 
@@ -85,6 +109,26 @@ namespace Repositorio
             }
             return persona;
 
+        }
+        public string remove(persona p)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("spdelete_persona", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                    command.Parameters.AddWithValue("@vcedula", p.cedula);
+
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            return "Eliminado Correctamente";
         }
     }
 }

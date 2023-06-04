@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,11 @@ namespace Vistas.Pages.admin
     public partial class factura : Page
     {
         Entidades.factura _factura;
+        Sfacturas sfacturas=new Sfacturas();    
         public factura(Entidades.factura factura)
         {
-            _factura= factura;
+            _factura = sfacturas.GetProducts(factura);
+
             InitializeComponent();
             _listaCompras.ItemsSource = _factura.productos;
         }

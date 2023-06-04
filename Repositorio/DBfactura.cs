@@ -73,15 +73,51 @@ namespace Repositorio
                         {
                             facturas.Add(mapper(reader));
                         }
-
                     }
                 }
+                       
+                
             }
             if (facturas.Count < 0)
             {
                 return null;
             }
             return facturas;
+        }
+        public factura GetDF(factura f)
+        {
+            List<producto> detail_F = new List<producto>();
+            using (SqlConnection connection = new SqlConnection("Server=RAPTOR-2;Database=TelCel;TrustServerCertificate=true;Trusted_Connection=true;MultipleActiveResultSets=true"))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SPget_df", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@id_factura", SqlDbType.Int).Value = f.id;
+                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        detail_F.Add(new producto()
+                        {
+                            nombre = reader["nombre"].ToString(),
+                            cantidad = int.Parse(reader["cantidad"].ToString()),
+                            precio = double.Parse(reader["precio"].ToString()),
+                            id = int.Parse(reader["id"].ToString()),
+                            descuento = float.Parse(reader["descuento"].ToString()),
+                            envio = (bool)reader["envio"]
+                        });
+                    }
+                }
+            
+                
+                }
+            }
+            f.productos=detail_F;
+            return f;
         }
         private factura  mapper(SqlDataReader reader)
         {
@@ -96,4 +132,6 @@ namespace Repositorio
         return _factutra;
         }
     }
+
+
 }

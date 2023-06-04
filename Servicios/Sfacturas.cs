@@ -31,7 +31,10 @@ namespace Servicios
             return _factura.getAll(p.cedula);
         }
 
-
+        public factura GetProducts(factura f) {
+            return _dao.GetDF(f);
+        
+        }
 
     }
 }

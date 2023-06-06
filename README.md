@@ -7,16 +7,16 @@
 ![Texto alternativo](Telcel/recursos/preview2.png)
 
 __Uso de a libreria livechart para generar diagramaas de barras y diagramas pastel__
-![Texto alternativo](Telcel/recursos/preview3.png)
+![Texto alternativo](Telcel/recursos/preview3.jpeg)
 
-![Texto alternativo](Telcel/recursos/preview4.png)
+![Texto alternativo](Telcel/recursos/preview4.jpeg)
 
-![Texto alternativo](Telcel/recursos/preview5.png)
+![Texto alternativo](Telcel/recursos/preview5.jpeg)
 
-![Texto alternativo](Telcel/recursos/preview6.png)
+![Texto alternativo](Telcel/recursos/preview6.jpeg)
 
-![Texto alternativo](Telcel/recursos/preview7.png)
+![Texto alternativo](Telcel/recursos/preview7.jpeg)
 
-![Texto alternativo](Telcel/recursos/preview8.png)
+![Texto alternativo](Telcel/recursos/preview8.jpeg)
 
-![Texto alternativo](Telcel/recursos/preview9.png)
+![Texto alternativo](Telcel/recursos/preview9.jpeg)

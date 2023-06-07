@@ -110,7 +110,7 @@ namespace Repositorio
             }
 
 
-            return "ok";  
+            return "Eliminado corectamente";  
         }
         public string modify(asesorio item) 
         {

@@ -24,7 +24,7 @@ namespace Vistas.Pages.admin
         {
             _factura = sfacturas.GetProducts(factura);
             InitializeComponent();
-
+            //Rellenar los objetos con la informacion necesaria 
             var fecha = DateTime.Today;
             lbFecha.Content = "Fecha de Factura: " + fecha.ToString("d");
             _listaCompras.ItemsSource = _factura.productos;
@@ -45,11 +45,11 @@ namespace Vistas.Pages.admin
 
 
             Document document = new Document(new iTextSharp.text.Rectangle(2860,1720));
-            string path = @"E:\C_Sharp\Proyecto_Programacion_Final\New folder\Telcel\recursos\Factura.pdf";
+            string path = @"C:\Users\alejandro\OneDrive\Desktop\Tlecel\New folder\Telcel\recursos\Factura.pdf";
             // Crear un escritor PDF
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(path, FileMode.Create));
 
-            // Definir la resolución deseada (por ejemplo, 300 DPI)
+            // Definir la resolución deseada 
             float dpiX = 200;
             float dpiY = 200;
 
@@ -72,6 +72,14 @@ namespace Vistas.Pages.admin
             document.Open();
             document.Add(image);
             document.Close();
+            try
+            {
+                Process.Start(path);
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo abrir el pdf que se encuentra en la ruta: "+path );
+            }
             btnPdf.Visibility=Visibility.Visible;
 
         }

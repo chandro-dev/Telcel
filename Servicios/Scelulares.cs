@@ -37,8 +37,7 @@ namespace Servicios
         }
         public string remove(celular _celular)
         {
-            int index = list.IndexOf(list.Find(x => _celular.nombre == x.nombre));
-                string result = dao.remove(list[index]);
+                string result = dao.remove(_celular);
                 list.Remove(_celular);
                 return result;
         }

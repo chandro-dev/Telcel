@@ -106,7 +106,7 @@ namespace Repositorio
             }
 
 
-            return "OK";
+            return "Añadido correctamente";
         }
         public string remove(computador item)
         {
@@ -123,7 +123,7 @@ namespace Repositorio
             }
 
 
-            return "OK";
+            return "Eliminado correctamente";
         }
         public string modify(computador item)
         {

@@ -24,16 +24,12 @@ using System.Windows.Shapes;
 
 namespace Vistas.Pages.admin.Mproductos
 {
-    /// <summary>
-    /// Lógica de interacción para Mcomputadores.xaml
-    /// </summary>
+
     public partial class Mcomputadores : Page
     {
         private string rutaArchivoSeleccionado;
         Scomputadores Scomputadores;
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public Mcomputadores()
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         {
             InitializeComponent();
             Scomputadores = new Scomputadores();
@@ -66,13 +62,12 @@ namespace Vistas.Pages.admin.Mproductos
                     }
 
                 }
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                 computador c = new computador
                 {
                     nombre = txtNombre.Text,
                     cantidad = int.Parse(txtCantidad.Text),
                     descuento = float.Parse(txtDescuento.Text) / 100,
-                    envio = rdEnvio.IsChecked.Value,
+                    envio =(bool)rdEnvio.IsChecked,
                     marca = new marca() { nombre_marca = txtMarca.Text },
                     imagen = imagen,
                     precio = double.Parse(txtPrecio.Text),
@@ -82,13 +77,10 @@ namespace Vistas.Pages.admin.Mproductos
                     tarjeta_madre = txtTmadre.Text,
                     tarjeta_video = txtTvideo.Text
                 };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
-                MessageBox.Show(Scomputadores.add(c));
+                lbmessage.Content= Scomputadores.add(c);
+                limpiar_campos();
                 refresh();
             }
-
-
-
         }
         public void btnVolver(object sender, RoutedEventArgs e)
         {
@@ -117,7 +109,6 @@ namespace Vistas.Pages.admin.Mproductos
                     txtTmadre.Text = ((computador)DGcomputadores.SelectedItem).tarjeta_madre;
                     txtTvideo.Text = ((computador)DGcomputadores.SelectedItem).tarjeta_video;
                     txtRam.Text = ((computador)DGcomputadores.SelectedItem).ram;
-
                 }
                 catch { }
                 btnEliminar.Visibility = Visibility.Visible;
@@ -200,7 +191,6 @@ namespace Vistas.Pages.admin.Mproductos
                         if (validation())
                         {
                             var _id = (computador)DGcomputadores.SelectedItem;
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             computador c = new computador
                             {
 
@@ -218,9 +208,9 @@ namespace Vistas.Pages.admin.Mproductos
                                 imagen = imagen,
                                 precio = int.Parse(txtPrecio.Text)
                             };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             lbmessage.Content = Scomputadores.update(c);
                             refresh();
+                            limpiar_campos();
                             btnActualizar.Visibility = Visibility.Collapsed;
                             btnEliminar.Visibility = Visibility.Collapsed;
                             _btnSubir.IsEnabled = true;
@@ -237,7 +227,6 @@ namespace Vistas.Pages.admin.Mproductos
                     {
                         var _id = (computador)DGcomputadores.SelectedItem;
 
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         computador c = new computador
                         {
                             id = _id.id,
@@ -255,9 +244,9 @@ namespace Vistas.Pages.admin.Mproductos
                             precio = int.Parse(txtPrecio.Text),
 
                         };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         lbmessage.Content = Scomputadores.update(c);
                         refresh();
+                        limpiar_campos();
                         btnActualizar.Visibility = Visibility.Collapsed;
                         btnEliminar.Visibility = Visibility.Collapsed;
                         _btnSubir.IsEnabled = true;
@@ -269,6 +258,20 @@ namespace Vistas.Pages.admin.Mproductos
                     }
                 }
             }
+        }
+        private void limpiar_campos()
+        {
+            txtNombre.Text = string.Empty;
+            txtCantidad.Text = string.Empty;
+            txtDescuento.Text = string.Empty;
+            rdEnvio.IsChecked = false;
+            txtMarca.Text = string.Empty;
+            txtPrecio.Text = string.Empty;
+            txtProcesador.Text = string.Empty;
+            txtAlmacenamiento.Text = string.Empty;
+            txtTmadre.Text = string.Empty;
+            txtTvideo.Text = string.Empty;
+            txtRam.Text = string.Empty;
         }
     }
 

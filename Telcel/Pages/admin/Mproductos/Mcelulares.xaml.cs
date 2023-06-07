@@ -26,9 +26,7 @@ namespace Vistas.Pages.admin.Mproductos {
         private Scelulares Scelulares= new Scelulares();
         private string rutaArchivoSeleccionado;
         
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-        public Mcelulares()
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+       public Mcelulares()
         {
             InitializeComponent();
             if (Scelulares.GetCelulares() != null && Scelulares.GetCelulares().Count > 0)
@@ -60,13 +58,13 @@ namespace Vistas.Pages.admin.Mproductos {
                             }
 
                         }
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         celular c = new celular
                         {
+                            
                             nombre = txtNombre.Text,
                             cantidad = int.Parse(txtCantidad.Text),
                             descuento = float.Parse(txtDescuento.Text)/100,
-                            envio = rdEnvio.IsChecked.Value,
+                            envio = (bool)rdEnvio.IsChecked.Value,
                             marca = new marca() { nombre_marca = txtMarca.Text },
                             imagen = imagen,
                             precio = int.Parse(txtPrecio.Text),
@@ -76,11 +74,11 @@ namespace Vistas.Pages.admin.Mproductos {
                             descripcion=txtDescripcion.Text
 
                         };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                     
-                        MessageBox.Show(Scelulares.add(c));
+                        lbmessage.Content=(Scelulares.add(c));
+                limpiar_campos();
 
-                        refresh();
+                refresh();
                     }
 
 
@@ -116,7 +114,7 @@ namespace Vistas.Pages.admin.Mproductos {
                     txtNombre.Text = ((celular)DGcelulares.SelectedItem).nombre;
                     txtCantidad.Text = ((celular)DGcelulares.SelectedItem).cantidad.ToString();
                     txtDescuento.Text = (((celular)DGcelulares.SelectedItem).descuento * 100).ToString();
-                    rdEnvio.IsChecked = ((celular)DGcelulares.SelectedItem).envio;
+                    rdEnvio.IsChecked = (bool)((celular)DGcelulares.SelectedItem).envio;
                     txtMarca.Text = ((celular)DGcelulares.SelectedItem).marca.nombre_marca;
                     txtPrecio.Text = ((celular)DGcelulares.SelectedItem).precio.ToString();
                     txtDescripcion.Text = ((celular)DGcelulares.SelectedItem).descripcion;
@@ -194,7 +192,6 @@ namespace Vistas.Pages.admin.Mproductos {
                             if (validation())
                             {
                                 var _id = (celular)DGcelulares.SelectedItem;
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                                 celular c = new celular
                                 {
 
@@ -206,19 +203,20 @@ namespace Vistas.Pages.admin.Mproductos {
                                     ram=txtRam.Text,
                                     almacenamiento=txtAlmacenamiento.Text,
                                     camara=txtCamara.Text,
-                                    envio = rdEnvio.IsChecked.Value,
+                                    envio = (bool)rdEnvio.IsChecked,
                                     marca = new marca() { nombre_marca = txtMarca.Text },
                                     imagen = imagen,
                                     precio = int.Parse(txtPrecio.Text)
                                 };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                                 lbmessage.Content = Scelulares.update(c);
                                 refresh();
                                 btnActualizar.Visibility = Visibility.Collapsed;
                                 btnEliminar.Visibility = Visibility.Collapsed;
                                 _btnSubir.IsEnabled = true;
-                            }
-                            else
+                            limpiar_campos();
+
+                        }
+                        else
                             {
                                 lbmessage.Content = "No se puedo actualizar correctamnte";
                             }
@@ -230,14 +228,13 @@ namespace Vistas.Pages.admin.Mproductos {
                         {
                             var _id = (celular)DGcelulares.SelectedItem;
 
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
-                            celular c = new celular
+                        celular c = new celular
                             {
                                 id = _id.id,
                                 nombre = txtNombre.Text,
                                 cantidad = int.Parse(txtCantidad.Text),
                                 descuento = float.Parse(txtDescuento.Text) / 100,
-                                envio = rdEnvio.IsChecked.Value,
+                                envio = (bool)rdEnvio.IsChecked,
                                 marca = new marca() { nombre_marca = txtMarca.Text },
                                 imagen = ((celular)DGcelulares.SelectedItem).imagen,
                                 precio = int.Parse(txtPrecio.Text),
@@ -246,20 +243,34 @@ namespace Vistas.Pages.admin.Mproductos {
                                 almacenamiento = txtAlmacenamiento.Text,
                                 camara = txtCamara.Text
                             };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             lbmessage.Content = Scelulares.update(c);
                             refresh();
                             btnActualizar.Visibility = Visibility.Collapsed;
                             btnEliminar.Visibility = Visibility.Collapsed;
                             _btnSubir.IsEnabled = true;
-
-                        }
-                        else
+                        limpiar_campos();
+                        refresh();
+                    }
+                    else
                         {
                             lbmessage.Content = "No se puedo actualizar correctamnte";
                         }
                     }
                 }
+            refresh();
+        }
+        private void limpiar_campos()
+        {
+            txtNombre.Text = string.Empty;
+            txtCantidad.Text = string.Empty;
+            txtDescuento.Text = string.Empty;
+            rdEnvio.IsChecked = false; 
+            txtMarca.Text = string.Empty; ;
+            txtPrecio.Text = string.Empty; ;
+            txtDescripcion.Text = string.Empty; ;
+            txtAlmacenamiento.Text = string.Empty; ;
+            txtCamara.Text = string.Empty ;
+            txtRam.Text = string.Empty; ;
         }
         
     }
@@ -269,13 +280,9 @@ namespace Vistas.Pages.admin.Mproductos {
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             byte[] data = value as byte[];
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             if (data == null)
-#pragma warning disable CS8603 // Posible tipo de valor devuelto de referencia nulo
                 return null;
-#pragma warning restore CS8603 // Posible tipo de valor devuelto de referencia nulo
 
             BitmapImage image = new BitmapImage();
             using (MemoryStream stream = new MemoryStream(data))

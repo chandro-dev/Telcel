@@ -45,13 +45,13 @@
                 <Label x:Name="lbDescuento" Content="Descuento en Porcentaje" />
                 <TextBox x:Name="txtDescuento"/>
                 <Label  Content ="Tiene Envio Gratis" />
-                <RadioButton x:Name="rdEnvio"></RadioButton>
+                <CheckBox x:Name="rdEnvio"></CheckBox>
                 <Label x:Name="lbImagen" Content="Imagen"></Label>
                 <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
                 <Button x:Name="btnSelecionar" Content="Selecionar archivo" Click="btnSelecionarClick"  ></Button>
                 <Separator></Separator>
                 <Button x:Name="_btnSubir" Content="Subir Celular" Click="btnSubirClick" ></Button>
-                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnEliminar" Content="Eliminar asesorio" Click="ClickBtnEliminar" Visibility="Collapsed"/>
+                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnEliminar" Content="Eliminar celular" Click="ClickBtnEliminar" Visibility="Collapsed"/>
                 <Button  FontFamily="consolas" FontSize="16"  x:Name="btnActualizar" Margin="5" Content="Actualizar" Visibility="Collapsed" Click="btnActualizar_Click" />
                 <Label FontFamily="Consolas" FontSize="18" x:Name="lbmessage"/>
 

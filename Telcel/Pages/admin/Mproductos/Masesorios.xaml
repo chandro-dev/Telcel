@@ -51,7 +51,7 @@
             <Label x:Name="lbNombre" Content="Nombre" Style="{StaticResource CustomLabelStyle}"/>
             <TextBox x:Name="txtNombre"  Margin="5"></TextBox >
             <Label x:Name="lbPrecio" Content="Precio" Style="{StaticResource CustomLabelStyle}"/>
-            <TextBox x:Name="txtPrecio" Margin="5" TextChanged="AmountTextBox_TextChanged"></TextBox>
+            <TextBox x:Name="txtPrecio" Margin="5" ></TextBox>
             <Label x:Name="lbMarca" Content="Marca" Style="{StaticResource CustomLabelStyle}"/>
             <TextBox x:Name="txtMarca"  Margin="5"></TextBox>
             <Label x:Name="lbCantidad" Content="Cantidad" Style="{StaticResource CustomLabelStyle}"></Label>
@@ -61,7 +61,7 @@
             <Label x:Name="lbDescuento" Content="Descuento en Porcentaje" Style="{StaticResource CustomLabelStyle}"/>
             <TextBox x:Name="txtDescuento"  Margin="5"/>
             <Label  Content ="Tiene Envio Gratis" Style="{StaticResource CustomLabelStyle}"/>
-            <RadioButton x:Name="rdEnvio"></RadioButton>
+            <CheckBox x:Name="rdEnvio"></CheckBox>
             <Label  x:Name="lbImagen" Content="Imagen" Style="{StaticResource CustomLabelStyle}"></Label>
             <TextBox x:Name="txtNarchivo" IsEnabled="False" Text="Nombre imagen -->"/>
                 <Button  FontFamily="consolas" FontSize="16" Margin="5" Content="Selecionar archivo" Click="btnSelecionar"  ></Button>

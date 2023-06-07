@@ -58,10 +58,10 @@
                 <Label x:Name="lbDescuento" Content="Descuento en Porcentaje" />
                 <TextBox x:Name="txtDescuento"/>
                 <Label   Content ="Tiene Envio Gratis" />
-                <RadioButton x:Name="rdEnvio"></RadioButton>
+                <CheckBox x:Name="rdEnvio"></CheckBox>
 
 
-                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnEliminar" Content="Eliminar asesorio" Click="ClickBtnEliminar" Visibility="Collapsed"/>
+                <Button  FontFamily="consolas" FontSize="16"  x:Name="btnEliminar" Content="Eliminar Computador" Click="ClickBtnEliminar" Visibility="Collapsed"/>
                 <Button  FontFamily="consolas" FontSize="16"  x:Name="btnActualizar" Margin="5" Content="Actualizar" Visibility="Collapsed" Click="btnActualizar_Click" />
                 <Label FontFamily="Consolas" FontSize="18" x:Name="lbmessage"/>
             </StackPanel>
@@ -69,6 +69,8 @@
         <DataGrid x:Name="DGcomputadores" AutoGenerateColumns="False"  Grid.Column="1" SelectionChanged="DGcomputadores_SelectionChanged" >
             <DataGrid.Columns >
                 <!-- Binding mal hecho-->
+                <DataGridTextColumn Header="Nombre" Binding="{Binding id}"></DataGridTextColumn>
+
                 <DataGridTextColumn Header="Nombre" Binding="{Binding nombre}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Precio" Binding="{Binding precio,StringFormat='{}{0:C0}'}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Marca" Binding="{Binding marca.nombre_marca}"></DataGridTextColumn>

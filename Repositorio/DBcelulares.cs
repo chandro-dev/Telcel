@@ -13,6 +13,8 @@ namespace Repositorio
 {
     public class DBcelulares:Iproductos<celular>
     {
+
+        //Obtner todos los celulares por medio de un procedimiento almacenado 
         public List<celular> getAll() {
 
             List<celular> celulars = new List<celular>();
@@ -41,6 +43,7 @@ namespace Repositorio
             }
             return celulars;
         }
+        //Añadir un item por medio de un procedimiento almacenado
         public string add(celular item) {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))
             {
@@ -71,7 +74,7 @@ namespace Repositorio
             } 
             
 
-            return "OK";
+            return "Subido correctamente";
         }
        private celular mapper(SqlDataReader reader)
         {
@@ -119,7 +122,7 @@ namespace Repositorio
             }
 
 
-            return "OK";
+            return "Eliminado correctamente";
         }
         public string modify(celular item) {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServerConnection"].ConnectionString))

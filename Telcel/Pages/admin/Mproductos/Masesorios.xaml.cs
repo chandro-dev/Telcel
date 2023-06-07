@@ -114,8 +114,6 @@ namespace Vistas.Pages.admin.Mproductos
                 txtPrecio.Text = amount.ToString("C");
             }
         }
-
-
         private void DGasesorios_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DGasesorios.SelectedItem != null)
@@ -199,7 +197,6 @@ namespace Vistas.Pages.admin.Mproductos
                         if (validation())
                         {
                             var _id = (asesorio)DGasesorios.SelectedItem;
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             asesorio a = new asesorio
                             {
 
@@ -208,12 +205,12 @@ namespace Vistas.Pages.admin.Mproductos
                                 referencia = txtReferencia.Text,
                                 cantidad = int.Parse(txtCantidad.Text),
                                 descuento = float.Parse(txtDescuento.Text) / 100,
-                                envio = rdEnvio.IsChecked.Value,
+                                envio = (bool)rdEnvio.IsChecked.Value,
                                 marca = new marca() { nombre_marca = txtMarca.Text },
                                 imagen = imagen,
                                 precio = int.Parse(txtPrecio.Text)
+                                
                             };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                             lbmessage.Content = Sasesorios.update(a);
                             refresh();
                             clear_btn();
@@ -232,8 +229,6 @@ namespace Vistas.Pages.admin.Mproductos
                     if (validation())
                     {
                         var _id = (asesorio)DGasesorios.SelectedItem;
-
-#pragma warning disable CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         asesorio a = new asesorio
                         {
                             id = _id.id,
@@ -241,12 +236,11 @@ namespace Vistas.Pages.admin.Mproductos
                             referencia = txtReferencia.Text,
                             cantidad = int.Parse(txtCantidad.Text),
                             descuento = float.Parse(txtDescuento.Text) / 100,
-                            envio = rdEnvio.IsChecked.Value,
+                            envio = (bool)rdEnvio.IsChecked,
                             marca = new marca() { nombre_marca = txtMarca.Text },
                             imagen = ((asesorio)DGasesorios.SelectedItem).imagen,
                             precio = int.Parse(txtPrecio.Text)
                         };
-#pragma warning restore CS8629 // Un tipo que acepta valores NULL puede ser nulo.
                         lbmessage.Content = Sasesorios.update(a);
                         refresh();
                         clear_btn();

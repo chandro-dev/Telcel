@@ -57,7 +57,11 @@ namespace Vistas.Pages
         }
         public void btnIniciarS(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new page());
+            try
+            {
+                NavigationService.Navigate(new page());
+            }
+            catch { }
         }
         public void Cat_Computadores(object sender, RoutedEventArgs e)
         {
